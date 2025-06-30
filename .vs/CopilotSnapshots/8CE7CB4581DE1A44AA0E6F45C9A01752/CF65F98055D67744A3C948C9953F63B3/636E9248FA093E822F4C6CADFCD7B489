@@ -1,0 +1,143 @@
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Player : MonoBehaviour
+{
+    [SerializeField] private float speed = 5f; // Speed of the player
+    [SerializeField] private float runFastMultiplier = 1.5f; // Multiplier for running fast
+    [SerializeField] private float jumpForce = 10f; // Lực nhảy
+    [SerializeField] private LayerMask groundLayer; // Layer của mặt đất
+    [SerializeField] private float comboTimeWindow = 0.5f; // Time window for combo attacks
+    private Rigidbody2D rb; // Reference to the Rigidbody2D component
+    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
+    private Animator animator; // Reference to the Animator component
+
+    private Vector2 moveInput; // Input vector for movement
+    private bool isRunningFast; // Flag to check if the player is running fast
+    private bool isGrounded; // Kiểm tra xem nhân vật có đang ở trên mặt đất không
+    private Transform groundCheck; // Điểm kiểm tra mặt đất
+
+    private int attackCount = 0; // Tracks the number of attack inputs
+    private float lastAttackTime = 0f; // Tracks the time of the last attack input
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Initialize the SpriteRenderer component
+        animator = GetComponent<Animator>(); // Initialize the Animator component
+
+        // Tạo một điểm kiểm tra mặt đất
+        groundCheck = transform.Find("GroundCheck");
+        if (groundCheck == null)
+        {
+            Debug.LogError("GroundCheck transform is missing. Please add a child object named 'GroundCheck' to the player.");
+        }
+    }
+
+    private void Update()
+    {
+        // Kiểm tra xem nhân vật có đang ở trên mặt đất không
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+
+        // Get the input from the player (chỉ lấy trục Horizontal)
+        float moveX = Input.GetAxis("Horizontal");
+        moveInput = new Vector2(moveX, 0).normalized; // Đặt trục Y thành 0
+
+        // Check if the player is running fast (holding Shift)
+        isRunningFast = Input.GetKey(KeyCode.LeftShift);
+
+        // Update animator parameters
+        animator.SetFloat("Speed", Mathf.Abs(moveX)); // Chỉ sử dụng trục Horizontal để tính Speed
+        animator.SetBool("IsRunningFast", isRunningFast); // Set IsRunningFast based on Shift key
+        animator.SetBool("IsGrounded", isGrounded); // Cập nhật trạng thái mặt đất cho Animator
+
+        // Handle jump input
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Debug.Log("Jump Triggered");
+            Jump();
+        }
+
+        // Handle attack input
+        if (Input.GetKeyDown(KeyCode.J)) // Replace KeyCode.J with your desired attack key
+        {
+            HandleComboAttack();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer(); // Call the MovePlayer function to handle player movement
+    }
+
+    void MovePlayer()
+    {
+        // Nếu không có đầu vào, dừng ngay lập tức
+        //if (moveInput == Vector2.zero)
+        //{
+        //    rb.linearVelocity = Vector2.zero; // Dừng ngay lập tức
+        //    return;
+        //}
+
+        // Adjust speed based on whether the player is running fast
+        float currentSpeed = isRunningFast ? speed * runFastMultiplier : speed;
+
+        // Move the player
+        rb.MovePosition(rb.position + moveInput * currentSpeed * Time.fixedDeltaTime);
+
+        // Flip the sprite based on movement direction
+        if (moveInput.x < 0)
+        {
+            spriteRenderer.flipX = true; // Flip the sprite to face left
+        }
+        else if (moveInput.x > 0)
+        {
+            spriteRenderer.flipX = false; // Flip the sprite to face right
+        }
+    }
+
+    void Jump()
+    {
+        Debug.Log($"Current Velocity: {rb.velocity}"); // Debug velocity trước khi nhảy
+
+        // Cách 1: Sử dụng velocity
+        //rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+        // HOẶC Cách 2: Sử dụng AddForce
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        Debug.Log($"Jump Force Applied: {jumpForce}"); // Debug lực nhảy
+        animator.SetTrigger("Jump");
+    }
+
+
+    void HandleComboAttack()
+    {
+        float currentTime = Time.time;
+
+        // Check if the time since the last attack is within the combo window
+        if (currentTime - lastAttackTime <= comboTimeWindow)
+        {
+            attackCount++;
+        }
+        else
+        {
+            attackCount = 1; // Reset combo if outside the time window
+        }
+
+        lastAttackTime = currentTime;
+
+        // Trigger the appropriate attack animation based on the combo count
+        if (attackCount == 1)
+        {
+            animator.ResetTrigger("Attack1+"); // Reset the second attack trigger
+            animator.SetTrigger("Attack1"); // Trigger the first attack animation
+        }
+        else if (attackCount == 2)
+        {
+            animator.ResetTrigger("Attack1"); // Reset the first attack trigger
+            animator.SetTrigger("Attack1+"); // Trigger the second attack animation
+            attackCount = 0; // Reset the combo after the second attack
+        }
+    }
+}

@@ -1,0 +1,127 @@
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Player : MonoBehaviour
+{
+    [SerializeField] private float speed = 5f; // Speed of the player
+    [SerializeField] private float runFastMultiplier = 1.5f; // Multiplier for running fast
+    [SerializeField] private float comboTimeWindow = 0.5f; // Time window for combo attacks
+    private Rigidbody2D rb; // Reference to the Rigidbody2D component
+    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
+    private Animator animator; // Reference to the Animator component
+
+    private Vector2 moveInput; // Input vector for movement
+    private bool isRunningFast; // Flag to check if the player is running fast
+
+    private int attackCount = 0; // Tracks the number of attack inputs
+    private float lastAttackTime = 0f; // Tracks the time of the last attack input
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Initialize the SpriteRenderer component
+        animator = GetComponent<Animator>(); // Initialize the Animator component
+    }
+
+    private void Update()
+    {
+        // Get the input from the player
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+        moveInput = new Vector2(moveX, moveY);
+
+        // Check if the player is running fast (holding Shift)
+        isRunningFast = Input.GetKey(KeyCode.LeftShift);
+
+        // Update animator parameters
+        animator.SetFloat("Speed", moveInput.magnitude); // Set Speed based on movement magnitude
+        animator.SetBool("IsRunningFast", isRunningFast); // Set IsRunningFast based on Shift key
+
+        // Handle attack input
+        if (Input.GetKeyDown(KeyCode.J)) // Replace KeyCode.J with your desired attack key
+        {
+            HandleComboAttack();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer(); // Call the MovePlayer function to handle player movement
+    }
+
+    void MovePlayer()
+    {
+        // Adjust speed based on whether the player is running fast
+        float currentSpeed = isRunningFast ? speed * runFastMultiplier : speed;
+
+        // Move the player
+        rb.MovePosition(rb.position + moveInput * currentSpeed * Time.fixedDeltaTime);
+
+        // Flip the sprite based on movement direction
+        if (moveInput.x < 0)
+        {
+            spriteRenderer.flipX = true; // Flip the sprite to face left
+        }
+        else if (moveInput.x > 0)
+        {
+            spriteRenderer.flipX = false; // Flip the sprite to face right
+        }
+    }
+
+    //void HandleAttackCombo()
+    //{
+    //    float currentTime = Time.time;
+
+    //    // Combo logic theo thời gian
+    //    if (currentTime - lastAttackTime <= comboTimeWindow)
+    //    {
+    //        attackCount++;
+    //    }
+    //    else
+    //    {
+    //        attackCount = 1; // Reset nếu ngoài thời gian
+    //    }
+
+    //    lastAttackTime = currentTime;
+
+    //    if (attackCount == 1)
+    //    {
+    //        animator.SetTrigger("Attack1");
+    //    }
+    //    else if (attackCount == 2)
+    //    {
+    //        animator.SetTrigger("Attack2");
+    //        attackCount = 0; // Reset combo sau đòn thứ 2
+    //    }
+    //}
+    void HandleComboAttack()
+    {
+        float currentTime = Time.time;
+
+        // Check if the time since the last attack is within the combo window
+        if (currentTime - lastAttackTime <= comboTimeWindow)
+        {
+            attackCount++;
+        }
+        else
+        {
+            attackCount = 1; // Reset combo if outside the time window
+        }
+
+        lastAttackTime = currentTime;
+
+        // Trigger the appropriate attack animation based on the combo count
+        if (attackCount == 1)
+        {
+            animator.ResetTrigger("Attack1+"); // Reset the second attack trigger
+            animator.SetTrigger("Attack1"); // Trigger the first attack animation
+        }
+        else if (attackCount == 2)
+        {
+            animator.ResetTrigger("Attack1"); // Reset the first attack trigger
+            animator.SetTrigger("Attack1+"); // Trigger the second attack animation
+            attackCount = 0; // Reset the combo after the second attack
+        }
+    }
+
+}

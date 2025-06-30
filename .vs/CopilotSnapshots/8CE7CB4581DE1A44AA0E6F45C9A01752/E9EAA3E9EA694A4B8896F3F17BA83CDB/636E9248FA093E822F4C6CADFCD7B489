@@ -1,0 +1,62 @@
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Player : MonoBehaviour // Renamed class to PascalCase
+{
+    [SerializeField] private float speed = 5f; // Speed of the player
+    private Rigidbody2D rb; // Reference to the Rigidbody2D component
+    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
+    private Animator animator; // Reference to the Animator component
+
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Initialize the SpriteRenderer component
+        animator = GetComponent<Animator>(); // Initialize the Animator component
+    }
+
+    // FixedUpdate is called at a fixed time interval, ideal for physics calculations
+    private void FixedUpdate()
+    {
+        MovePlayer(); // Call the MovePlayer function to handle player movement
+    }
+
+    void MovePlayer()
+    {
+        // Get the input from the player
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+
+        // Create a new Vector2 for movement
+        Vector2 moveInput = new Vector2(moveX, moveY);
+
+        // Move the player
+        rb.MovePosition(rb.position + moveInput * speed * Time.fixedDeltaTime);
+
+        // Flip the sprite based on movement direction
+        if (moveInput.x < 0)
+        {
+            spriteRenderer.flipX = true; // Flip the sprite to face left
+        }
+        else if (moveInput.x > 0)
+        {
+            spriteRenderer.flipX = false; // Flip the sprite to face right
+        }
+        //if (moveInput.magnitude > 0)
+        //{
+        //    animator.SetBool("IsRun", true); // Set the animator parameter to true if moving
+        //}
+        //else
+        //{
+        //    animator.SetBool("IsRun", false); // Set the animator parameter to false if not moving
+        //}
+
+    //    public void SetAttackCollider()
+    //{
+    //    boxCollider.offset = new Vector2(0.2f, 0);
+    //    boxCollider.size = new Vector2(1.0f, 0.5f);
+    //}
+
+}
+}

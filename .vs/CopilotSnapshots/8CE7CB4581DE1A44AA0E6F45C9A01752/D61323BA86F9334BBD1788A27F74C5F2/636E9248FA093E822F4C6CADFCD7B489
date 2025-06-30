@@ -1,0 +1,66 @@
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class Player : MonoBehaviour
+{
+    [SerializeField] private float speed = 5f; // Speed of the player
+    [SerializeField] private float runFastMultiplier = 1.5f; // Multiplier for running fast
+    private Rigidbody2D rb; // Reference to the Rigidbody2D component
+    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
+    private Animator animator; // Reference to the Animator component
+
+    private Vector2 moveInput; // Input vector for movement
+    private bool isRunningFast; // Flag to check if the player is running fast
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Initialize the SpriteRenderer component
+        animator = GetComponent<Animator>(); // Initialize the Animator component
+    }
+
+    private void Update()
+    {
+        // Get the input from the player
+        float moveX = Input.GetAxis("Horizontal");
+        float moveY = Input.GetAxis("Vertical");
+        moveInput = new Vector2(moveX, moveY);
+
+        // Check if the player is running fast (holding Shift)
+        isRunningFast = Input.GetKey(KeyCode.LeftShift);
+
+        // Update animator parameters
+        animator.SetFloat("Speed", moveInput.magnitude); // Set Speed based on movement magnitude
+        animator.SetBool("IsRunningFast", isRunningFast); // Set IsRunningFast based on Shift key
+
+        if (Input.GetKeyDown(KeyCode.J)) // hoặc bất kỳ phím nào bạn muốn
+        {
+            animator.SetTrigger("Attack1");
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer(); // Call the MovePlayer function to handle player movement
+    }
+
+    void MovePlayer()
+    {
+        // Adjust speed based on whether the player is running fast
+        float currentSpeed = isRunningFast ? speed * runFastMultiplier : speed;
+
+        // Move the player
+        rb.MovePosition(rb.position + moveInput * currentSpeed * Time.fixedDeltaTime);
+
+        // Flip the sprite based on movement direction
+        if (moveInput.x < 0)
+        {
+            spriteRenderer.flipX = true; // Flip the sprite to face left
+        }
+        else if (moveInput.x > 0)
+        {
+            spriteRenderer.flipX = false; // Flip the sprite to face right
+        }
+    }
+}

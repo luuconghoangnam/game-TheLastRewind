@@ -1,0 +1,35 @@
+[Lưu ý: Nếu dùng GitHub Desktop, bạn có thể chọn template Unity khi khởi tạo repo.]
+
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# User-specific
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+
+# Auto-generated VS/JetBrains Rider files
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Unity Cloud
+sysinfo.txt
