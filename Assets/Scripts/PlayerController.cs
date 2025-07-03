@@ -1,41 +1,78 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f; // Speed of the player
-    [SerializeField] private float runFastMultiplier = 1.5f; // Multiplier for running fast
-    [SerializeField] private float jumpForce = 30f; // Lực nhảy
-    [SerializeField] private LayerMask groundLayer; // Layer của mặt đất
-    [SerializeField] private float comboTimeWindow = 0.6f; // Time window for combo attacks
-    private Rigidbody2D rb; // Reference to the Rigidbody2D component
-    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer component
-    private Animator animator; // Reference to the Animator component
+    // Thêm vào đầu class Player
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float runFastMultiplier = 1.5f;
+    [SerializeField] private float jumpForce = 60f;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float comboResetTime = 0.6f; // Thời gian tối đa giữa các đòn combo
+    [SerializeField] private Camera mainCamera; // Reference to main camera
+    [SerializeField] private float maxRagePoints = 50f; // Điểm tích nộ tối đa
+    [SerializeField] private float minRageToActivate = 40f; // Điểm tối thiểu để kích hoạt
+    [SerializeField] private float currentRagePoints = 0f; // Điểm tích nộ hiện tại
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int currentHealth;
 
-    private Vector2 moveInput; // Input vector for movement
-    private bool isRunningFast; // Flag to check if the player is running fast
-    private bool isGrounded; // Kiểm tra xem nhân vật có đang ở trên mặt đất không
-    private Transform groundCheck; // Điểm kiểm tra mặt đất
+    private bool isUltimateActive = false; // Trạng thái ulti
 
-    private int attackCount = 0; // Tracks the number of attack inputs
-    private float lastAttackTime = 0f; // Tracks the time of the last attack input
-    private bool isBlocking = false; // Trạng thái đỡ
-    private float idleTime = 0f; // Thời gian nhân vật ở trạng thái đứng yên
-    private float idleThreshold = 10f; // Ngưỡng thời gian để kích hoạt animation nghỉ
-    private bool isIdleForLong = false; // Trạng thái nhân vật có đang ở trạng thái nghỉ lâu hay không
-    private bool isDead = false; // Trạng thái nhân vật có đang chết hay không
-    private int currentHealth; // Máu hiện tại của nhân vật
-    private int maxHealth = 100; // Máu tối đa của nhân vật
-    private int lives = 3; // Số mạng của nhân vật
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
+
+    private Vector2 moveInput;
+    private bool isRunningFast;
+    private bool isGrounded;
+    private Transform groundCheck;
+
+    private float minX, maxX; // Giới hạn di chuyển
+
+    // Combo logic
+    private int comboStepJ = 0;
+    private int comboStepK = 0;
+    private float lastAttackTimeJ = 0f;
+    private float lastAttackTimeK = 0f;
+    private bool isAttackingJ = false;
+    private bool isAttackingK = false;
+    private bool isComboWindowOpenJ = false;
+    private bool isComboWindowOpenK = false;
+    private bool hasBufferedInputJ = false;
+    private bool hasBufferedInputK = false;
+
+    // Other logic
+    private bool isBlocking = false;
+    private float idleTime = 0f;
+    private float idleThreshold = 10f;
+    private bool isIdleForLong = false;
+    private bool isDead = false;
+    private int lives = 3;
+
+    // Properties
+    public int CurrentHealth 
+    { 
+        get => currentHealth;
+        private set 
+        {
+            currentHealth = Mathf.Clamp(value, 0, maxHealth);
+            OnHealthChanged?.Invoke(currentHealth, maxHealth); // Event khi máu thay đổi
+        }
+    }
+    public int MaxHealth => maxHealth;
+
+    // Event để thông báo khi máu thay đổi
+    public delegate void HealthChangeHandler(int currentHealth, int maxHealth);
+    public event HealthChangeHandler OnHealthChanged;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component attached to the player
-        spriteRenderer = GetComponent<SpriteRenderer>(); // Initialize the SpriteRenderer component
-        animator = GetComponent<Animator>(); // Initialize the Animator component
-        currentHealth = maxHealth; // Khởi tạo máu ban đầu
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        currentHealth = maxHealth;
 
-        // Tạo một điểm kiểm tra mặt đất
         groundCheck = transform.Find("GroundCheck");
         if (groundCheck == null)
         {
@@ -43,70 +80,64 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+    }
+
     private void Update()
     {
-        // Kiểm tra xem nhân vật có đang ở trên mặt đất không
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
 
-        // Get the input from the player (chỉ lấy trục Horizontal)
         float moveX = Input.GetAxis("Horizontal");
-        moveInput = new Vector2(moveX, 0).normalized; // Đặt trục Y thành 0
+        moveInput = new Vector2(moveX, 0).normalized;
 
-        // Check if the player is running fast (holding Shift)
         isRunningFast = Input.GetKey(KeyCode.LeftShift);
 
-        // Update animator parameters
-        animator.SetFloat("Speed", Mathf.Abs(moveX)); // Chỉ sử dụng trục Horizontal để tính Speed
-        animator.SetBool("IsRunningFast", isRunningFast); // Set IsRunningFast based on Shift key
-        animator.SetBool("IsGrounded", isGrounded); // Cập nhật trạng thái mặt đất cho Animator
+        animator.SetFloat("Speed", Mathf.Abs(moveX));
+        animator.SetBool("IsRunningFast", isRunningFast);
+        animator.SetBool("IsGrounded", isGrounded);
 
-        // Kiểm tra trạng thái Idle
         if (Mathf.Abs(moveX) == 0 && !Input.anyKey && isGrounded)
         {
-            idleTime += Time.deltaTime; // Tăng thời gian idle
+            idleTime += Time.deltaTime;
             if (idleTime >= idleThreshold && !isIdleForLong)
             {
                 isIdleForLong = true;
-                animator.SetTrigger("IdleForLong"); // Kích hoạt animation nghỉ
+                animator.SetTrigger("IdleForLong");
             }
         }
         else
         {
-            idleTime = 0f; // Reset thời gian idle
-            isIdleForLong = false; // Reset trạng thái nghỉ
+            idleTime = 0f;
+            isIdleForLong = false;
         }
 
-        // Xử lý nhảy
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
         }
 
-        // Xử lý tấn công
+        // Combo attack J
         if (Input.GetKeyDown(KeyCode.J))
         {
-            HandleComboAttack();
+            TryAttackJ();
         }
-
-        // Xử lý combo attack 2
+        // Combo attack K
         if (Input.GetKeyDown(KeyCode.K))
         {
-            HandleComboAttack2();
+            TryAttackK();
         }
-
-        // Xử lý combo attack 3
+        // Attack3
         if (Input.GetKeyDown(KeyCode.U))
         {
-            HandleComboAttack3();
+            animator.SetTrigger("Attack3");
         }
-
-        // Xử lý tấn công đồng thời J và U
         if (Input.GetKey(KeyCode.J) && Input.GetKey(KeyCode.U))
         {
             animator.SetTrigger("Attack3+");
         }
-
-        // Xử lý đỡ
         if (Input.GetKey(KeyCode.L))
         {
             HandleBlock();
@@ -115,31 +146,58 @@ public class Player : MonoBehaviour
         {
             StopBlock();
         }
+
+        // Ultimate
+        HandleUltimate();
+
+        // Reset combo nếu quá thời gian không bấm tiếp
+        if (isAttackingJ && Time.time - lastAttackTimeJ > comboResetTime && !hasBufferedInputJ)
+        {
+            ResetComboJ();
+        }
+        if (isAttackingK && Time.time - lastAttackTimeK > comboResetTime && !hasBufferedInputK)
+        {
+            ResetComboK();
+        }
+
+        // Thêm vào cuối hàm Update hiện có
+        //HandleUltimate();
     }
 
     private void FixedUpdate()
     {
-        MovePlayer(); // Call the MovePlayer function to handle player movement
+        MovePlayer();
     }
 
     [System.Obsolete]
     void MovePlayer()
     {
-        // Nếu đang đỡ, không cho phép di chuyển
         if (isBlocking)
         {
-            rb.linearVelocity = new Vector2(0, rb.velocity.y); // Giữ nguyên vận tốc Y, dừng vận tốc X
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             return;
         }
 
-        // Adjust speed based on whether the player is running fast
         float currentSpeed = isRunningFast ? speed * runFastMultiplier : speed;
+        Vector2 movement = new Vector2(moveInput.x * currentSpeed, rb.linearVelocity.y);
 
-        // Chỉ di chuyển theo trục X, giữ nguyên vận tốc Y
-        Vector2 movement = new Vector2(moveInput.x * currentSpeed, rb.velocity.y);
-        rb.velocity = movement;
+        // Tính toán giới hạn màn hình
+        float halfWidth = spriteRenderer.bounds.extents.x;
+        float cameraHalfWidth = mainCamera.orthographicSize * mainCamera.aspect;
 
-        // Flip the sprite based on movement direction
+        // Tính giới hạn trái phải dựa theo vị trí camera
+        float leftLimit = mainCamera.transform.position.x - cameraHalfWidth + halfWidth;
+        float rightLimit = mainCamera.transform.position.x + cameraHalfWidth - halfWidth;
+
+        // Tính vị trí mới dự kiến
+        float newX = transform.position.x + movement.x * Time.fixedDeltaTime;
+        // Giới hạn vị trí X trong khoảng cho phép
+        newX = Mathf.Clamp(newX, leftLimit, rightLimit);
+
+        // Áp dụng movement với vị trí X đã được giới hạn
+        rb.linearVelocity = new Vector2((newX - transform.position.x) / Time.fixedDeltaTime, movement.y);
+
+        // Flip sprite
         if (moveInput.x < 0)
         {
             spriteRenderer.flipX = true;
@@ -154,152 +212,276 @@ public class Player : MonoBehaviour
     {
         if (isGrounded)
         {
-            Debug.Log("Jumping with force: " + jumpForce);
-            // Giữ nguyên vận tốc X khi nhảy
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-
-            // Kích hoạt parameter Jump trong Animator
             animator.SetTrigger("Jump");
         }
     }
 
-    void HandleComboAttack()
+    // --- Combo J ---
+    void TryAttackJ()
     {
-        float currentTime = Time.time;
-
-        // Check if the time since the last attack is within the combo window
-        if (currentTime - lastAttackTime <= comboTimeWindow) // 0.6s combo window for Attack1
+        if (isAttackingJ)
         {
-            attackCount++;
+            if (isComboWindowOpenJ)
+            {
+                ContinueComboJ();
+            }
+            else
+            {
+                hasBufferedInputJ = true;
+            }
         }
         else
         {
-            attackCount = 1; // Reset combo if outside the time window
-        }
-
-        lastAttackTime = currentTime;
-
-        // Trigger the appropriate attack animation based on the combo count
-        if (attackCount == 1)
-        {
-            animator.ResetTrigger("Attack1+"); // Reset the second attack trigger
-            animator.SetTrigger("Attack1"); // Trigger the first attack animation
-        }
-        else if (attackCount == 2)
-        {
-            animator.ResetTrigger("Attack1"); // Reset the first attack trigger
-            animator.SetTrigger("Attack1+"); // Trigger the second attack animation
-            attackCount = 0; // Reset the combo after the second attack
+            StartComboJ();
         }
     }
-    void HandleComboAttack2()
-    {
-        float currentTime = Time.time;
 
-        // Check if the time since the last attack is within the combo window
-        if (currentTime - lastAttackTime <= comboTimeWindow)
+    void StartComboJ()
+    {
+        comboStepJ = 1;
+        isAttackingJ = true;
+        lastAttackTimeJ = Time.time;
+        animator.SetTrigger("Attack1");
+    }
+
+    void ContinueComboJ()
+    {
+        comboStepJ++;
+        lastAttackTimeJ = Time.time;
+        isComboWindowOpenJ = false;
+        hasBufferedInputJ = false;
+
+        if (comboStepJ == 2)
+            animator.SetTrigger("Attack1+");
+        // Nếu có nhiều bước combo hơn, thêm tại đây
+    }
+
+    public void OpenComboWindowJ()
+    {
+        isComboWindowOpenJ = true;
+        if (hasBufferedInputJ)
         {
-            attackCount++;
+            ContinueComboJ();
+        }
+    }
+
+    public void CloseComboWindowJ()
+    {
+        isComboWindowOpenJ = false;
+    }
+
+    public void OnAttackAnimationEndJ()
+    {
+        if (comboStepJ >= 2 || !hasBufferedInputJ)
+        {
+            ResetComboJ();
+        }
+    }
+
+    void ResetComboJ()
+    {
+        comboStepJ = 0;
+        isAttackingJ = false;
+        isComboWindowOpenJ = false;
+        hasBufferedInputJ = false;
+    }
+
+    // --- Combo K ---
+    void TryAttackK()
+    {
+        if (isAttackingK)
+        {
+            if (isComboWindowOpenK)
+            {
+                ContinueComboK();
+            }
+            else
+            {
+                hasBufferedInputK = true;
+            }
         }
         else
         {
-            attackCount = 1; // Reset combo if outside the time window
-        }
-
-        lastAttackTime = currentTime;
-
-        // Trigger the appropriate attack animation based on the combo count
-        if (attackCount == 1)
-        {
-            animator.ResetTrigger("Attack2+"); // Reset the second attack trigger
-            animator.SetTrigger("Attack2"); // Trigger the first attack animation
-        }
-        else if (attackCount == 2)
-        {
-            animator.ResetTrigger("Attack2"); // Reset the first attack trigger
-            animator.SetTrigger("Attack2+"); // Trigger the second attack animation
-            attackCount = 0; // Reset the combo after the second attack
+            StartComboK();
         }
     }
-    void HandleComboAttack3()
+
+    void StartComboK()
     {
-        // Chỉ kích hoạt Attack3+ khi cả J và U được giữ cùng lúc
-        if (Input.GetKey(KeyCode.J) && Input.GetKey(KeyCode.U))
+        comboStepK = 1;
+        isAttackingK = true;
+        lastAttackTimeK = Time.time;
+        animator.SetTrigger("Attack2");
+    }
+
+    void ContinueComboK()
+    {
+        comboStepK++;
+        lastAttackTimeK = Time.time;
+        isComboWindowOpenK = false;
+        hasBufferedInputK = false;
+
+        if (comboStepK == 2)
+            animator.SetTrigger("Attack2+");
+        // Nếu có nhiều bước combo hơn, thêm tại đây
+    }
+
+    public void OpenComboWindowK()
+    {
+        isComboWindowOpenK = true;
+        if (hasBufferedInputK)
         {
-            animator.SetTrigger("Attack3+");
-        }
-        else
-        {
-            // Kích hoạt Attack3 nếu chỉ nhấn U
-            animator.SetTrigger("Attack3");
+            ContinueComboK();
         }
     }
+
+    public void CloseComboWindowK()
+    {
+        isComboWindowOpenK = false;
+    }
+
+    public void OnAttackAnimationEndK()
+    {
+        if (comboStepK >= 2 || !hasBufferedInputK)
+        {
+            ResetComboK();
+        }
+    }
+
+    void ResetComboK()
+    {
+        comboStepK = 0;
+        isAttackingK = false;
+        isComboWindowOpenK = false;
+        hasBufferedInputK = false;
+    }
+
+    // --- Các hàm khác giữ nguyên ---
     void HandleBlock()
     {
-        // Khi nhấn giữ phím L, đặt IsBlocking thành true
         isBlocking = true;
         animator.SetBool("IsBlocking", true);
-        rb.linearVelocity = Vector2.zero; // Dừng nhân vật khi đỡ
+        rb.linearVelocity = Vector2.zero;
     }
 
     void StopBlock()
     {
-        // Khi thả phím L, đặt IsBlocking thành false
         isBlocking = false;
         animator.SetBool("IsBlocking", false);
     }
+
     void HandleHit()
     {
-        Debug.Log("Player is hit!");
-        animator.SetTrigger("IsHit"); // Kích hoạt trạng thái bị đánh
-
-        // Đẩy lùi nhân vật khi bị đánh
-        Vector2 knockback = new Vector2(-transform.localScale.x * 5f, 2f); // Đẩy lùi theo hướng ngược lại
+        animator.SetTrigger("IsHit");
+        Vector2 knockback = new Vector2(-transform.localScale.x * 5f, 2f);
         rb.AddForce(knockback, ForceMode2D.Impulse);
     }
+
     public void TakeDamage(int damage)
     {
-        if (isDead) return; // Nếu đã chết, không nhận thêm sát thương
-
-        currentHealth -= damage; // Giảm máu
-        Debug.Log($"Player takes {damage} damage! Current health: {currentHealth}");
-
-        if (currentHealth <= 0)
+        if (isDead) return;
+        
+        // Sử dụng property để trigger event OnHealthChanged
+        CurrentHealth = currentHealth - damage;
+        
+        if (CurrentHealth <= 0)
         {
-            Die(); // Gọi phương thức Die nếu máu <= 0
+            Die();
         }
         else
         {
-            HandleHit(); // Kích hoạt trạng thái bị đánh nếu chưa chết
+            HandleHit();
         }
     }
+
+    public void Heal(int amount)
+    {
+        if (isDead) return;
+        CurrentHealth = currentHealth + amount;
+        Debug.Log($"Healed {amount}. Current Health: {currentHealth}/{maxHealth}");
+    }
+
     public void Die()
     {
-        if (isDead) return; 
-
-        isDead = true; // 
-        animator.SetTrigger("IsDead"); 
-        rb.linearVelocity = Vector2.zero; 
-        Debug.Log("Player has died!");
-
+        if (isDead) return;
+        
+        isDead = true;
+        // Thay đổi từ "IsDead" thành "PlayerDie"
+        animator.SetTrigger("IsDead");
+        
+        // Dừng movement
+        rb.linearVelocity = Vector2.zero;
+        
+        // Disable các input và movement
+        enabled = false; // Tắt script này
+        
         if (lives > 0)
         {
-            lives--; 
-            Invoke(nameof(Respawn), 3f); 
-        }
-        else
-        {
-            Debug.Log("Game Over! No lives left.");
-            
+            lives--;
+            Invoke(nameof(Respawn), 3f);
         }
     }
+
     private void Respawn()
     {
-        isDead = false; 
-        currentHealth = maxHealth / 2; 
+        isDead = false;
+        enabled = true; // Bật lại script
+        CurrentHealth = maxHealth / 2; // Sử dụng property
         animator.SetTrigger("StandUp");
-        Debug.Log($"Player respawned with {currentHealth} health. Lives left: {lives}");
-        rb.linearVelocity = Vector2.zero; 
-        transform.position = new Vector3(0, 0, 0); 
+        rb.linearVelocity = Vector2.zero;
+        transform.position = new Vector3(0, 0, 0);
+    }
+
+    private void HandleUltimate()
+    {
+        // Kiểm tra đủ điểm tích nộ tối thiểu
+        if (Input.GetKeyDown(KeyCode.I) && currentRagePoints >= minRageToActivate && !isUltimateActive)
+        {
+            ActivateUltimate();
+        }
+    }
+
+    private void ActivateUltimate()
+    {
+        if (currentRagePoints >= minRageToActivate)
+        {
+            // Kích hoạt ulti với full điểm
+            isUltimateActive = true;
+            animator.SetTrigger("IsUlti");
+            // Sử dụng hết điểm tích nộ
+            currentRagePoints = 0f;
+            
+            // Thêm hiệu ứng ulti ở đây
+            // Ví dụ: tăng sát thương, tốc độ, hiệu ứng đặc biệt...
+            
+            // Tự động tắt ulti sau một khoảng thời gian
+            StartCoroutine(DeactivateUltimateAfterDelay(5f));
+        }
+        //else if (currentRagePoints >= minRageToActivate)
+        //{
+        //    // Kích hoạt ulti với điểm tích nộ một phần
+        //    isUltimateActive = true;
+        //    animator.SetTrigger("IsUlti");
+        //    // Sử dụng hết điểm tích nộ
+        //    currentRagePoints = 0f;
+            
+        //    // Thêm hiệu ứng ulti yếu hơn
+            
+        //    StartCoroutine(DeactivateUltimateAfterDelay(3f));
+        //}
+    }
+
+    private IEnumerator DeactivateUltimateAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        isUltimateActive = false;
+        // Hủy các hiệu ứng ulti
+    }
+
+    // Thêm phương thức để tăng điểm tích nộ
+    public void AddRagePoints(float points)
+    {
+        currentRagePoints = Mathf.Min(currentRagePoints + points, maxRagePoints);
     }
 }
