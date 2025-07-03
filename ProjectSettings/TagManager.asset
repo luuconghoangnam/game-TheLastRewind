@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Map
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Player
   - 
   - 
   - 
@@ -39,11 +40,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Map1
-    uniqueID: 3300834385
+  - name: Back1
+    uniqueID: 2961183185
     locked: 0
   - name: Ground
     uniqueID: 4081859407
+    locked: 0
+  - name: Player
+    uniqueID: 4143654143
     locked: 0
   - name: Default
     uniqueID: 0
