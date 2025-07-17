@@ -1,0 +1,401 @@
+fileFormatVersion: 2
+guid: 8ae4286887ebf75469a199a9a4de1ab4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3551628777734008528
+    second: Boss_Chuong_Ulti_0
+  - first:
+      213: 2383405899951812893
+    second: Boss_Chuong_Ulti_1
+  - first:
+      213: 7171106593878174019
+    second: Boss_Chuong_Ulti_2
+  - first:
+      213: 191956289529014379
+    second: Boss_Chuong_Ulti_3
+  - first:
+      213: 3776043232371441786
+    second: Boss_Chuong_Ulti_4
+  - first:
+      213: -7383087617080293187
+    second: Boss_Chuong_Ulti_5
+  - first:
+      213: 7656327413558845160
+    second: Boss_Chuong_Ulti_6
+  - first:
+      213: 6787588850680591338
+    second: Boss_Chuong_Ulti_7
+  - first:
+      213: 4012758648339872291
+    second: Boss_Chuong_Ulti_8
+  - first:
+      213: -3216825559387961649
+    second: Boss_Chuong_Ulti_9
+  - first:
+      213: 1090977255860824686
+    second: Boss_Chuong_Ulti_10
+  - first:
+      213: 3484884580477130566
+    second: Boss_Chuong_Ulti_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 986
+        width: 441
+        height: 287
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dee3e65e8be94130800000000000000
+      internalID: 3551628777734008528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_1
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 986
+        width: 446
+        height: 287
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d11b236c90f831120800000000000000
+      internalID: 2383405899951812893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_2
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 587
+        width: 399
+        height: 371
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 349e196f373e48360800000000000000
+      internalID: 7171106593878174019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_3
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 560
+        width: 368
+        height: 398
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6867c17a37f9a200800000000000000
+      internalID: 191956289529014379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_4
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 180
+        width: 429
+        height: 352
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7084024053376430800000000000000
+      internalID: 3776043232371441786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_6
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 374
+        width: 114
+        height: 157
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee06c2e23ceef1044ac4677cccae4264
+      internalID: 2135265853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_7
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 374
+        width: 114
+        height: 157
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760841453798dd24b8fe4dec417c1e7d
+      internalID: -1703756589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_9
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 373
+        width: 114
+        height: 157
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8852c6bfe7adb6745b52da76bd30c18c
+      internalID: 508000628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_5
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 374
+        width: 114
+        height: 157
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87011c19384ca514c82562426a24944b
+      internalID: -1885984367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10
+        width: 114
+        height: 157
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8165f6a67c2eeb34c88b9abe4adb3ee0
+      internalID: 87258839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Chuong_Ulti_10
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 114
+        width: 114
+        height: 53
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd44b16faea7a9a469a23c3203735d28
+      internalID: 1713425675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 85e993f44d380c04fa9eb3bbb400ff42
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Boss_Chuong_Ulti_10: 1713425675
+      Boss_Chuong_Ulti_5: -1885984367
+      Boss_Chuong_Ulti_6: 2135265853
+      Boss_Chuong_Ulti_7: -1703756589
+      Boss_Chuong_Ulti_8: 87258839
+      Boss_Chuong_Ulti_9: 508000628
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

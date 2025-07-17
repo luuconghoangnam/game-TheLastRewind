@@ -1,0 +1,485 @@
+fileFormatVersion: 2
+guid: cec18f9e5ba1f9146b362875dea82ec7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1609365072849545078
+    second: Chem_Chuong_0
+  - first:
+      213: -6597002717653948566
+    second: Chem_Chuong_1
+  - first:
+      213: 3398004017166399841
+    second: Chem_Chuong_2
+  - first:
+      213: 6748100753877722960
+    second: Chem_Chuong_3
+  - first:
+      213: -6846567017898362922
+    second: Chem_Chuong_4
+  - first:
+      213: -1904224619247651553
+    second: Chem_Chuong_5
+  - first:
+      213: 4205001541362488666
+    second: Chem_Chuong_6
+  - first:
+      213: -4720900848882506664
+    second: Chem_Chuong_7
+  - first:
+      213: 3896142614964950820
+    second: Chem_Chuong_8
+  - first:
+      213: -990833212583998399
+    second: Chem_Chuong_9
+  - first:
+      213: 7148640468352186201
+    second: Chem_Chuong_10
+  - first:
+      213: -7294595886505601190
+    second: Chem_Chuong_11
+  - first:
+      213: 6166540550038212131
+    second: Chem_Chuong_12
+  - first:
+      213: 6444262839713686777
+    second: Chem_Chuong_13
+  - first:
+      213: -2871845843023787915
+    second: Chem_Chuong_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Chem_Chuong_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 511
+        width: 178
+        height: 264
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a88d1e63ef26aa9e0800000000000000
+      internalID: -1609365072849545078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_1
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 511
+        width: 181
+        height: 264
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6723ff0bfcb274a0800000000000000
+      internalID: -6597002717653948566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_2
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 511
+        width: 177
+        height: 264
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 169bd8476a2282f20800000000000000
+      internalID: 3398004017166399841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_4
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 511
+        width: 157
+        height: 264
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d73347629b1cf0a0800000000000000
+      internalID: -6846567017898362922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 270
+        width: 281
+        height: 236
+      alignment: 9
+      pivot: {x: -0.000000007226476, y: 0.48810318}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f15b03d3cc5d295e0800000000000000
+      internalID: -1904224619247651553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_6
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 511
+        width: 179
+        height: 258
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5591e07f9a2b5a30800000000000000
+      internalID: 4205001541362488666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 270
+        width: 282
+        height: 236
+      alignment: 9
+      pivot: {x: 0.000049780447, y: 0.47535628}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 854a48ab0bdfb7eb0800000000000000
+      internalID: -4720900848882506664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 46
+        width: 276
+        height: 224
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4275f3fc011e11630800000000000000
+      internalID: 3896142614964950820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_9
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 86
+        width: 247
+        height: 183
+      alignment: 9
+      pivot: {x: 0, y: 0.528053}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14c854c517adf32f0800000000000000
+      internalID: -990833212583998399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_11
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 113
+        width: 228
+        height: 155
+      alignment: 9
+      pivot: {x: 0.0008919699, y: 0.53036064}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a57decc80b364ca90800000000000000
+      internalID: -7294595886505601190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_12
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 132
+        width: 202
+        height: 138
+      alignment: 9
+      pivot: {x: 0.011335921, y: 0.5597794}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32ec11265f3f39550800000000000000
+      internalID: 6166540550038212131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 152
+        height: 45
+      alignment: 9
+      pivot: {x: 0.00005938818, y: 0.46639174}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f46268d8ee9e6950800000000000000
+      internalID: 6444262839713686777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_14
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 2
+        width: 111
+        height: 43
+      alignment: 9
+      pivot: {x: -0.00064031925, y: 0.5000003}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57882e4eb672528d0800000000000000
+      internalID: -2871845843023787915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chem_Chuong_3
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 270
+        width: 279
+        height: 236
+      alignment: 9
+      pivot: {x: 0.00042440215, y: 0.47790554}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21854585418eea84b8e4a66f30b3ed74
+      internalID: 6748100753877722960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ede7ceb1f6b4e8c49a4f67f744b8d62a
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Chem_Chuong_0: -1609365072849545078
+      Chem_Chuong_1: -6597002717653948566
+      Chem_Chuong_10: -286319437
+      Chem_Chuong_11: -7294595886505601190
+      Chem_Chuong_12: 6166540550038212131
+      Chem_Chuong_13: 6444262839713686777
+      Chem_Chuong_14: -2871845843023787915
+      Chem_Chuong_2: 3398004017166399841
+      Chem_Chuong_3: 6748100753877722960
+      Chem_Chuong_4: -6846567017898362922
+      Chem_Chuong_5: -1904224619247651553
+      Chem_Chuong_6: 4205001541362488666
+      Chem_Chuong_7: -4720900848882506664
+      Chem_Chuong_8: 3896142614964950820
+      Chem_Chuong_9: -990833212583998399
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

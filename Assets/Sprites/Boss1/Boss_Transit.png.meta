@@ -1,0 +1,417 @@
+fileFormatVersion: 2
+guid: c5a88b426aac7d8449a6313af4d7c913
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1641295978063257225
+    second: Boss_Transit_0
+  - first:
+      213: 3887247598533983155
+    second: Boss_Transit_1
+  - first:
+      213: -6196535510965474860
+    second: Boss_Transit_2
+  - first:
+      213: -3570968866645702589
+    second: Boss_Transit_3
+  - first:
+      213: 7077572830780052662
+    second: Boss_Transit_4
+  - first:
+      213: -1734959650185944054
+    second: Boss_Transit_5
+  - first:
+      213: -7978070239897748407
+    second: Boss_Transit_6
+  - first:
+      213: -6796452798403668042
+    second: Boss_Transit_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Boss_Transit_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 169
+        width: 84
+        height: 67
+      alignment: 9
+      pivot: {x: 0.47555482, y: 0.0008799994}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6a753cb2f4cd6e4dbaeb51c702778e8
+      internalID: -1386793433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 172
+        width: 88
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2985284, y: 0.0013577938}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3cd21281cc3e4f4d841142ac0aa2ac2
+      internalID: 596190430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 105
+        width: 94
+        height: 64
+      alignment: 9
+      pivot: {x: 0.23765843, y: -0.0011606216}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e16fc1c175fc1a46979b03e47e21504
+      internalID: -183819471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_3
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 102
+        width: 27
+        height: 67
+      alignment: 9
+      pivot: {x: 0.6279845, y: 0.00052426464}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a0bd5d1be42698498c144457c852ca7
+      internalID: 434013679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_4
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 102
+        width: 27
+        height: 67
+      alignment: 9
+      pivot: {x: 0.6328023, y: 0.00006923391}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6eed8b0f6920094faf33f9dbfa0a0cb
+      internalID: 1373738233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_5
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 102
+        width: 27
+        height: 67
+      alignment: 9
+      pivot: {x: 0.6295635, y: 0.00006923391}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc9cf6c9cf63ae04cbb2465fee062610
+      internalID: 297999553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_6
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 102
+        width: 36
+        height: 67
+      alignment: 9
+      pivot: {x: 0.72349715, y: 0.00006923391}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f1ce80f814a20f4082bbea8502ff117
+      internalID: 934221838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 35
+        width: 36
+        height: 67
+      alignment: 9
+      pivot: {x: 0.72425604, y: 0.00009371629}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43e4e56637b10e43ae121e30a23edd4
+      internalID: 531836455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_8
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 36
+        width: 31
+        height: 66
+      alignment: 9
+      pivot: {x: 0.41260257, y: -0.0009129264}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37ca5b3591883ef4a8a0fba5ea7982df
+      internalID: 423062498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_9
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 32
+        width: 31
+        height: 70
+      alignment: 9
+      pivot: {x: 0.41821092, y: 0.00015182495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e26ca7b8929e74349b0560baf7e7d675
+      internalID: -644543299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_10
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1
+        width: 35
+        height: 101
+      alignment: 9
+      pivot: {x: 0.42605287, y: 0.00030776887}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6db958d25f7b3e4fba50908d385cd59
+      internalID: 1221263166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Transit_11
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 0
+        width: 45
+        height: 102
+      alignment: 9
+      pivot: {x: 0.45891824, y: -0.000230494}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15daab40b97830141adb90d5e08dc988
+      internalID: 953661869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e85a0cc425407e945b0c319ef3f16f01
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Boss_Transit_0: -1386793433
+      Boss_Transit_1: 596190430
+      Boss_Transit_10: 1221263166
+      Boss_Transit_11: 953661869
+      Boss_Transit_2: -183819471
+      Boss_Transit_3: 434013679
+      Boss_Transit_4: 1373738233
+      Boss_Transit_5: 297999553
+      Boss_Transit_6: 934221838
+      Boss_Transit_7: 531836455
+      Boss_Transit_8: 423062498
+      Boss_Transit_9: -644543299
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

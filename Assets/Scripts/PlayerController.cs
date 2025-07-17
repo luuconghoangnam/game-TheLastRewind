@@ -8,16 +8,26 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float runFastMultiplier = 1.5f;
     [SerializeField] private float jumpForce = 60f;
+    [SerializeField] private float doubleJumpForce = 50f; // Force for second jump
+    [SerializeField] private int maxJumpCount = 2; // Maximum number of jumps allowed
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float comboResetTime = 0.6f; // Thời gian tối đa giữa các đòn combo
+    [SerializeField] private float comboDelayAfterFinish = 1.0f; // Thời gian delay sau khi hoàn thành combo
     [SerializeField] private Camera mainCamera; // Reference to main camera
-    [SerializeField] private float maxRagePoints = 50f; // Điểm tích nộ tối đa
-    [SerializeField] private float minRageToActivate = 40f; // Điểm tối thiểu để kích hoạt
-    [SerializeField] private float currentRagePoints = 0f; // Điểm tích nộ hiện tại
+    [SerializeField] private int maxRagePoints = 50; // Điểm tích nộ tối đa
+    [SerializeField] private int minRageToActivate = 40; // Điểm tối thiểu để kích hoạt
+    [SerializeField] private int currentRagePoints = 0; // Điểm tích nộ hiện tại
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int currentHealth;
+    [SerializeField] private int rageGainPerHit = 5; // Rage points gained per successful hit
+    [SerializeField] private int rageGainPerSuccessfulHit = 5; // Rage points gained when hitting boss
+    public bool IsDead => isDead;
+    public BoxCollider2D hitBoxCollider;
+
+    public PlayerHitBoxHandle hitBoxHandle; // Kéo thả object con vào đây trong Inspector
 
     private bool isUltimateActive = false; // Trạng thái ulti
+    private int currentJumpCount = 0; // Track current jump count
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -30,6 +40,13 @@ public class Player : MonoBehaviour
 
     private float minX, maxX; // Giới hạn di chuyển
 
+    // Thêm biến tham chiếu đến Transform của hitBox (kéo thả trong Inspector)
+    public Transform hitBoxTransform;
+    public Transform hurtBoxTransform; // Thêm dòng này
+
+    // Thêm tham chiếu đến PlayerHurtBoxHandle
+    private PlayerHurtBoxHandle hurtBoxHandle;
+
     // Combo logic
     private int comboStepJ = 0;
     private int comboStepK = 0;
@@ -41,6 +58,12 @@ public class Player : MonoBehaviour
     private bool isComboWindowOpenK = false;
     private bool hasBufferedInputJ = false;
     private bool hasBufferedInputK = false;
+    
+    // Combo delay variables
+    private float comboFinishedTimeJ = 0f; // Thời gian hoàn thành combo J
+    private float comboFinishedTimeK = 0f; // Thời gian hoàn thành combo K
+    private bool isComboDelayActiveJ = false; // Trạng thái delay sau combo J
+    private bool isComboDelayActiveK = false; // Trạng thái delay sau combo K
 
     // Other logic
     private bool isBlocking = false;
@@ -48,7 +71,16 @@ public class Player : MonoBehaviour
     private float idleThreshold = 10f;
     private bool isIdleForLong = false;
     private bool isDead = false;
-    private int lives = 3;
+    private int lives = 1;
+
+    // Slash logic
+    public GameObject EffectChem1;
+    public Transform attackPoint;
+    public Transform attackPointUlti; // Ultimate attack point position
+    public GameObject UltiEffect; // Ultimate effect prefab
+
+    // Skill effect logic
+    public GameObject Effect_Chuong; // Kéo thả prefab Effect_Chuong vào Inspector
 
     // Properties
     public int CurrentHealth 
@@ -61,10 +93,19 @@ public class Player : MonoBehaviour
         }
     }
     public int MaxHealth => maxHealth;
+    public int CurrentRagePoints => currentRagePoints;
+    public int MaxRagePoints => maxRagePoints;
 
     // Event để thông báo khi máu thay đổi
     public delegate void HealthChangeHandler(int currentHealth, int maxHealth);
     public event HealthChangeHandler OnHealthChanged;
+
+    // Add rage change event similar to health change event
+    public delegate void RageChangeHandler(int currentRage, int maxRage);
+    public event RageChangeHandler OnRageChanged;
+
+    private float hitBoxOriginalPosX;
+    //private float hitBoxOriginalOffsetX;
 
     private void Awake()
     {
@@ -78,17 +119,47 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("GroundCheck transform is missing. Please add a child object named 'GroundCheck' to the player.");
         }
+
+        // Lưu giá trị gốc của hitbox
+        if (hitBoxTransform != null)
+            hitBoxOriginalPosX = hitBoxTransform.localPosition.x;
+        
+        // IMPORTANT: Ensure hitbox is disabled at awake
+        if (hitBoxHandle != null)
+        {
+            hitBoxHandle.DisableHitbox();
+        }
     }
 
     private void Start()
     {
         if (mainCamera == null)
             mainCamera = Camera.main;
+
+        // Khởi tạo hurtBoxHandle
+        if (hurtBoxTransform != null)
+            hurtBoxHandle = hurtBoxTransform.GetComponent<PlayerHurtBoxHandle>();
+        
+        // IMPORTANT: Disable player hitbox at start
+        DisablePlayerHitbox();
     }
 
     private void Update()
     {
+        bool wasGrounded = isGrounded;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+
+        // If just landed, reset the jump trigger
+        if (!wasGrounded && isGrounded)
+        {
+            animator.ResetTrigger("Jump");
+        }
+
+        // Reset jump count when touching ground
+        if (isGrounded)
+        {
+            currentJumpCount = 0;
+        }
 
         float moveX = Input.GetAxis("Horizontal");
         moveInput = new Vector2(moveX, 0).normalized;
@@ -119,13 +190,17 @@ public class Player : MonoBehaviour
             Jump();
         }
 
-        // Combo attack J
-        if (Input.GetKeyDown(KeyCode.J))
+        // Kiểm tra và cập nhật trạng thái delay combo
+        UpdateComboDelayStatus();
+
+        // Combo attack J - chỉ nhận input nếu không trong trạng thái delay
+        if (Input.GetKeyDown(KeyCode.J) && !isComboDelayActiveJ)
         {
             TryAttackJ();
+            SpawnSkillEffect("Attack1"); // Hiển thị effect chém khi bấm J
         }
-        // Combo attack K
-        if (Input.GetKeyDown(KeyCode.K))
+        // Combo attack K - chỉ nhận input nếu không trong trạng thái delay
+        if (Input.GetKeyDown(KeyCode.K) && !isComboDelayActiveK)
         {
             TryAttackK();
         }
@@ -133,11 +208,18 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             animator.SetTrigger("Attack3");
+            //SpawnSkillEffect("Attack3"); // Hiển thị effect chém khi bấm J
+
         }
+        
+        // COMMENT CHIÊU CHÉM CHƯỞNG J+U CHO LEVEL 1
+        /*
         if (Input.GetKey(KeyCode.J) && Input.GetKey(KeyCode.U))
         {
             animator.SetTrigger("Attack3+");
         }
+        */
+        
         if (Input.GetKey(KeyCode.L))
         {
             HandleBlock();
@@ -169,7 +251,32 @@ public class Player : MonoBehaviour
         MovePlayer();
     }
 
-    [System.Obsolete]
+    private void LateUpdate()
+    {
+        // Đảm bảo hitbox luôn có offset đúng mỗi frame
+        if (hitBoxHandle != null)
+            hitBoxHandle.FlipHitbox(!spriteRenderer.flipX);
+    }
+
+    // Hàm kiểm tra và cập nhật trạng thái delay combo
+    private void UpdateComboDelayStatus()
+    {
+        // Kiểm tra delay cho combo J
+        if (isComboDelayActiveJ && Time.time - comboFinishedTimeJ >= comboDelayAfterFinish)
+        {
+            isComboDelayActiveJ = false;
+            Debug.Log("Combo J delay ended - can attack again");
+        }
+
+        // Kiểm tra delay cho combo K
+        if (isComboDelayActiveK && Time.time - comboFinishedTimeK >= comboDelayAfterFinish)
+        {
+            isComboDelayActiveK = false;
+            Debug.Log("Combo K delay ended - can attack again");
+        }
+    }
+
+    //[System.Obsolete]
     void MovePlayer()
     {
         if (isBlocking)
@@ -197,23 +304,76 @@ public class Player : MonoBehaviour
         // Áp dụng movement với vị trí X đã được giới hạn
         rb.linearVelocity = new Vector2((newX - transform.position.x) / Time.fixedDeltaTime, movement.y);
 
-        // Flip sprite
+        // Flip sprite và hitbox
         if (moveInput.x < 0)
         {
             spriteRenderer.flipX = true;
+            // Gọi các hàm flip - chúng sẽ xử lý cả scale và position
+            if (hitBoxHandle != null)
+                hitBoxHandle.FlipHitbox(false);
+            if (hurtBoxHandle != null)
+                hurtBoxHandle.FlipHurtbox(false);
+            
+            // Chỉ cần lật attackPoint, vì nó không có script riêng
+            if (attackPoint != null)
+            {
+                Vector3 localPos = attackPoint.localPosition;
+                localPos.x = Mathf.Abs(localPos.x) * -1f;
+                attackPoint.localPosition = localPos;
+            }
+
+            // Flip attackPointUlti
+            if (attackPointUlti != null)
+            {
+                Vector3 localPos = attackPointUlti.localPosition;
+                localPos.x = Mathf.Abs(localPos.x) * -1f;
+                attackPointUlti.localPosition = localPos;
+            }
         }
         else if (moveInput.x > 0)
         {
             spriteRenderer.flipX = false;
+            // Gọi các hàm flip - chúng sẽ xử lý cả scale và position
+            if (hitBoxHandle != null)
+                hitBoxHandle.FlipHitbox(true);
+            if (hurtBoxHandle != null)
+                hurtBoxHandle.FlipHurtbox(true);
+            
+            // Chỉ cần lật attackPoint, vì nó không có script riêng
+            if (attackPoint != null)
+            {
+                Vector3 localPos = attackPoint.localPosition;
+                localPos.x = Mathf.Abs(localPos.x);
+                attackPoint.localPosition = localPos;
+            }
+
+            // Flip attackPointUlti
+            if (attackPointUlti != null)
+            {
+                Vector3 localPos = attackPointUlti.localPosition;
+                localPos.x = Mathf.Abs(localPos.x);
+                attackPointUlti.localPosition = localPos;
+            }
         }
     }
 
     void Jump()
     {
+        // If we're on the ground, do a normal jump
         if (isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            animator.ResetTrigger("Jump"); // Clear any pending Jump triggers
             animator.SetTrigger("Jump");
+            currentJumpCount = 1;
+        }
+        // If we're in the air but haven't used all jumps, do a double jump
+        else if (currentJumpCount < maxJumpCount)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, doubleJumpForce);
+            animator.ResetTrigger("Jump"); // Clear any pending Jump triggers
+            animator.SetTrigger("Jump");
+            currentJumpCount++;
         }
     }
 
@@ -253,7 +413,11 @@ public class Player : MonoBehaviour
         hasBufferedInputJ = false;
 
         if (comboStepJ == 2)
+        {
             animator.SetTrigger("Attack1+");
+            // Kích hoạt delay sau khi hoàn thành combo 2 hit
+            StartComboDelayJ();
+        }
         // Nếu có nhiều bước combo hơn, thêm tại đây
     }
 
@@ -285,6 +449,14 @@ public class Player : MonoBehaviour
         isAttackingJ = false;
         isComboWindowOpenJ = false;
         hasBufferedInputJ = false;
+    }
+
+    // Hàm bắt đầu delay cho combo J
+    void StartComboDelayJ()
+    {
+        comboFinishedTimeJ = Time.time;
+        isComboDelayActiveJ = true;
+        Debug.Log($"Combo J finished - delay started for {comboDelayAfterFinish} seconds");
     }
 
     // --- Combo K ---
@@ -323,7 +495,11 @@ public class Player : MonoBehaviour
         hasBufferedInputK = false;
 
         if (comboStepK == 2)
+        {
             animator.SetTrigger("Attack2+");
+            // Kích hoạt delay sau khi hoàn thành combo 2 hit
+            StartComboDelayK();
+        }
         // Nếu có nhiều bước combo hơn, thêm tại đây
     }
 
@@ -357,6 +533,14 @@ public class Player : MonoBehaviour
         hasBufferedInputK = false;
     }
 
+    // Hàm bắt đầu delay cho combo K
+    void StartComboDelayK()
+    {
+        comboFinishedTimeK = Time.time;
+        isComboDelayActiveK = true;
+        Debug.Log($"Combo K finished - delay started for {comboDelayAfterFinish} seconds");
+    }
+
     // --- Các hàm khác giữ nguyên ---
     void HandleBlock()
     {
@@ -374,8 +558,8 @@ public class Player : MonoBehaviour
     void HandleHit()
     {
         animator.SetTrigger("IsHit");
-        Vector2 knockback = new Vector2(-transform.localScale.x * 5f, 2f);
-        rb.AddForce(knockback, ForceMode2D.Impulse);
+        //Vector2 knockback = new Vector2(-transform.localScale.x * 5f, 2f);
+        //rb.AddForce(knockback, ForceMode2D.Impulse);
     }
 
     public void TakeDamage(int damage)
@@ -421,6 +605,11 @@ public class Player : MonoBehaviour
             lives--;
             Invoke(nameof(Respawn), 3f);
         }
+        else
+        {
+            // Thông báo GameOver cho GameManager
+            GameManager.Instance?.GameOver();
+        }
     }
 
     private void Respawn()
@@ -446,42 +635,143 @@ public class Player : MonoBehaviour
     {
         if (currentRagePoints >= minRageToActivate)
         {
-            // Kích hoạt ulti với full điểm
+            // Kích hoạt ulti animation ONLY - effect will be spawned from animator
             isUltimateActive = true;
             animator.SetTrigger("IsUlti");
+
             // Sử dụng hết điểm tích nộ
-            currentRagePoints = 0f;
-            
-            // Thêm hiệu ứng ulti ở đây
-            // Ví dụ: tăng sát thương, tốc độ, hiệu ứng đặc biệt...
+            currentRagePoints -= 40;
+            if (currentRagePoints < 0) currentRagePoints = 0;
             
             // Tự động tắt ulti sau một khoảng thời gian
             StartCoroutine(DeactivateUltimateAfterDelay(5f));
+            
+            Debug.Log("Ultimate activated - waiting for animation event to spawn effect");
         }
-        //else if (currentRagePoints >= minRageToActivate)
-        //{
-        //    // Kích hoạt ulti với điểm tích nộ một phần
-        //    isUltimateActive = true;
-        //    animator.SetTrigger("IsUlti");
-        //    // Sử dụng hết điểm tích nộ
-        //    currentRagePoints = 0f;
-            
-        //    // Thêm hiệu ứng ulti yếu hơn
-            
-        //    StartCoroutine(DeactivateUltimateAfterDelay(3f));
-        //}
     }
 
     private IEnumerator DeactivateUltimateAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         isUltimateActive = false;
+
         // Hủy các hiệu ứng ulti
     }
 
     // Thêm phương thức để tăng điểm tích nộ
-    public void AddRagePoints(float points)
+    public void AddRagePoints(int points)
     {
+        int oldRage = currentRagePoints;
         currentRagePoints = Mathf.Min(currentRagePoints + points, maxRagePoints);
+        
+        if (currentRagePoints != oldRage)
+        {
+            Debug.Log($"Rage gained: +{points}. Current rage: {currentRagePoints}/{maxRagePoints}");
+            
+            // Optional: Trigger rage gain event for UI updates
+            OnRageChanged?.Invoke(currentRagePoints, maxRagePoints);
+        }
+    }
+
+    public void EnablePlayerHitbox()
+    {
+        if (hitBoxHandle != null)
+        {
+            hitBoxHandle.EnableHitbox();
+            // Đảm bảo offset đúng ngay khi bật hitbox
+            hitBoxHandle.FlipHitbox(!spriteRenderer.flipX);
+        }
+    }
+    public void DisablePlayerHitbox()
+    {
+        if (hitBoxHandle != null)
+            hitBoxHandle.DisableHitbox();
+    }
+
+    public void SpawnSkillEffect(string effectName)
+    {
+        GameObject prefab = null;
+        Transform spawnPoint = attackPoint; // Default spawn point
+        
+        switch (effectName)
+        {
+            case "Attack1":
+                prefab = EffectChem1;
+                spawnPoint = attackPoint;
+                break;
+            case "Attack3":
+                prefab = Effect_Chuong;
+                spawnPoint = attackPoint;
+                break;
+            case "Ultimate":
+                prefab = UltiEffect;
+                spawnPoint = attackPointUlti != null ? attackPointUlti : attackPoint; // Use ultimate point if available
+                break;
+            // Thêm case cho các chiêu khác ở đây
+            default:
+                Debug.LogWarning("Skill effect not found: " + effectName);
+                return;
+        }
+
+        if (prefab != null && spawnPoint != null)
+        {
+            GameObject effect = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+            // Flip theo hướng player
+            effect.transform.localScale = new Vector3(spriteRenderer.flipX ? -1 : 1, 1, 1);
+            //Destroy(effect, slashLifetime);
+        }
+    }
+
+    // Add this method to be called when player deals damage (for effects to call)
+    public void OnDamageDealt(int damageAmount)
+    {
+        AddRagePoints(rageGainPerHit);
+        Debug.Log($"Player dealt {damageAmount} damage and gained {rageGainPerHit} rage points!");
+    }
+
+    // Add this method to be called when player deals damage with specific rage gain
+    public void OnDamageDealt(int damageAmount, int rageGain)
+    {
+        AddRagePoints(rageGain);
+        Debug.Log($"Player dealt {damageAmount} damage and gained {rageGain} rage points!");
+    }
+
+    // Add this method specifically for animator events
+    public void SpawnUlti()
+    {
+        // This method will be called from animation events
+        SpawnSkillEffect("Ultimate");
+        Debug.Log("Ultimate effect spawned from animator event!");
+    }
+
+    // Alternative method if you want more control
+    public void SpawnUltiAtPoint()
+    {
+        if (UltiEffect != null)
+        {
+            Transform spawnPoint = attackPointUlti != null ? attackPointUlti : attackPoint;
+            
+            if (spawnPoint != null)
+            {
+                GameObject effect = Instantiate(UltiEffect, spawnPoint.position, Quaternion.identity);
+                // Flip theo hướng player
+                effect.transform.localScale = new Vector3(spriteRenderer.flipX ? -1 : 1, 1, 1);
+                Debug.Log("Ultimate effect spawned at specific point from animator!");
+            }
+        }
+    }
+
+    // Keep the existing SpawnUltimateEffect method for compatibility
+    public void SpawnUltimateEffect()
+    {
+        SpawnSkillEffect("Ultimate");
+        Debug.Log("Ultimate spawned from SpawnUltimateEffect method!");
+    }
+
+    // Add method to be called when player successfully hits boss
+    public void OnSuccessfulHit(int damageDealt)
+    {
+        AddRagePoints(rageGainPerSuccessfulHit);
+        Debug.Log($"Player hit boss for {damageDealt} damage and gained {rageGainPerSuccessfulHit} rage points!");
     }
 }

@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Map
   - Ground
+  - Boss
+  - PlayerHurtBox
+  - BossHurtBox
+  - PlayerHitBox
+  - BossHitBox
   layers:
   - Default
   - TransparentFX
@@ -15,8 +20,8 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
-  - 
+  - Boss
+  - Skill
   - 
   - 
   - 
@@ -43,14 +48,26 @@ TagManager:
   - name: Back1
     uniqueID: 2961183185
     locked: 0
+  - name: Back2
+    uniqueID: 2113142957
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Back4
+    uniqueID: 3426154609
+    locked: 0
   - name: Ground
     uniqueID: 4081859407
+    locked: 0
+  - name: Boss
+    uniqueID: 1689426985
     locked: 0
   - name: Player
     uniqueID: 4143654143
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Effect
+    uniqueID: 3666994663
     locked: 0
   m_RenderingLayers:
   - Default
