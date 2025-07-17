@@ -720,7 +720,7 @@ public class PlayerLevel2 : MonoBehaviour
             isUltimateActive = true;
             
             // ĐỔI THÀNH TRIGGER - SẼ TỰ ĐỘNG RESET SAU KHI TRIGGER
-            animator.SetTrigger("IsUlti"); // Đổi từ "IsUlti" thành "UltiTrigger"
+            animator.SetTrigger("IsUlti");
 
             currentRagePoints -= minRageToActivate;
             if (currentRagePoints < 0) currentRagePoints = 0;
@@ -799,7 +799,7 @@ public class PlayerLevel2 : MonoBehaviour
     public void SpawnSkillEffect(string effectName)
     {
         GameObject prefab = null;
-        Transform spawnPoint = attackPoint; // Default spawn point
+        Transform spawnPoint = attackPoint;
 
         switch (effectName)
         {
@@ -811,7 +811,7 @@ public class PlayerLevel2 : MonoBehaviour
                 prefab = Effect_Chuong;
                 spawnPoint = attackPoint;
                 break;
-            case "Attack3+": // Chém chưởng
+            case "Attack3+":
                 prefab = Effect_ChemChuong;
                 spawnPoint = attackPoint_ChemChuong != null ? attackPoint_ChemChuong : attackPoint;
                 break;
@@ -828,7 +828,7 @@ public class PlayerLevel2 : MonoBehaviour
         {
             GameObject effect = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
 
-            // ĐẢM BẢO HƯỚNG ĐÚNG: Sử dụng spriteRenderer.flipX để xác định hướng
+            // PLAYER LẬT SCALE CHO TẤT CẢ EFFECT
             float direction = spriteRenderer.flipX ? -1 : 1;
             effect.transform.localScale = new Vector3(direction, 1, 1);
 
@@ -933,6 +933,62 @@ public class PlayerLevel2 : MonoBehaviour
         }
     }
 
+    // Method để gọi từ Animation Event của Attack3 (chiêu chưởng) - Level 2
+    public void SpawnChuongLevel2()
+    {
+        SpawnSkillEffect("Attack3");
+        Debug.Log("Chuong effect spawned from Level 2 animator event!");
+    }
+
+    // Method để spawn Effect_Chuong với xử lý hướng tại attackPoint - Level 2
+    public void SpawnChuongAtAttackPointLevel2()
+    {
+        if (Effect_Chuong != null && attackPoint != null)
+        {
+            // Spawn effect tại vị trí attackPoint (đã được lật theo hướng player)
+            GameObject effect = Instantiate(Effect_Chuong, attackPoint.position, Quaternion.identity);
+            
+            // Lật scale của effect theo hướng player
+            float direction = spriteRenderer.flipX ? -1 : 1;
+            effect.transform.localScale = new Vector3(direction, 1, 1);
+            
+            Debug.Log($"Level 2 Chuong effect spawned at attack point facing {(spriteRenderer.flipX ? "LEFT" : "RIGHT")}!");
+        }
+        else
+        {
+            Debug.LogError("Effect_Chuong prefab or attackPoint is missing in Level 2!");
+        }
+    }
+
+    // Method tổng hợp cho Level 2 - xử lý cả vị trí và hướng
+    public void SpawnChuongWithDirectionLevel2()
+    {
+        if (Effect_Chuong != null && attackPoint != null)
+        {
+            // 1. AttackPoint đã được lật trong FlipTransforms()
+            // 2. Spawn effect tại attackPoint
+            GameObject effect = Instantiate(Effect_Chuong, attackPoint.position, Quaternion.identity);
+            
+            // 3. Lật scale effect theo hướng player
+            if (spriteRenderer.flipX)
+            {
+                // Player quay trái
+                effect.transform.localScale = new Vector3(-Mathf.Abs(effect.transform.localScale.x), 
+                                                        effect.transform.localScale.y, 
+                                                        effect.transform.localScale.z);
+            }
+            else
+            {
+                // Player quay phải
+                effect.transform.localScale = new Vector3(Mathf.Abs(effect.transform.localScale.x), 
+                                                        effect.transform.localScale.y, 
+                                                        effect.transform.localScale.z);
+            }
+            
+            Debug.Log($"Level 2 Chuong spawned with direction at ({attackPoint.position}) facing {(spriteRenderer.flipX ? "LEFT" : "RIGHT")}");
+        }
+    }
+
     // Boss Interaction Methods (giữ nguyên để tương thích)
     public void OnDamageDealt(int damageAmount)
     {
@@ -950,5 +1006,31 @@ public class PlayerLevel2 : MonoBehaviour
     {
         AddRagePoints(rageGainPerSuccessfulHit);
         Debug.Log($"Player hit boss for {damageDealt} damage and gained {rageGainPerSuccessfulHit} rage points!");
+    }
+
+    // Hàm đơn giản để gọi từ Animation Event cho Ultimate Level 2
+    public void SpawnUltiEffectLevel2()
+    {
+        if (UltiEffect != null)
+        {
+            Transform spawnPoint = attackPointUlti != null ? attackPointUlti : attackPoint;
+            
+            if (spawnPoint != null)
+            {
+                // Chỉ cần spawn effect - không cần xử lý rotation hay scale
+                // UltiEffectLevel2 script sẽ tự xử lý hướng di chuyển
+                GameObject effect = Instantiate(UltiEffect, spawnPoint.position, Quaternion.identity);
+                
+                Debug.Log("Ultimate Level 2 effect spawned - will move based on player direction");
+            }
+            else
+            {
+                Debug.LogError("No attack point found for Ultimate effect spawn!");
+            }
+        }
+        else
+        {
+            Debug.LogError("UltiEffect prefab is not assigned!");
+        }
     }
 }

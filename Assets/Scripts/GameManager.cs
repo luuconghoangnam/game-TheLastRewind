@@ -440,7 +440,7 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(nextLevelSceneName);
+        SceneManager.LoadScene("Level2");
     }
     
     public void SaveGame()

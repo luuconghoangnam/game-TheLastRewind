@@ -691,7 +691,7 @@ public class Player : MonoBehaviour
     public void SpawnSkillEffect(string effectName)
     {
         GameObject prefab = null;
-        Transform spawnPoint = attackPoint; // Default spawn point
+        Transform spawnPoint = attackPoint;
         
         switch (effectName)
         {
@@ -705,9 +705,8 @@ public class Player : MonoBehaviour
                 break;
             case "Ultimate":
                 prefab = UltiEffect;
-                spawnPoint = attackPointUlti != null ? attackPointUlti : attackPoint; // Use ultimate point if available
+                spawnPoint = attackPointUlti != null ? attackPointUlti : attackPoint;
                 break;
-            // Thêm case cho các chiêu khác ở đây
             default:
                 Debug.LogWarning("Skill effect not found: " + effectName);
                 return;
@@ -716,9 +715,18 @@ public class Player : MonoBehaviour
         if (prefab != null && spawnPoint != null)
         {
             GameObject effect = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
-            // Flip theo hướng player
-            effect.transform.localScale = new Vector3(spriteRenderer.flipX ? -1 : 1, 1, 1);
-            //Destroy(effect, slashLifetime);
+            
+            // Sử dụng rotation thay vì scale cho tất cả effect
+            if (spriteRenderer.flipX)
+            {
+                effect.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                effect.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            
+            Debug.Log($"Spawned {effectName} effect facing {(spriteRenderer.flipX ? "LEFT (rotation)" : "RIGHT (rotation)")}");
         }
     }
 
@@ -773,5 +781,63 @@ public class Player : MonoBehaviour
     {
         AddRagePoints(rageGainPerSuccessfulHit);
         Debug.Log($"Player hit boss for {damageDealt} damage and gained {rageGainPerSuccessfulHit} rage points!");
+    }
+
+    // Method để gọi từ Animation Event của Attack3 (chiêu chưởng)
+    public void SpawnChuong()
+    {
+        SpawnSkillEffect("Attack3");
+        Debug.Log("Chuong effect spawned from animator event!");
+    }
+
+    // Method để spawn Effect_Chuong với xử lý hướng tại attackPoint
+    public void SpawnChuongAtAttackPoint()
+    {
+        if (Effect_Chuong != null && attackPoint != null)
+        {
+            // Spawn effect tại vị trí attackPoint
+            GameObject effect = Instantiate(Effect_Chuong, attackPoint.position, Quaternion.identity);
+            
+            // Lật bằng rotation thay vì scale
+            if (spriteRenderer.flipX)
+            {
+                effect.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                effect.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            
+            Debug.Log($"Chuong effect spawned facing {(spriteRenderer.flipX ? "LEFT (rotation)" : "RIGHT (rotation)")}");
+        }
+        else
+        {
+            Debug.LogError("Effect_Chuong prefab or attackPoint is missing!");
+        }
+    }
+
+    // Method tổng hợp - xử lý cả vị trí và hướng - SỬA LOGIC LẬT
+    public void SpawnChuongWithDirection()
+    {
+        if (Effect_Chuong != null && attackPoint != null)
+        {
+            // 1. AttackPoint đã được lật trong MovePlayer()
+            // 2. Spawn effect tại attackPoint
+            GameObject effect = Instantiate(Effect_Chuong, attackPoint.position, Quaternion.identity);
+            
+            // 3. LẬT BẰNG ROTATION thay vì scale
+            if (spriteRenderer.flipX)
+            {
+                // Player quay trái - quay effect 180 độ
+                effect.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                // Player quay phải - giữ nguyên rotation
+                effect.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            
+            Debug.Log($"Chuong spawned at ({attackPoint.position}) facing {(spriteRenderer.flipX ? "LEFT (rotY=180)" : "RIGHT (rotY=0)")}");
+        }
     }
 }

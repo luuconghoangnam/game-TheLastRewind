@@ -13,17 +13,26 @@ public class Effect_Chuong : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("BossHurtBox")) // Tag kẻ địch
+        if (collision.CompareTag("BossHurtBox") || collision.CompareTag("Boss2HurtBox"))
         {
-            // Gọi hàm nhận sát thương từ enemy
             collision.GetComponent<BossHurtboxHandle>()?.TakeDamage(damage);
             
             // Notify player that they dealt damage for rage gain
-            Player player = FindFirstObjectByType<Player>();
-            if (player != null)
+            PlayerLevel2 playerLevel2 = FindFirstObjectByType<PlayerLevel2>();
+            if (playerLevel2 != null)
             {
-                player.OnSuccessfulHit(damage);
+                playerLevel2.OnSuccessfulHit(damage);
             }
+            else
+            {
+                Player player = FindFirstObjectByType<Player>();
+                if (player != null)
+                {
+                    player.OnSuccessfulHit(damage);
+                }
+            }
+            
+            Debug.Log($"Effect_Chuong dealt {damage} damage to boss!");
         }
     }
 }

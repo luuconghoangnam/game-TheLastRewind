@@ -2401,8 +2401,8 @@ MonoBehaviour:
   EffectChem1: {fileID: 7947674558847333299, guid: 9f9b595c6fe28ad44bfb10cc8c48bbb4, type: 3}
   attackPoint: {fileID: 479023778}
   attackPointUlti: {fileID: 1349434644}
-  UltiEffect: {fileID: 4623110476439872642, guid: 77222dab30dc5b2408199d044b7cc81c, type: 3}
-  Effect_Chuong: {fileID: 3409924196050977907, guid: c66ed9135a15b2145b337fc6a41f4c99, type: 3}
+  UltiEffect: {fileID: 4623110476439872642, guid: cf611d29f34506946a93bdf1aa0cdf0e, type: 3}
+  Effect_Chuong: {fileID: 3409924196050977907, guid: 090a04aa70a9fa24a81e2dfaac4548f1, type: 3}
 --- !u!50 &1767237993
 Rigidbody2D:
   serializedVersion: 5
