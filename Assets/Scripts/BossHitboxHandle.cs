@@ -5,8 +5,6 @@ public class BossHitboxHandle : MonoBehaviour
     public int damage = 10;
     private Collider2D hitboxCollider;
     private bool hasHitPlayer = false;
-
-    // Thêm biến lưu vị trí gốc
     private Vector3 originalLocalPosition;
 
     void Awake()
@@ -15,25 +13,39 @@ public class BossHitboxHandle : MonoBehaviour
         if (hitboxCollider != null)
             hitboxCollider.enabled = false; // Tắt mặc định
 
-        // Lưu vị trí gốc
         originalLocalPosition = transform.localPosition;
     }
 
-    // Thêm hàm lật hitbox bằng scale
+    // Properties để Animation có thể keyframe
+    public Vector2 HitboxSize
+    {
+        get { return hitboxCollider != null && hitboxCollider is BoxCollider2D ? ((BoxCollider2D)hitboxCollider).size : Vector2.zero; }
+        set { if (hitboxCollider != null && hitboxCollider is BoxCollider2D) ((BoxCollider2D)hitboxCollider).size = value; }
+    }
+
+    public Vector2 HitboxOffset
+    {
+        get { return hitboxCollider != null && hitboxCollider is BoxCollider2D ? ((BoxCollider2D)hitboxCollider).offset : Vector2.zero; }
+        set { if (hitboxCollider != null && hitboxCollider is BoxCollider2D) ((BoxCollider2D)hitboxCollider).offset = value; }
+    }
+
     public void FlipHitbox(bool facingRight)
     {
-        // Lật bằng localScale thay vì offset
-        transform.localScale = new Vector3(facingRight ? 1 : -1, 1, 1);
-        
-        // Điều chỉnh position tương ứng 
+        // LOGIC: Mặc định Boss quay trái (scale -1)
+        if (facingRight)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
         Vector3 pos = transform.localPosition;
         pos.x = Mathf.Abs(originalLocalPosition.x) * (facingRight ? 1 : -1);
         transform.localPosition = pos;
-        
-        Debug.Log($"Boss FlipHitbox: facingRight={facingRight}, scale={transform.localScale.x}, pos={pos.x}");
     }
 
-    // Gọi từ Animation Event khi bắt đầu frame đánh
     public void EnableHitbox()
     {
         if (hitboxCollider != null)
@@ -41,7 +53,6 @@ public class BossHitboxHandle : MonoBehaviour
         hasHitPlayer = false;
     }
 
-    // Gọi từ Animation Event khi kết thúc frame đánh
     public void DisableHitbox()
     {
         if (hitboxCollider != null)
@@ -57,25 +68,34 @@ public class BossHitboxHandle : MonoBehaviour
                 PlayerHurtBoxHandle playerHurtBox = collision.GetComponent<PlayerHurtBoxHandle>();
                 if (playerHurtBox != null)
                 {
-                    // Apply damage reduction if player is blocking
-                    Player player = playerHurtBox.GetComponentInParent<Player>();
+                    // Lấy Player từ cả Level 1 và Level 2
+                    Player playerLevel1 = playerHurtBox.GetComponentInParent<Player>();
+                    PlayerLevel2 playerLevel2 = playerHurtBox.GetComponentInParent<PlayerLevel2>();
+
                     int finalDamage = damage;
-                    
-                    if (player != null)
+
+                    // Kiểm tra blocking cho Player Level 1
+                    if (playerLevel1 != null)
                     {
-                        // Check the animator parameter instead since isBlocking is private
-                        bool playerIsBlocking = player.GetComponent<Animator>().GetBool("IsBlocking");
-                        
+                        bool playerIsBlocking = playerLevel1.GetComponent<Animator>().GetBool("IsBlocking");
                         if (playerIsBlocking)
                         {
-                            finalDamage = Mathf.FloorToInt(damage / 3f); // Player only takes 1/3 damage when blocking
-                            Debug.Log($"Player blocked! Reduced damage to {finalDamage}");
+                            finalDamage = Mathf.FloorToInt(damage / 3f);
                         }
                     }
-                    
+                    // Kiểm tra blocking cho Player Level 2
+                    else if (playerLevel2 != null)
+                    {
+                        bool playerIsBlocking = playerLevel2.GetComponent<Animator>().GetBool("IsBlocking");
+                        if (playerIsBlocking)
+                        {
+                            finalDamage = Mathf.FloorToInt(damage / 3f);
+                        }
+                    }
+
                     playerHurtBox.TakeDamage(finalDamage);
                     hasHitPlayer = true;
-                    
+
                     // Notify boss that it dealt damage for rage and Ki gain
                     bossAiController bossAI = GetComponentInParent<bossAiController>();
                     if (bossAI != null)
@@ -85,35 +105,6 @@ public class BossHitboxHandle : MonoBehaviour
                     }
                 }
             }
-        }
-    }
-
-    // Thêm hàm vẽ gizmos để debug hitbox
-    private void OnDrawGizmos()
-    {
-        if (hitboxCollider != null)
-        {
-            // Màu khác với player để phân biệt
-            Gizmos.color = hitboxCollider.enabled ? Color.blue : new Color(0, 0, 0.8f, 0.4f);
-
-            // Vẽ hitbox
-            Vector3 center = transform.position;
-            Vector3 size = Vector3.zero;
-
-            if (hitboxCollider is BoxCollider2D boxCollider)
-            {
-                center += new Vector3(boxCollider.offset.x * transform.localScale.x, boxCollider.offset.y, 0);
-                size = new Vector3(boxCollider.size.x * Mathf.Abs(transform.localScale.x),
-                                   boxCollider.size.y, 0.1f);
-            }
-            else if (hitboxCollider is CircleCollider2D circleCollider)
-            {
-                center += new Vector3(circleCollider.offset.x * transform.localScale.x, circleCollider.offset.y, 0);
-                size = new Vector3(circleCollider.radius * 2 * Mathf.Abs(transform.localScale.x),
-                                   circleCollider.radius * 2, 0.1f);
-            }
-
-            Gizmos.DrawWireCube(center, size);
         }
     }
 }

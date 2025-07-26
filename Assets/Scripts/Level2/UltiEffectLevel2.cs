@@ -65,16 +65,48 @@ public class UltiEffectLevel2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Có thể hit cả Boss2HurtBox và BossHurtBox để tương thích
+        // ===== SỬA ĐỔI: Xử lý damage cho cả Boss và Clone =====
+        bool hitEnemy = false;
+
+        // Xử lý Boss (Level 1 và Level 2)
         if (collision.CompareTag("Boss2HurtBox") || collision.CompareTag("BossHurtBox"))
         {
-            // Gọi hàm nhận sát thương từ boss
-            var bossHurtbox = collision.GetComponent<BossHurtboxHandle>();
-            if (bossHurtbox != null)
+            // Thử Boss2HurtBox trước (Level 2)
+            Boss2HurtBox boss2HurtBox = collision.GetComponent<Boss2HurtBox>();
+            if (boss2HurtBox != null)
             {
-                bossHurtbox.TakeDamage(damage);
+                boss2HurtBox.TakeDamage(damage);
+                hitEnemy = true;
+                Debug.Log($"Ultimate Level 2 dealt {damage} damage to Boss2!");
             }
-            
+            else
+            {
+                // Fallback cho BossHurtboxHandle (Level 1)
+                var bossHurtbox = collision.GetComponent<BossHurtboxHandle>();
+                if (bossHurtbox != null)
+                {
+                    bossHurtbox.TakeDamage(damage);
+                    hitEnemy = true;
+                    Debug.Log($"Ultimate Level 2 dealt {damage} damage to Boss1!");
+                }
+            }
+        }
+        
+        // Xử lý Clone
+        if (collision.CompareTag("CloneHurtBox"))
+        {
+            CloneHurtBox cloneHurtBox = collision.GetComponent<CloneHurtBox>();
+            if (cloneHurtBox != null)
+            {
+                cloneHurtBox.TakeDamage(damage);
+                hitEnemy = true;
+                Debug.Log($"Ultimate Level 2 dealt {damage} damage to Clone!");
+            }
+        }
+
+        // Nếu đã hit enemy, xử lý logic chung
+        if (hitEnemy)
+        {
             // Notify player that they dealt damage for rage gain
             PlayerLevel2 player = FindFirstObjectByType<PlayerLevel2>();
             if (player != null)
@@ -83,8 +115,7 @@ public class UltiEffectLevel2 : MonoBehaviour
             }
             
             currentHits++;
-            
-            Debug.Log($"Ultimate Level 2 dealt {damage} damage to boss! ({currentHits}/{maxHits})");
+            Debug.Log($"Ultimate Level 2 hit count: ({currentHits}/{maxHits})");
             
             // Destroy if reached max hits and can't pierce
             if (!canPierceEnemies || currentHits >= maxHits)

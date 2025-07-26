@@ -39,18 +39,22 @@ public class PlayerLevel2 : MonoBehaviour
     [Header("Attack Points & Effects")]
     public Transform attackPoint;
     public Transform attackPointUlti;
-    public Transform attackPoint_ChemChuong; // THÊM DÒNG NÀY - attack point riêng cho chém chưởng
+    public Transform attackPoint_ChemChuong;
     public GameObject EffectChem1;
-    public GameObject Effect_Chuong;
-    public GameObject Effect_ChemChuong; // THÊM DÒNG NÀY - effect chém chưởng
+    public GameObject Effect_Chuong; // Effect Level 1
+    public GameObject Effect_ChuongLevel2; // ===== THÊM: Effect Level 2 =====
+    public GameObject Effect_ChemChuong;
     public GameObject UltiEffect;
 
     [Header("Level 2 New Features")]
     [SerializeField] private float dashDistance = 3f; // Kỹ năng dash mới
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private int dashRageCost = 10; // Chi phí rage để dash
-    [SerializeField] private bool canWallJump = true; // Cho phép wall jump ở level 2
-    [SerializeField] private LayerMask wallLayer;
+
+    [Header("Enhanced Jump Settings")]
+    [SerializeField] private float jumpBufferTime = 0.2f; // Thời gian buffer cho việc nhảy
+    private float jumpBufferCounter;
+    private bool hasUsedDoubleJump = false;
 
     // Core Components
     private Rigidbody2D rb;
@@ -91,8 +95,6 @@ public class PlayerLevel2 : MonoBehaviour
     // Level 2 New Features
     private float lastDashTime = 0f;
     private bool isDashing = false;
-    private bool isWallTouching = false;
-    private bool canWallJumpNow = false;
 
     // Properties
     public bool IsDead => isDead;
@@ -168,21 +170,17 @@ public class PlayerLevel2 : MonoBehaviour
         bool wasGrounded = isGrounded;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
 
-        // Wall detection for wall jump
-        if (canWallJump)
-        {
-            isWallTouching = Physics2D.OverlapCircle(transform.position, 0.5f, wallLayer);
-            canWallJumpNow = !isGrounded && isWallTouching && currentJumpCount < maxJumpCount;
-        }
-
+        // Reset double jump khi chạm đất
         if (!wasGrounded && isGrounded)
         {
             animator.ResetTrigger("Jump");
+            hasUsedDoubleJump = false;
         }
 
         if (isGrounded)
         {
             currentJumpCount = 0;
+            hasUsedDoubleJump = false;
         }
     }
 
@@ -198,7 +196,6 @@ public class PlayerLevel2 : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(moveInput.x));
         animator.SetBool("IsRunningFast", isRunningFast);
         animator.SetBool("IsGrounded", isGrounded);
-        animator.SetBool("IsWallTouching", isWallTouching); // New animation parameter
     }
 
     private void HandleIdleState()
@@ -221,15 +218,33 @@ public class PlayerLevel2 : MonoBehaviour
 
     private void HandleJumpInput()
     {
+        // Jump buffer system
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (canWallJumpNow)
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+        // Process jump with buffer
+        if (jumpBufferCounter > 0)
+        {
+            // Normal jump from ground
+            if (isGrounded)
             {
-                WallJump();
+                DoJump(jumpForce);
+                currentJumpCount = 1;
+                jumpBufferCounter = 0;
             }
-            else
+            // Double jump in air
+            else if (!hasUsedDoubleJump)
             {
-                Jump();
+                DoJump(doubleJumpForce);
+                hasUsedDoubleJump = true;
+                currentJumpCount = 2;
+                jumpBufferCounter = 0;
             }
         }
     }
@@ -316,23 +331,7 @@ public class PlayerLevel2 : MonoBehaviour
             hitBoxHandle.FlipHitbox(!spriteRenderer.flipX);
     }
 
-    // Wall Jump Feature (New for Level 2)
-    private void WallJump()
-    {
-        if (!canWallJumpNow) return;
-
-        float wallJumpForce = jumpForce * 0.8f;
-        float wallJumpHorizontal = moveInput.x != 0 ? -moveInput.x : (spriteRenderer.flipX ? 1 : -1);
-
-        rb.linearVelocity = new Vector2(wallJumpHorizontal * 3f, wallJumpForce);
-
-        animator.SetTrigger("WallJump"); // New animation trigger
-        currentJumpCount++;
-
-        Debug.Log("Wall jump performed!");
-    }
-
-    // Dash Feature (New for Level 2)
+    // Dash Feature (Level 2)
     private bool CanDash()
     {
         return Time.time - lastDashTime >= dashCooldown &&
@@ -379,29 +378,52 @@ public class PlayerLevel2 : MonoBehaviour
         isDashing = false;
     }
 
-    // Enhanced Movement System
+    // Enhanced Movement System - phiên bản đơn giản và debug
+    // Enhanced Movement System with camera bounds
     void MovePlayer()
     {
+        // Kiểm tra rigidbody
+        if (!rb.simulated)
+        {
+            Debug.LogError("Rigidbody is not simulated - forcing simulation on");
+            rb.simulated = true;
+        }
+
+        // DEBUG: Log trạng thái di chuyển
+        if (Time.frameCount % 120 == 0)
+        {
+            Debug.Log($"Move state: isBlocking={isBlocking}, isDashing={isDashing}, moveInput={moveInput}, velocity={rb.linearVelocity}");
+        }
+
+        // Kiểm tra trạng thái chặn di chuyển
         if (isBlocking || isDashing)
         {
             if (!isDashing)
-                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Dùng velocity thay vì linearVelocity
             return;
         }
 
+        // Tính toán vận tốc cơ bản
         float currentSpeed = isRunningFast ? speed * runFastMultiplier : speed;
-        Vector2 movement = new Vector2(moveInput.x * currentSpeed, rb.linearVelocity.y);
+        float moveX = moveInput.x * currentSpeed;
 
-        // Screen bounds calculation
+        // === THÊM MỚI: CAMERA BOUNDS ===
+        // Tính toán giới hạn màn hình
         float halfWidth = spriteRenderer.bounds.extents.x;
         float cameraHalfWidth = mainCamera.orthographicSize * mainCamera.aspect;
+
+        // Tính giới hạn trái phải dựa theo vị trí camera
         float leftLimit = mainCamera.transform.position.x - cameraHalfWidth + halfWidth;
         float rightLimit = mainCamera.transform.position.x + cameraHalfWidth - halfWidth;
 
-        float newX = transform.position.x + movement.x * Time.fixedDeltaTime;
+        // Tính vị trí mới dự kiến
+        float newX = transform.position.x + moveX * Time.fixedDeltaTime;
+        // Giới hạn vị trí X trong khoảng cho phép
         newX = Mathf.Clamp(newX, leftLimit, rightLimit);
 
-        rb.linearVelocity = new Vector2((newX - transform.position.x) / Time.fixedDeltaTime, movement.y);
+        // Áp dụng movement với vị trí X đã được giới hạn
+        rb.linearVelocity = new Vector2((newX - transform.position.x) / Time.fixedDeltaTime, rb.linearVelocity.y);
+        // === KẾT THÚC PHẦN THÊM MỚI ===
 
         // Sprite flipping
         if (moveInput.x < 0)
@@ -418,6 +440,7 @@ public class PlayerLevel2 : MonoBehaviour
 
     private void FlipTransforms(bool facingRight)
     {
+        // Cập nhật cách gọi flip methods
         if (hitBoxHandle != null)
             hitBoxHandle.FlipHitbox(facingRight);
         if (hurtBoxHandle != null)
@@ -425,7 +448,7 @@ public class PlayerLevel2 : MonoBehaviour
 
         FlipAttackPoint(attackPoint, facingRight);
         FlipAttackPoint(attackPointUlti, facingRight);
-        FlipAttackPoint(attackPoint_ChemChuong, facingRight); // THÊM DÒNG NÀY
+        FlipAttackPoint(attackPoint_ChemChuong, facingRight);
     }
 
     private void FlipAttackPoint(Transform point, bool facingRight)
@@ -441,23 +464,17 @@ public class PlayerLevel2 : MonoBehaviour
     // Enhanced Jump System
     void Jump()
     {
-        if (isGrounded)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            animator.ResetTrigger("Jump");
-            animator.SetTrigger("Jump");
-            currentJumpCount = 1;
-        }
-        else if (currentJumpCount < maxJumpCount)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, doubleJumpForce);
-            animator.ResetTrigger("Jump");
-            animator.SetTrigger("Jump");
-            currentJumpCount++;
-        }
+        jumpBufferCounter = jumpBufferTime;
     }
 
-    // Combat System (giữ nguyên logic từ Level 1)
+    private void DoJump(float force)
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, force); // Dùng velocity thay vì linearVelocity
+        animator.ResetTrigger("Jump");
+        animator.SetTrigger("Jump");
+    }
+
+    // Combat System
     private void UpdateComboDelayStatus()
     {
         if (isComboDelayActiveJ && Time.time - comboFinishedTimeJ >= comboDelayAfterFinish)
@@ -636,7 +653,9 @@ public class PlayerLevel2 : MonoBehaviour
     {
         isBlocking = true;
         animator.SetBool("IsBlocking", true);
-        rb.linearVelocity = Vector2.zero;
+
+        // Only stop horizontal movement, keep vertical movement (gravity)
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Dùng velocity
     }
 
     void StopBlock()
@@ -718,13 +737,13 @@ public class PlayerLevel2 : MonoBehaviour
         if (currentRagePoints >= minRageToActivate && !isUltimateActive)
         {
             isUltimateActive = true;
-            
+
             // ĐỔI THÀNH TRIGGER - SẼ TỰ ĐỘNG RESET SAU KHI TRIGGER
             animator.SetTrigger("IsUlti");
 
             currentRagePoints -= minRageToActivate;
             if (currentRagePoints < 0) currentRagePoints = 0;
-            
+
             // Cập nhật rage UI
             OnRageChanged?.Invoke(currentRagePoints, maxRagePoints);
 
@@ -742,24 +761,20 @@ public class PlayerLevel2 : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         isUltimateActive = false;
-        
+
         Debug.Log("Ultimate deactivated - ready for next use");
     }
 
-    // THÊM METHOD NÀY - Gọi từ Animation Event khi Ultimate animation bắt đầu
     public void OnUltimateAnimationStart()
     {
         Debug.Log("Ultimate animation started");
     }
 
-    // THÊM METHOD NÀY - Gọi từ Animation Event khi Ultimate animation kết thúc
     public void OnUltimateAnimationEnd()
     {
         Debug.Log("Ultimate animation ended");
-        // Trigger tự động reset, không cần manual reset
     }
 
-    // THÊM METHOD NÀY - Để force reset Ultimate nếu cần thiết
     public void ForceResetUltimate()
     {
         isUltimateActive = false;
@@ -779,23 +794,36 @@ public class PlayerLevel2 : MonoBehaviour
         }
     }
 
-    // Hitbox Management
+    // ===== HITBOX MANAGEMENT SYSTEM - CHỈ 2 HÀM CƠ BẢN =====
+    // These methods will be called from Animation Events
     public void EnablePlayerHitbox()
     {
         if (hitBoxHandle != null)
         {
             hitBoxHandle.EnableHitbox();
-            hitBoxHandle.FlipHitbox(!spriteRenderer.flipX);
+            Debug.Log("Player Level 2 hitbox ENABLED via animation event");
+        }
+        else
+        {
+            Debug.LogError("HitBoxHandle is null - cannot enable hitbox!");
         }
     }
 
     public void DisablePlayerHitbox()
     {
         if (hitBoxHandle != null)
+        {
             hitBoxHandle.DisableHitbox();
+            Debug.Log("Player Level 2 hitbox DISABLED via animation event");
+        }
+        else
+        {
+            Debug.LogError("HitBoxHandle is null - cannot disable hitbox!");
+        }
     }
+    // ===== END HITBOX MANAGEMENT SYSTEM =====
 
-    // Effect System (giữ nguyên để tương thích với boss)
+    // Effect System
     public void SpawnSkillEffect(string effectName)
     {
         GameObject prefab = null;
@@ -808,7 +836,7 @@ public class PlayerLevel2 : MonoBehaviour
                 spawnPoint = attackPoint;
                 break;
             case "Attack3":
-                prefab = Effect_Chuong;
+                prefab = Effect_ChuongLevel2; // ===== SỬA: Dùng Level 2 =====
                 spawnPoint = attackPoint;
                 break;
             case "Attack3+":
@@ -828,7 +856,6 @@ public class PlayerLevel2 : MonoBehaviour
         {
             GameObject effect = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
 
-            // PLAYER LẬT SCALE CHO TẤT CẢ EFFECT
             float direction = spriteRenderer.flipX ? -1 : 1;
             effect.transform.localScale = new Vector3(direction, 1, 1);
 
@@ -836,7 +863,7 @@ public class PlayerLevel2 : MonoBehaviour
         }
     }
 
-    // Animation Event Methods - CẬP NHẬT ĐỂ ĐẢM BẢO HƯỚNG ĐÚNG
+    // Animation Event Methods
     public void SpawnUlti()
     {
         SpawnSkillEffect("Ultimate");
@@ -868,21 +895,18 @@ public class PlayerLevel2 : MonoBehaviour
         Debug.Log("ChemChuong effect spawned from animator event!");
     }
 
-    // Method để spawn Effect_Chuong (chiêu U)
     public void SpawnChuong()
     {
         SpawnSkillEffect("Attack3");
         Debug.Log("Chuong effect spawned from animator event!");
     }
 
-    // Method để spawn EffectChem1 (chiêu J)
     public void SpawnChem1()
     {
         SpawnSkillEffect("Attack1");
         Debug.Log("Chem1 effect spawned from animator event!");
     }
 
-    // Method để spawn ChemChuong tại attack point riêng với hướng chính xác
     public void SpawnChemChuongAtPoint()
     {
         if (Effect_ChemChuong != null)
@@ -902,25 +926,21 @@ public class PlayerLevel2 : MonoBehaviour
         }
     }
 
-    // Animation Event Method - Dedicated for Level 2 Ultimate spawn
     public void SpawnUltiLevel2()
     {
         if (UltiEffect != null)
         {
             Transform spawnPoint = attackPointUlti != null ? attackPointUlti : attackPoint;
-            
+
             if (spawnPoint != null)
             {
                 GameObject effect = Instantiate(UltiEffect, spawnPoint.position, Quaternion.identity);
-                
+
                 // Ensure correct direction for Level 2
                 float direction = spriteRenderer.flipX ? -1 : 1;
                 effect.transform.localScale = new Vector3(direction, 1, 1);
-                
+
                 Debug.Log("Level 2 Ultimate effect spawned from animator event!");
-                
-                // Optional: Add extra effects or functionality specific to Level 2
-                // For example, you could add screen shake, camera effects, etc.
             }
             else
             {
@@ -933,25 +953,21 @@ public class PlayerLevel2 : MonoBehaviour
         }
     }
 
-    // Method để gọi từ Animation Event của Attack3 (chiêu chưởng) - Level 2
     public void SpawnChuongLevel2()
     {
         SpawnSkillEffect("Attack3");
         Debug.Log("Chuong effect spawned from Level 2 animator event!");
     }
 
-    // Method để spawn Effect_Chuong với xử lý hướng tại attackPoint - Level 2
     public void SpawnChuongAtAttackPointLevel2()
     {
         if (Effect_Chuong != null && attackPoint != null)
         {
-            // Spawn effect tại vị trí attackPoint (đã được lật theo hướng player)
             GameObject effect = Instantiate(Effect_Chuong, attackPoint.position, Quaternion.identity);
-            
-            // Lật scale của effect theo hướng player
+
             float direction = spriteRenderer.flipX ? -1 : 1;
             effect.transform.localScale = new Vector3(direction, 1, 1);
-            
+
             Debug.Log($"Level 2 Chuong effect spawned at attack point facing {(spriteRenderer.flipX ? "LEFT" : "RIGHT")}!");
         }
         else
@@ -960,36 +976,30 @@ public class PlayerLevel2 : MonoBehaviour
         }
     }
 
-    // Method tổng hợp cho Level 2 - xử lý cả vị trí và hướng
     public void SpawnChuongWithDirectionLevel2()
     {
         if (Effect_Chuong != null && attackPoint != null)
         {
-            // 1. AttackPoint đã được lật trong FlipTransforms()
-            // 2. Spawn effect tại attackPoint
             GameObject effect = Instantiate(Effect_Chuong, attackPoint.position, Quaternion.identity);
-            
-            // 3. Lật scale effect theo hướng player
+
             if (spriteRenderer.flipX)
             {
-                // Player quay trái
-                effect.transform.localScale = new Vector3(-Mathf.Abs(effect.transform.localScale.x), 
-                                                        effect.transform.localScale.y, 
+                effect.transform.localScale = new Vector3(-Mathf.Abs(effect.transform.localScale.x),
+                                                        effect.transform.localScale.y,
                                                         effect.transform.localScale.z);
             }
             else
             {
-                // Player quay phải
-                effect.transform.localScale = new Vector3(Mathf.Abs(effect.transform.localScale.x), 
-                                                        effect.transform.localScale.y, 
+                effect.transform.localScale = new Vector3(Mathf.Abs(effect.transform.localScale.x),
+                                                        effect.transform.localScale.y,
                                                         effect.transform.localScale.z);
             }
-            
+
             Debug.Log($"Level 2 Chuong spawned with direction at ({attackPoint.position}) facing {(spriteRenderer.flipX ? "LEFT" : "RIGHT")}");
         }
     }
 
-    // Boss Interaction Methods (giữ nguyên để tương thích)
+    // Boss Interaction Methods
     public void OnDamageDealt(int damageAmount)
     {
         AddRagePoints(rageGainPerHit);
@@ -1008,19 +1018,16 @@ public class PlayerLevel2 : MonoBehaviour
         Debug.Log($"Player hit boss for {damageDealt} damage and gained {rageGainPerSuccessfulHit} rage points!");
     }
 
-    // Hàm đơn giản để gọi từ Animation Event cho Ultimate Level 2
     public void SpawnUltiEffectLevel2()
     {
         if (UltiEffect != null)
         {
             Transform spawnPoint = attackPointUlti != null ? attackPointUlti : attackPoint;
-            
+
             if (spawnPoint != null)
             {
-                // Chỉ cần spawn effect - không cần xử lý rotation hay scale
-                // UltiEffectLevel2 script sẽ tự xử lý hướng di chuyển
                 GameObject effect = Instantiate(UltiEffect, spawnPoint.position, Quaternion.identity);
-                
+
                 Debug.Log("Ultimate Level 2 effect spawned - will move based on player direction");
             }
             else
@@ -1032,5 +1039,15 @@ public class PlayerLevel2 : MonoBehaviour
         {
             Debug.LogError("UltiEffect prefab is not assigned!");
         }
+    }
+
+    // Thêm phương thức để Reset từ Inspector
+    public void EmergencyReset()
+    {
+        isBlocking = false;
+        isDashing = false;
+        animator.SetBool("IsBlocking", false);
+        rb.linearVelocity = Vector2.zero;
+        Debug.Log("Emergency player state reset called!");
     }
 }

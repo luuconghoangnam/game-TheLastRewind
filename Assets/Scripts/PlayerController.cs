@@ -107,6 +107,10 @@ public class Player : MonoBehaviour
     private float hitBoxOriginalPosX;
     //private float hitBoxOriginalOffsetX;
 
+    [SerializeField] private float jumpBufferTime = 0.2f; // Thời gian buffer cho việc nhảy
+    private float jumpBufferCounter;
+    private bool hasUsedDoubleJump = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -153,6 +157,7 @@ public class Player : MonoBehaviour
         if (!wasGrounded && isGrounded)
         {
             animator.ResetTrigger("Jump");
+            hasUsedDoubleJump = false; // Reset double jump khi chạm đất
         }
 
         // Reset jump count when touching ground
@@ -185,9 +190,32 @@ public class Player : MonoBehaviour
             isIdleForLong = false;
         }
 
+        // Jump buffer system
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Jump();
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+        // Jump with buffer
+        if (jumpBufferCounter > 0)
+        {
+            // Normal jump from ground
+            if (isGrounded)
+            {
+                DoJump(jumpForce);
+                jumpBufferCounter = 0;
+            }
+            // Double jump in air
+            else if (!hasUsedDoubleJump)
+            {
+                DoJump(doubleJumpForce);
+                hasUsedDoubleJump = true;
+                jumpBufferCounter = 0;
+            }
         }
 
         // Kiểm tra và cập nhật trạng thái delay combo
@@ -253,9 +281,13 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()
     {
-        // Đảm bảo hitbox luôn có offset đúng mỗi frame
+        // Đảm bảo hitbox luôn có hướng đúng mỗi frame
         if (hitBoxHandle != null)
             hitBoxHandle.FlipHitbox(!spriteRenderer.flipX);
+        if (hurtBoxHandle != null)
+            hurtBoxHandle.FlipHurtbox(!spriteRenderer.flipX);
+
+        FlipBossAttackPoint();
     }
 
     // Hàm kiểm tra và cập nhật trạng thái delay combo
@@ -304,77 +336,29 @@ public class Player : MonoBehaviour
         // Áp dụng movement với vị trí X đã được giới hạn
         rb.linearVelocity = new Vector2((newX - transform.position.x) / Time.fixedDeltaTime, movement.y);
 
-        // Flip sprite và hitbox
+        // Flip sprite và transforms
         if (moveInput.x < 0)
         {
             spriteRenderer.flipX = true;
-            // Gọi các hàm flip - chúng sẽ xử lý cả scale và position
-            if (hitBoxHandle != null)
-                hitBoxHandle.FlipHitbox(false);
-            if (hurtBoxHandle != null)
-                hurtBoxHandle.FlipHurtbox(false);
-            
-            // Chỉ cần lật attackPoint, vì nó không có script riêng
-            if (attackPoint != null)
-            {
-                Vector3 localPos = attackPoint.localPosition;
-                localPos.x = Mathf.Abs(localPos.x) * -1f;
-                attackPoint.localPosition = localPos;
-            }
-
-            // Flip attackPointUlti
-            if (attackPointUlti != null)
-            {
-                Vector3 localPos = attackPointUlti.localPosition;
-                localPos.x = Mathf.Abs(localPos.x) * -1f;
-                attackPointUlti.localPosition = localPos;
-            }
+            FlipTransforms(false);
         }
         else if (moveInput.x > 0)
         {
             spriteRenderer.flipX = false;
-            // Gọi các hàm flip - chúng sẽ xử lý cả scale và position
-            if (hitBoxHandle != null)
-                hitBoxHandle.FlipHitbox(true);
-            if (hurtBoxHandle != null)
-                hurtBoxHandle.FlipHurtbox(true);
-            
-            // Chỉ cần lật attackPoint, vì nó không có script riêng
-            if (attackPoint != null)
-            {
-                Vector3 localPos = attackPoint.localPosition;
-                localPos.x = Mathf.Abs(localPos.x);
-                attackPoint.localPosition = localPos;
-            }
-
-            // Flip attackPointUlti
-            if (attackPointUlti != null)
-            {
-                Vector3 localPos = attackPointUlti.localPosition;
-                localPos.x = Mathf.Abs(localPos.x);
-                attackPointUlti.localPosition = localPos;
-            }
+            FlipTransforms(true);
         }
+    }
+
+    void DoJump(float force)
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, force);
+        animator.ResetTrigger("Jump");
+        animator.SetTrigger("Jump");
     }
 
     void Jump()
     {
-        // If we're on the ground, do a normal jump
-        if (isGrounded)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            animator.ResetTrigger("Jump"); // Clear any pending Jump triggers
-            animator.SetTrigger("Jump");
-            currentJumpCount = 1;
-        }
-        // If we're in the air but haven't used all jumps, do a double jump
-        else if (currentJumpCount < maxJumpCount)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, doubleJumpForce);
-            animator.ResetTrigger("Jump"); // Clear any pending Jump triggers
-            animator.SetTrigger("Jump");
-            currentJumpCount++;
-        }
+        jumpBufferCounter = jumpBufferTime;
     }
 
     // --- Combo J ---
@@ -546,7 +530,9 @@ public class Player : MonoBehaviour
     {
         isBlocking = true;
         animator.SetBool("IsBlocking", true);
-        rb.linearVelocity = Vector2.zero;
+        
+        // Only stop horizontal movement, keep vertical movement (gravity)
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }
 
     void StopBlock()
@@ -678,8 +664,7 @@ public class Player : MonoBehaviour
         if (hitBoxHandle != null)
         {
             hitBoxHandle.EnableHitbox();
-            // Đảm bảo offset đúng ngay khi bật hitbox
-            hitBoxHandle.FlipHitbox(!spriteRenderer.flipX);
+            // Flip sẽ được xử lý trong LateUpdate()
         }
     }
     public void DisablePlayerHitbox()
@@ -839,5 +824,35 @@ public class Player : MonoBehaviour
             
             Debug.Log($"Chuong spawned at ({attackPoint.position}) facing {(spriteRenderer.flipX ? "LEFT (rotY=180)" : "RIGHT (rotY=0)")}");
         }
+    }
+
+    // Thêm vào cuối class Player
+    private void FlipTransforms(bool facingRight)
+    {
+        // Cập nhật cách gọi flip methods
+        if (hitBoxHandle != null)
+            hitBoxHandle.FlipHitbox(facingRight);
+        if (hurtBoxHandle != null)
+            hurtBoxHandle.FlipHurtbox(facingRight);
+
+        FlipAttackPoint(attackPoint, facingRight);
+        FlipAttackPoint(attackPointUlti, facingRight);
+    }
+
+    private void FlipAttackPoint(Transform point, bool facingRight)
+    {
+        if (point != null)
+        {
+            Vector3 localPos = point.localPosition;
+            localPos.x = facingRight ? Mathf.Abs(localPos.x) : -Mathf.Abs(localPos.x);
+            point.localPosition = localPos;
+        }
+    }
+
+    // Thêm method này vào PlayerController.cs
+    private void FlipBossAttackPoint()
+    {
+        FlipAttackPoint(attackPoint, !spriteRenderer.flipX);
+        FlipAttackPoint(attackPointUlti, !spriteRenderer.flipX);
     }
 }

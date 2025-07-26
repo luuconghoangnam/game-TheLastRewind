@@ -11,6 +11,8 @@ TagManager:
   - BossHurtBox
   - PlayerHitBox
   - BossHitBox
+  - CloneHitBox
+  - CloneHurtBox
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - Player
   - Boss
   - Skill
-  - 
+  - Wall
   - 
   - 
   - 
@@ -59,6 +61,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 4081859407
+    locked: 0
+  - name: Wall
+    uniqueID: 1299109025
     locked: 0
   - name: Boss
     uniqueID: 1689426985

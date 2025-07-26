@@ -1,0 +1,1781 @@
+fileFormatVersion: 2
+guid: 4eca1bf939f1d4a40b346f72f4bd01da
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 793778005633996442
+    second: Boss2Effect_0
+  - first:
+      213: -7413706260860399506
+    second: Boss2Effect_1
+  - first:
+      213: 3837282567157792286
+    second: Boss2Effect_2
+  - first:
+      213: 7176272432648886106
+    second: Boss2Effect_3
+  - first:
+      213: -563917393455036929
+    second: Boss2Effect_4
+  - first:
+      213: 6712793107015713518
+    second: Boss2Effect_5
+  - first:
+      213: 1295091653456046054
+    second: Boss2Effect_6
+  - first:
+      213: 2105122000521357071
+    second: Boss2Effect_7
+  - first:
+      213: 8759870637581060216
+    second: Boss2Effect_8
+  - first:
+      213: -8998100651206794078
+    second: Boss2Effect_9
+  - first:
+      213: -7279928380157580481
+    second: Boss2Effect_10
+  - first:
+      213: 9011905128417116921
+    second: Boss2Effect_11
+  - first:
+      213: -1923785538356888743
+    second: Boss2Effect_12
+  - first:
+      213: -252883382901957161
+    second: Boss2Effect_13
+  - first:
+      213: 1428140703973633874
+    second: Boss2Effect_14
+  - first:
+      213: 7290940960659639951
+    second: Boss2Effect_15
+  - first:
+      213: -480984210050555122
+    second: Boss2Effect_16
+  - first:
+      213: 1864865444851790635
+    second: Boss2Effect_17
+  - first:
+      213: 5888993460856454376
+    second: Boss2Effect_18
+  - first:
+      213: -9206313544542799458
+    second: Boss2Effect_19
+  - first:
+      213: -7446602284041921982
+    second: Boss2Effect_20
+  - first:
+      213: -639777753421293168
+    second: Boss2Effect_21
+  - first:
+      213: 3205294170439837957
+    second: Boss2Effect_22
+  - first:
+      213: 3185723884373421300
+    second: Boss2Effect_23
+  - first:
+      213: 9129279641247569741
+    second: Boss2Effect_24
+  - first:
+      213: 2949722019481144466
+    second: Boss2Effect_25
+  - first:
+      213: -1256618623652473313
+    second: Boss2Effect_26
+  - first:
+      213: -3402866647561543209
+    second: Boss2Effect_27
+  - first:
+      213: 8849500842668740933
+    second: Boss2Effect_28
+  - first:
+      213: -900080694185527656
+    second: Boss2Effect_29
+  - first:
+      213: 3786828623352082161
+    second: Boss2Effect_30
+  - first:
+      213: -6376736638786331164
+    second: Boss2Effect_31
+  - first:
+      213: 2678496393637478064
+    second: Boss2Effect_32
+  - first:
+      213: -5953446394723265799
+    second: Boss2Effect_33
+  - first:
+      213: -8091761381456457165
+    second: Boss2Effect_34
+  - first:
+      213: -1777884056641914852
+    second: Boss2Effect_35
+  - first:
+      213: 2132143262755468075
+    second: Boss2Effect_36
+  - first:
+      213: -8562640961938460885
+    second: Boss2Effect_37
+  - first:
+      213: 8392362685469355201
+    second: Boss2Effect_38
+  - first:
+      213: 3189051961960313124
+    second: Boss2Effect_39
+  - first:
+      213: -6946385463307147831
+    second: Boss2Effect_40
+  - first:
+      213: -2396214175665502936
+    second: Boss2Effect_41
+  - first:
+      213: -1181743081491378770
+    second: Boss2Effect_42
+  - first:
+      213: 3519662170123327416
+    second: Boss2Effect_43
+  - first:
+      213: 3300658719340811796
+    second: Boss2Effect_44
+  - first:
+      213: 2835505679259351376
+    second: Boss2Effect_45
+  - first:
+      213: -7927693487524304519
+    second: Boss2Effect_46
+  - first:
+      213: 7316462870564876065
+    second: Boss2Effect_47
+  - first:
+      213: 9056163424086086366
+    second: Boss2Effect_48
+  - first:
+      213: -6806110665002505421
+    second: Boss2Effect_49
+  - first:
+      213: -1802340342457770194
+    second: Boss2Effect_50
+  - first:
+      213: -5574105881940872459
+    second: Boss2Effect_51
+  - first:
+      213: 184515744386337223
+    second: Boss2Effect_52
+  - first:
+      213: -7425522144254395027
+    second: Boss2Effect_53
+  - first:
+      213: -2825446638804313135
+    second: Boss2Effect_54
+  - first:
+      213: 2350621504414495353
+    second: Boss2Effect_55
+  - first:
+      213: -7173804995873920095
+    second: Boss2Effect_56
+  - first:
+      213: 1624431042872115578
+    second: Boss2Effect_57
+  - first:
+      213: 7070181991601586475
+    second: Boss2Effect_58
+  - first:
+      213: -9218882849455030551
+    second: Boss2Effect_59
+  - first:
+      213: -1519913204379838426
+    second: Boss2Effect_60
+  - first:
+      213: 3056955167305170433
+    second: Boss2Effect_61
+  - first:
+      213: -3218112251690111375
+    second: Boss2Effect_62
+  - first:
+      213: -8905580761368727223
+    second: Boss2Effect_63
+  - first:
+      213: 6831430980110617362
+    second: Boss2Effect_64
+  - first:
+      213: 399996213157285329
+    second: Boss2Effect_65
+  - first:
+      213: 1297175408032238102
+    second: Boss2Effect_66
+  - first:
+      213: -4537176054355945749
+    second: Boss2Effect_67
+  - first:
+      213: -1259466449771196346
+    second: Boss2Effect_68
+  - first:
+      213: 6584355000978475391
+    second: Boss2Effect_69
+  - first:
+      213: -5782387664550428774
+    second: Boss2Effect_70
+  - first:
+      213: -6159569268141307468
+    second: Boss2Effect_71
+  - first:
+      213: 5804291509497038292
+    second: Boss2Effect_72
+  - first:
+      213: -8716371183277542724
+    second: Boss2Effect_73
+  - first:
+      213: 2034057872966375006
+    second: Boss2Effect_74
+  - first:
+      213: 3086264779030557212
+    second: Boss2Effect_75
+  - first:
+      213: 763027823307600124
+    second: Boss2Effect_76
+  - first:
+      213: -1956211076984489466
+    second: Boss2Effect_77
+  - first:
+      213: -1937697562345395417
+    second: Boss2Effect_78
+  - first:
+      213: 1880358689234205740
+    second: Boss2Effect_79
+  - first:
+      213: -416887752317834846
+    second: Boss2Effect_80
+  - first:
+      213: 4537433636660181951
+    second: Boss2Effect_81
+  - first:
+      213: 7306798824839250724
+    second: Boss2Effect_82
+  - first:
+      213: -5289100300805952551
+    second: Boss2Effect_83
+  - first:
+      213: -1575180764665035498
+    second: Boss2Effect_84
+  - first:
+      213: -6930357660968134121
+    second: Boss2Effect_85
+  - first:
+      213: -5984399321929466403
+    second: Boss2Effect_86
+  - first:
+      213: -3721061376319687132
+    second: Boss2Effect_87
+  - first:
+      213: 27938770605162849
+    second: Boss2Effect_88
+  - first:
+      213: -8941273613680746926
+    second: Boss2Effect_89
+  - first:
+      213: 573567374439809608
+    second: Boss2Effect_90
+  - first:
+      213: 6325913351077003624
+    second: Boss2Effect_91
+  - first:
+      213: 6070063103500647147
+    second: Boss2Effect_92
+  - first:
+      213: 1609110071588086488
+    second: Boss2Effect_93
+  - first:
+      213: -8065589608750038330
+    second: Boss2Effect_94
+  - first:
+      213: -7450838747031567476
+    second: Boss2Effect_95
+  - first:
+      213: -1401580307140890108
+    second: Boss2Effect_96
+  - first:
+      213: 3873695676196881386
+    second: Boss2Effect_97
+  - first:
+      213: 3139181135883459092
+    second: Boss2Effect_98
+  - first:
+      213: -2102600474526726724
+    second: Boss2Effect_99
+  - first:
+      213: -8583625000469742597
+    second: Boss2Effect_100
+  - first:
+      213: -6922331413935885637
+    second: Boss2Effect_101
+  - first:
+      213: 2719049277886474244
+    second: Boss2Effect_102
+  - first:
+      213: -5408770862115367983
+    second: Boss2Effect_103
+  - first:
+      213: 7458414077400007010
+    second: Boss2Effect_104
+  - first:
+      213: -4837572642494930120
+    second: Boss2Effect_105
+  - first:
+      213: 1350550759764843008
+    second: Boss2Effect_106
+  - first:
+      213: 5102170121896294675
+    second: Boss2Effect_107
+  - first:
+      213: 2504476361723496129
+    second: Boss2Effect_108
+  - first:
+      213: 3008939964562689425
+    second: Boss2Effect_109
+  - first:
+      213: -5519082061196902114
+    second: Boss2Effect_110
+  - first:
+      213: -1042756667487482378
+    second: Boss2Effect_111
+  - first:
+      213: -8051199146622241938
+    second: Boss2Effect_112
+  - first:
+      213: -950017175960334490
+    second: Boss2Effect_113
+  - first:
+      213: 5503905916247090995
+    second: Boss2Effect_114
+  - first:
+      213: -7685639651891893765
+    second: Boss2Effect_115
+  - first:
+      213: 1518186238008507878
+    second: Boss2Effect_116
+  - first:
+      213: -1823845252901159282
+    second: Boss2Effect_117
+  - first:
+      213: -1075223910991928488
+    second: Boss2Effect_118
+  - first:
+      213: -1424182961377914761
+    second: Boss2Effect_119
+  - first:
+      213: -1573561238682722589
+    second: Boss2Effect_120
+  - first:
+      213: -1004956421962530599
+    second: Boss2Effect_121
+  - first:
+      213: -8441317482930709317
+    second: Boss2Effect_122
+  - first:
+      213: -3090739126103224346
+    second: Boss2Effect_123
+  - first:
+      213: -4373214050567958704
+    second: Boss2Effect_124
+  - first:
+      213: 6871785961233448241
+    second: Boss2Effect_125
+  - first:
+      213: 6378943769230358570
+    second: Boss2Effect_126
+  - first:
+      213: -6532891488132706269
+    second: Boss2Effect_127
+  - first:
+      213: -2374029952472433144
+    second: Boss2Effect_128
+  - first:
+      213: 6037588753550331929
+    second: Boss2Effect_129
+  - first:
+      213: -5840846592143226912
+    second: Boss2Effect_130
+  - first:
+      213: 894407474423612228
+    second: Boss2Effect_131
+  - first:
+      213: -8594611963701450815
+    second: Boss2Effect_132
+  - first:
+      213: -4483088306008620232
+    second: Boss2Effect_133
+  - first:
+      213: 4344189262535287245
+    second: Boss2Effect_134
+  - first:
+      213: 5490912693898735414
+    second: Boss2Effect_135
+  - first:
+      213: -2715770749513241879
+    second: Boss2Effect_136
+  - first:
+      213: 1333303296616776449
+    second: Boss2Effect_137
+  - first:
+      213: -6888003694432650717
+    second: Boss2Effect_138
+  - first:
+      213: -9141992658790194916
+    second: Boss2Effect_139
+  - first:
+      213: -4098873970583863729
+    second: Boss2Effect_140
+  - first:
+      213: -1929824486789283142
+    second: Boss2Effect_141
+  - first:
+      213: -281579025244347629
+    second: Boss2Effect_142
+  - first:
+      213: 9077335678087265317
+    second: Boss2Effect_143
+  - first:
+      213: 4251173823685627054
+    second: Boss2Effect_144
+  - first:
+      213: -2826156224979071140
+    second: Boss2Effect_145
+  - first:
+      213: 5419807894508382571
+    second: Boss2Effect_146
+  - first:
+      213: -6501319915137789479
+    second: Boss2Effect_147
+  - first:
+      213: 5581130057891800754
+    second: Boss2Effect_148
+  - first:
+      213: 3229295278532281254
+    second: Boss2Effect_149
+  - first:
+      213: 7238210981276875811
+    second: Boss2Effect_150
+  - first:
+      213: -3432472571671006423
+    second: Boss2Effect_151
+  - first:
+      213: 1562274596338912990
+    second: Boss2Effect_152
+  - first:
+      213: -4689695793946999238
+    second: Boss2Effect_153
+  - first:
+      213: 567153804303529227
+    second: Boss2Effect_154
+  - first:
+      213: 5939909630379238421
+    second: Boss2Effect_155
+  - first:
+      213: 8378127640897249799
+    second: Boss2Effect_156
+  - first:
+      213: 1555777650453493735
+    second: Boss2Effect_157
+  - first:
+      213: 8000786033103154497
+    second: Boss2Effect_158
+  - first:
+      213: 5556171869586178653
+    second: Boss2Effect_159
+  - first:
+      213: 4763245574230072887
+    second: Boss2Effect_160
+  - first:
+      213: -78534068904164083
+    second: Boss2Effect_161
+  - first:
+      213: -1934324562135389810
+    second: Boss2Effect_162
+  - first:
+      213: 6743052783185683452
+    second: Boss2Effect_163
+  - first:
+      213: -5114221238750929836
+    second: Boss2Effect_164
+  - first:
+      213: 190190161124214850
+    second: Boss2Effect_165
+  - first:
+      213: -6524465104671749106
+    second: Boss2Effect_166
+  - first:
+      213: 258877973047060506
+    second: Boss2Effect_167
+  - first:
+      213: -6146254387404041081
+    second: Boss2Effect_168
+  - first:
+      213: -2946974938470739787
+    second: Boss2Effect_169
+  - first:
+      213: -4685673292258182960
+    second: Boss2Effect_170
+  - first:
+      213: 3563771768616213927
+    second: Boss2Effect_171
+  - first:
+      213: -5385477460410593978
+    second: Boss2Effect_172
+  - first:
+      213: 4503799906498033375
+    second: Boss2Effect_173
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Boss2Effect_1
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 741
+        width: 136
+        height: 370
+      alignment: 9
+      pivot: {x: 0.5532707, y: 0.11963798}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e60935c6f693d1990800000000000000
+      internalID: -7413706260860399506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_2
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 738
+        width: 204
+        height: 373
+      alignment: 9
+      pivot: {x: 0.4975568, y: 0.13635074}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1e3d3ef924c04530800000000000000
+      internalID: 3837282567157792286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_3
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 740
+        width: 210
+        height: 371
+      alignment: 9
+      pivot: {x: 0.49211398, y: 0.12999518}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a57177781cd379360800000000000000
+      internalID: 7176272432648886106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_4
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 741
+        width: 217
+        height: 370
+      alignment: 9
+      pivot: {x: 0.49947292, y: 0.120359845}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff5c2705e109c28f0800000000000000
+      internalID: -563917393455036929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_5
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 741
+        width: 224
+        height: 370
+      alignment: 9
+      pivot: {x: 0.5034823, y: 0.11544866}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee2cc52d3c1a82d50800000000000000
+      internalID: 6712793107015713518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_6
+      rect:
+        serializedVersion: 2
+        x: 1444
+        y: 742
+        width: 231
+        height: 369
+      alignment: 9
+      pivot: {x: 0.50878906, y: 0.11582438}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e722d34ff619f110800000000000000
+      internalID: 1295091653456046054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_7
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 740
+        width: 237
+        height: 371
+      alignment: 9
+      pivot: {x: 0.5208405, y: 0.11890027}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f076fe95e45e63d10800000000000000
+      internalID: 2105122000521357071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_8
+      rect:
+        serializedVersion: 2
+        x: 3144
+        y: 761
+        width: 186
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5155108, y: 0.13288371}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 878c46fdeef419970800000000000000
+      internalID: 8759870637581060216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_10
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 741
+        width: 135
+        height: 368
+      alignment: 9
+      pivot: {x: 0.4793244, y: 0.12095542}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3b2c6e75bf78fa90800000000000000
+      internalID: -7279928380157580481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_11
+      rect:
+        serializedVersion: 2
+        x: 3385
+        y: 764
+        width: 186
+        height: 192
+      alignment: 9
+      pivot: {x: 0.49778172, y: 0.14791203}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f2c2d897f7b01d70800000000000000
+      internalID: 9011905128417116921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_12
+      rect:
+        serializedVersion: 2
+        x: 3623
+        y: 765
+        width: 186
+        height: 192
+      alignment: 9
+      pivot: {x: 0.5022143, y: 0.18011506}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95b343ade375d45e0800000000000000
+      internalID: -1923785538356888743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_13
+      rect:
+        serializedVersion: 2
+        x: 3854
+        y: 764
+        width: 186
+        height: 192
+      alignment: 9
+      pivot: {x: 0.49113348, y: 0.14791203}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dd978037e39d7cf0800000000000000
+      internalID: -252883382901957161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_14
+      rect:
+        serializedVersion: 2
+        x: 2409
+        y: 498
+        width: 179
+        height: 219
+      alignment: 9
+      pivot: {x: 0.50222594, y: 0.1307228}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25fef955766c1d310800000000000000
+      internalID: 1428140703973633874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_15
+      rect:
+        serializedVersion: 2
+        x: 2609
+        y: 498
+        width: 179
+        height: 219
+      alignment: 9
+      pivot: {x: 0.50222594, y: 0.11980839}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8e8676bc20ae2560800000000000000
+      internalID: 7290940960659639951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_16
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 492
+        width: 163
+        height: 241
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e036d59c8633359f0800000000000000
+      internalID: -480984210050555122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 493
+        width: 163
+        height: 241
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b23ba4add3551e910800000000000000
+      internalID: 1864865444851790635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_18
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 493
+        width: 163
+        height: 241
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ec72f6f958e9b150800000000000000
+      internalID: 5888993460856454376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_19
+      rect:
+        serializedVersion: 2
+        x: 1927
+        y: 761
+        width: 234
+        height: 165
+      alignment: 9
+      pivot: {x: 0.49147385, y: 0.14473876}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e99b8aebb9a9c3080800000000000000
+      internalID: -9206313544542799458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_20
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 492
+        width: 163
+        height: 241
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24a911c2daa58a890800000000000000
+      internalID: -7446602284041921982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_21
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 494
+        width: 163
+        height: 241
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0995020e58d0f17f0800000000000000
+      internalID: -639777753421293168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_22
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 492
+        width: 163
+        height: 241
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50962bdc01e7b7c20800000000000000
+      internalID: 3205294170439837957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_23
+      rect:
+        serializedVersion: 2
+        x: 1578
+        y: 53
+        width: 231
+        height: 361
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fc2e808ef6f53c20800000000000000
+      internalID: 3185723884373421300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_35
+      rect:
+        serializedVersion: 2
+        x: 2176
+        y: 761
+        width: 206
+        height: 175
+      alignment: 9
+      pivot: {x: 0.5012112, y: 0.14291818}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c183700cedfa357e0800000000000000
+      internalID: -1777884056641914852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_50
+      rect:
+        serializedVersion: 2
+        x: 2419
+        y: 762
+        width: 203
+        height: 180
+      alignment: 9
+      pivot: {x: 0.49427173, y: 0.1327847}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2fd27bf10dccf6e0800000000000000
+      internalID: -1802340342457770194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_92
+      rect:
+        serializedVersion: 2
+        x: 2658
+        y: 762
+        width: 195
+        height: 186
+      alignment: 9
+      pivot: {x: 0.50000125, y: 0.12899846}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bea7c586b323d3450800000000000000
+      internalID: 6070063103500647147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_108
+      rect:
+        serializedVersion: 2
+        x: 2898
+        y: 762
+        width: 193
+        height: 190
+      alignment: 9
+      pivot: {x: 0.50000125, y: 0.1235464}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c644e05bffa1c220800000000000000
+      internalID: 2504476361723496129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_117
+      rect:
+        serializedVersion: 2
+        x: 1215
+        y: 492
+        width: 163
+        height: 241
+      alignment: 9
+      pivot: {x: 0.5024444, y: 0.12475991}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8e3b87d76660b6e0800000000000000
+      internalID: -1823845252901159282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_118
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 493
+        width: 173
+        height: 239
+      alignment: 9
+      pivot: {x: 0.51381725, y: 0.11995298}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 853e15bbc890411f0800000000000000
+      internalID: -1075223910991928488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_119
+      rect:
+        serializedVersion: 2
+        x: 1606
+        y: 492
+        width: 181
+        height: 238
+      alignment: 9
+      pivot: {x: 0.50660324, y: 0.12505154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 770d7eb64294c3ce0800000000000000
+      internalID: -1424182961377914761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_120
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 497
+        width: 181
+        height: 218
+      alignment: 9
+      pivot: {x: 0.50660324, y: 0.11075445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ee1ef7f366992ae0800000000000000
+      internalID: -1573561238682722589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_121
+      rect:
+        serializedVersion: 2
+        x: 2007
+        y: 497
+        width: 179
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5044518, y: 0.1143509}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d00d2e657dad02f0800000000000000
+      internalID: -1004956421962530599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_122
+      rect:
+        serializedVersion: 2
+        x: 2207
+        y: 498
+        width: 179
+        height: 219
+      alignment: 9
+      pivot: {x: 0.5044518, y: 0.11798932}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbcde99297a6ada80800000000000000
+      internalID: -8441317482930709317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_125
+      rect:
+        serializedVersion: 2
+        x: 2809
+        y: 476
+        width: 310
+        height: 254
+      alignment: 9
+      pivot: {x: 0.6391168, y: 0.15694205}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13df5d76cec7d5f50800000000000000
+      internalID: 6871785961233448241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_126
+      rect:
+        serializedVersion: 2
+        x: 3177
+        y: 473
+        width: 274
+        height: 191
+      alignment: 9
+      pivot: {x: 0.6673887, y: 0.23518859}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a28ba2f9f8f868850800000000000000
+      internalID: 6378943769230358570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_127
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 599
+        width: 145
+        height: 141
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3205da5edc18655a0800000000000000
+      internalID: -6532891488132706269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_130
+      rect:
+        serializedVersion: 2
+        x: 3546
+        y: 477
+        width: 224
+        height: 103
+      alignment: 9
+      pivot: {x: 0.7506768, y: 0.47086963}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e780c778f421fea0800000000000000
+      internalID: -5840846592143226912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_138
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 315
+        width: 139
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32a73c55225e860a0800000000000000
+      internalID: -6888003694432650717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_139
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 320
+        width: 139
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c11e499fc1e112180800000000000000
+      internalID: -9141992658790194916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_140
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 66
+        width: 232
+        height: 335
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4ef04c27dfdd17c0800000000000000
+      internalID: -4098873970583863729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_141
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 58
+        width: 231
+        height: 351
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab2031a9ad2e735e0800000000000000
+      internalID: -1929824486789283142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_145
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 90
+        width: 210
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5f0d5213e977c8d0800000000000000
+      internalID: -2826156224979071140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_146
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 57
+        width: 226
+        height: 355
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b69a70f8096073b40800000000000000
+      internalID: 5419807894508382571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_157
+      rect:
+        serializedVersion: 2
+        x: 1923
+        y: 93
+        width: 193
+        height: 262
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e7b5ccb78b379510800000000000000
+      internalID: 1555777650453493735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss2Effect_158
+      rect:
+        serializedVersion: 2
+        x: 2260
+        y: 153
+        width: 155
+        height: 203
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14d2503d180880f60800000000000000
+      internalID: 8000786033103154497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: ded1d325b1749a54593a2ac9f67e2054
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Boss2Effect_0: 793778005633996442
+      Boss2Effect_1: -7413706260860399506
+      Boss2Effect_10: -7279928380157580481
+      Boss2Effect_100: -8583625000469742597
+      Boss2Effect_101: -6922331413935885637
+      Boss2Effect_102: 2719049277886474244
+      Boss2Effect_103: -5408770862115367983
+      Boss2Effect_104: 7458414077400007010
+      Boss2Effect_105: -4837572642494930120
+      Boss2Effect_106: 1350550759764843008
+      Boss2Effect_107: 5102170121896294675
+      Boss2Effect_108: 2504476361723496129
+      Boss2Effect_109: 3008939964562689425
+      Boss2Effect_11: 9011905128417116921
+      Boss2Effect_110: -5519082061196902114
+      Boss2Effect_111: -1042756667487482378
+      Boss2Effect_112: -8051199146622241938
+      Boss2Effect_113: -950017175960334490
+      Boss2Effect_114: 5503905916247090995
+      Boss2Effect_115: -7685639651891893765
+      Boss2Effect_116: 1518186238008507878
+      Boss2Effect_117: -1823845252901159282
+      Boss2Effect_118: -1075223910991928488
+      Boss2Effect_119: -1424182961377914761
+      Boss2Effect_12: -1923785538356888743
+      Boss2Effect_120: -1573561238682722589
+      Boss2Effect_121: -1004956421962530599
+      Boss2Effect_122: -8441317482930709317
+      Boss2Effect_123: -3090739126103224346
+      Boss2Effect_124: -4373214050567958704
+      Boss2Effect_125: 6871785961233448241
+      Boss2Effect_126: 6378943769230358570
+      Boss2Effect_127: -6532891488132706269
+      Boss2Effect_128: -2374029952472433144
+      Boss2Effect_129: 6037588753550331929
+      Boss2Effect_13: -252883382901957161
+      Boss2Effect_130: -5840846592143226912
+      Boss2Effect_131: 894407474423612228
+      Boss2Effect_132: -8594611963701450815
+      Boss2Effect_133: -4483088306008620232
+      Boss2Effect_134: 4344189262535287245
+      Boss2Effect_135: 5490912693898735414
+      Boss2Effect_136: -2715770749513241879
+      Boss2Effect_137: 1333303296616776449
+      Boss2Effect_138: -6888003694432650717
+      Boss2Effect_139: -9141992658790194916
+      Boss2Effect_14: 1428140703973633874
+      Boss2Effect_140: -4098873970583863729
+      Boss2Effect_141: -1929824486789283142
+      Boss2Effect_142: -281579025244347629
+      Boss2Effect_143: 9077335678087265317
+      Boss2Effect_144: 4251173823685627054
+      Boss2Effect_145: -2826156224979071140
+      Boss2Effect_146: 5419807894508382571
+      Boss2Effect_147: -6501319915137789479
+      Boss2Effect_148: 5581130057891800754
+      Boss2Effect_149: 3229295278532281254
+      Boss2Effect_15: 7290940960659639951
+      Boss2Effect_150: 7238210981276875811
+      Boss2Effect_151: -3432472571671006423
+      Boss2Effect_152: 1562274596338912990
+      Boss2Effect_153: -4689695793946999238
+      Boss2Effect_154: 567153804303529227
+      Boss2Effect_155: 5939909630379238421
+      Boss2Effect_156: 8378127640897249799
+      Boss2Effect_157: 1555777650453493735
+      Boss2Effect_158: 8000786033103154497
+      Boss2Effect_159: 5556171869586178653
+      Boss2Effect_16: -480984210050555122
+      Boss2Effect_160: 4763245574230072887
+      Boss2Effect_161: -78534068904164083
+      Boss2Effect_162: -1934324562135389810
+      Boss2Effect_163: 6743052783185683452
+      Boss2Effect_164: -5114221238750929836
+      Boss2Effect_165: 190190161124214850
+      Boss2Effect_166: -6524465104671749106
+      Boss2Effect_167: 258877973047060506
+      Boss2Effect_168: -6146254387404041081
+      Boss2Effect_169: -2946974938470739787
+      Boss2Effect_17: 1864865444851790635
+      Boss2Effect_170: -4685673292258182960
+      Boss2Effect_171: 3563771768616213927
+      Boss2Effect_172: -5385477460410593978
+      Boss2Effect_173: 4503799906498033375
+      Boss2Effect_18: 5888993460856454376
+      Boss2Effect_19: -9206313544542799458
+      Boss2Effect_2: 3837282567157792286
+      Boss2Effect_20: -7446602284041921982
+      Boss2Effect_21: -639777753421293168
+      Boss2Effect_22: 3205294170439837957
+      Boss2Effect_23: 3185723884373421300
+      Boss2Effect_24: 9129279641247569741
+      Boss2Effect_25: 2949722019481144466
+      Boss2Effect_26: -1256618623652473313
+      Boss2Effect_27: -3402866647561543209
+      Boss2Effect_28: 8849500842668740933
+      Boss2Effect_29: -900080694185527656
+      Boss2Effect_3: 7176272432648886106
+      Boss2Effect_30: 3786828623352082161
+      Boss2Effect_31: -6376736638786331164
+      Boss2Effect_32: 2678496393637478064
+      Boss2Effect_33: -5953446394723265799
+      Boss2Effect_34: -8091761381456457165
+      Boss2Effect_35: -1777884056641914852
+      Boss2Effect_36: 2132143262755468075
+      Boss2Effect_37: -8562640961938460885
+      Boss2Effect_38: 8392362685469355201
+      Boss2Effect_39: 3189051961960313124
+      Boss2Effect_4: -563917393455036929
+      Boss2Effect_40: -6946385463307147831
+      Boss2Effect_41: -2396214175665502936
+      Boss2Effect_42: -1181743081491378770
+      Boss2Effect_43: 3519662170123327416
+      Boss2Effect_44: 3300658719340811796
+      Boss2Effect_45: 2835505679259351376
+      Boss2Effect_46: -7927693487524304519
+      Boss2Effect_47: 7316462870564876065
+      Boss2Effect_48: 9056163424086086366
+      Boss2Effect_49: -6806110665002505421
+      Boss2Effect_5: 6712793107015713518
+      Boss2Effect_50: -1802340342457770194
+      Boss2Effect_51: -5574105881940872459
+      Boss2Effect_52: 184515744386337223
+      Boss2Effect_53: -7425522144254395027
+      Boss2Effect_54: -2825446638804313135
+      Boss2Effect_55: 2350621504414495353
+      Boss2Effect_56: -7173804995873920095
+      Boss2Effect_57: 1624431042872115578
+      Boss2Effect_58: 7070181991601586475
+      Boss2Effect_59: -9218882849455030551
+      Boss2Effect_6: 1295091653456046054
+      Boss2Effect_60: -1519913204379838426
+      Boss2Effect_61: 3056955167305170433
+      Boss2Effect_62: -3218112251690111375
+      Boss2Effect_63: -8905580761368727223
+      Boss2Effect_64: 6831430980110617362
+      Boss2Effect_65: 399996213157285329
+      Boss2Effect_66: 1297175408032238102
+      Boss2Effect_67: -4537176054355945749
+      Boss2Effect_68: -1259466449771196346
+      Boss2Effect_69: 6584355000978475391
+      Boss2Effect_7: 2105122000521357071
+      Boss2Effect_70: -5782387664550428774
+      Boss2Effect_71: -6159569268141307468
+      Boss2Effect_72: 5804291509497038292
+      Boss2Effect_73: -8716371183277542724
+      Boss2Effect_74: 2034057872966375006
+      Boss2Effect_75: 3086264779030557212
+      Boss2Effect_76: 763027823307600124
+      Boss2Effect_77: -1956211076984489466
+      Boss2Effect_78: -1937697562345395417
+      Boss2Effect_79: 1880358689234205740
+      Boss2Effect_8: 8759870637581060216
+      Boss2Effect_80: -416887752317834846
+      Boss2Effect_81: 4537433636660181951
+      Boss2Effect_82: 7306798824839250724
+      Boss2Effect_83: -5289100300805952551
+      Boss2Effect_84: -1575180764665035498
+      Boss2Effect_85: -6930357660968134121
+      Boss2Effect_86: -5984399321929466403
+      Boss2Effect_87: -3721061376319687132
+      Boss2Effect_88: 27938770605162849
+      Boss2Effect_89: -8941273613680746926
+      Boss2Effect_9: -8998100651206794078
+      Boss2Effect_90: 573567374439809608
+      Boss2Effect_91: 6325913351077003624
+      Boss2Effect_92: 6070063103500647147
+      Boss2Effect_93: 1609110071588086488
+      Boss2Effect_94: -8065589608750038330
+      Boss2Effect_95: -7450838747031567476
+      Boss2Effect_96: -1401580307140890108
+      Boss2Effect_97: 3873695676196881386
+      Boss2Effect_98: 3139181135883459092
+      Boss2Effect_99: -2102600474526726724
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

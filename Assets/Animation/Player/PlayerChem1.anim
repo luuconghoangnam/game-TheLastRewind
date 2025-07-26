@@ -500,15 +500,15 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.06666667
-    functionName: EnablePlayerHitbox
-    data: 
+    functionName: SpawnSkillEffect
+    data: Attack1
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.06666667
-    functionName: SpawnSkillEffect
-    data: Attack1
+    functionName: EnablePlayerHitbox
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

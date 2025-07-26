@@ -2,63 +2,133 @@
 
 public class PlayerHurtBoxHandle : MonoBehaviour
 {
-    public HealthBarController healthController;
+    [Header("Player Controller Reference")]
+    [SerializeField] private Player playerLevel1;        // Kéo Player Level 1 vào đây
+    [SerializeField] private PlayerLevel2 playerLevel2;  // Kéo Player Level 2 vào đây
+
     private Vector3 originalLocalPosition;
+    private BoxCollider2D hurtboxCollider;
 
     void Awake()
     {
-        // Lưu vị trí gốc
         originalLocalPosition = transform.localPosition;
+        hurtboxCollider = GetComponent<BoxCollider2D>();
+
+        // Nếu chưa assign trong Inspector, tự động tìm
+        if (playerLevel1 == null && playerLevel2 == null)
+        {
+            playerLevel1 = GetComponentInParent<Player>();
+            playerLevel2 = GetComponentInParent<PlayerLevel2>();
+        }
+
+        if (playerLevel1 == null && playerLevel2 == null)
+        {
+            Debug.LogError("PlayerHurtBoxHandle: No Player controller assigned! Please drag Player to Inspector.");
+        }
+    }
+
+    // Properties để Animation có thể keyframe
+    public Vector2 HurtboxSize
+    {
+        get { return hurtboxCollider != null ? hurtboxCollider.size : Vector2.zero; }
+        set { if (hurtboxCollider != null) hurtboxCollider.size = value; }
+    }
+
+    public Vector2 HurtboxOffset
+    {
+        get { return hurtboxCollider != null ? hurtboxCollider.offset : Vector2.zero; }
+        set { if (hurtboxCollider != null) hurtboxCollider.offset = value; }
     }
 
     public void FlipHurtbox(bool facingRight)
     {
-        // Lật bằng localScale
-        transform.localScale = new Vector3(facingRight ? 1 : -1, 1, 1);
-        
-        // Thêm điều chỉnh position
+        if (facingRight)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
         Vector3 pos = transform.localPosition;
         pos.x = Mathf.Abs(originalLocalPosition.x) * (facingRight ? 1 : -1);
         transform.localPosition = pos;
     }
 
-    public void TakeDamage(int damage)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (healthController != null)
+        // Va chạm với BossHitBox (Level 1)
+        if (collision.CompareTag("BossHitBox"))
         {
-            healthController.ReduceHealth(damage);
+            BossHitboxHandle bossHitBox = collision.GetComponent<BossHitboxHandle>();
+            if (bossHitBox != null)
+            {
+                int damage = bossHitBox.damage;
+                int finalDamage = CalculateDamageWithBlocking(damage);
+                TakeDamage(finalDamage);
+            }
+        }
+        // Va chạm với CloneHitBox
+        else if (collision.CompareTag("CloneHitBox"))
+        {
+            CloneHitBox cloneHitBox = collision.GetComponent<CloneHitBox>();
+            if (cloneHitBox != null)
+            {
+                int damage = cloneHitBox.damage;
+                int finalDamage = CalculateDamageWithBlocking(damage);
+                TakeDamage(finalDamage);
+            }
+        }
+        // Va chạm với Boss2HitBox (Level 2)
+        else if (collision.CompareTag("Boss2HitBox"))
+        {
+            Boss2HitBox boss2HitBox = collision.GetComponent<Boss2HitBox>();
+            if (boss2HitBox != null)
+            {
+                int damage = boss2HitBox.damage;
+                int finalDamage = CalculateDamageWithBlocking(damage);
+                TakeDamage(finalDamage);
+            }
         }
     }
 
-    // Vẽ gizmos để debug
-    private void OnDrawGizmos()
+    private int CalculateDamageWithBlocking(int originalDamage)
     {
-        Collider2D hurtboxCollider = GetComponent<Collider2D>();
-        if (hurtboxCollider != null)
+        Animator playerAnimator = null;
+
+        if (playerLevel1 != null)
         {
-            // Màu xanh lá khi active, màu xanh nhạt khi inactive
-            Gizmos.color = hurtboxCollider.enabled ? 
-                new Color(0.2f, 0.8f, 0.2f, 0.8f) : // Xanh lá đậm khi active
-                new Color(0.5f, 0.9f, 0.5f, 0.3f);  // Xanh lá nhạt khi inactive
-            
-            Vector3 center = transform.position;
-            Vector3 size = Vector3.zero;
-            
-            if (hurtboxCollider is BoxCollider2D boxCollider)
+            playerAnimator = playerLevel1.GetComponent<Animator>();
+        }
+        else if (playerLevel2 != null)
+        {
+            playerAnimator = playerLevel2.GetComponent<Animator>();
+        }
+
+        if (playerAnimator != null)
+        {
+            bool playerIsBlocking = playerAnimator.GetBool("IsBlocking");
+
+            if (playerIsBlocking)
             {
-                center += new Vector3(boxCollider.offset.x * transform.localScale.x, 
-                                     boxCollider.offset.y, 0);
-                size = new Vector3(boxCollider.size.x * Mathf.Abs(transform.localScale.x),
-                                  boxCollider.size.y, 0.1f);
-                Gizmos.DrawWireCube(center, size);
+                int reducedDamage = Mathf.FloorToInt(originalDamage / 3f);
+                return reducedDamage;
             }
-            else if (hurtboxCollider is CircleCollider2D circleCollider)
-            {
-                center += new Vector3(circleCollider.offset.x * transform.localScale.x, 
-                                     circleCollider.offset.y, 0);
-                float radius = circleCollider.radius * Mathf.Abs(transform.localScale.x);
-                Gizmos.DrawWireSphere(center, radius);
-            }
+        }
+
+        return originalDamage;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (playerLevel1 != null)
+        {
+            playerLevel1.TakeDamage(damage);
+        }
+        else if (playerLevel2 != null)
+        {
+            playerLevel2.TakeDamage(damage);
         }
     }
 }

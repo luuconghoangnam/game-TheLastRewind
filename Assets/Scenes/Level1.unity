@@ -1566,7 +1566,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.6241163, y: 0.89359474}
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &173764441
 MonoBehaviour:
@@ -1581,6 +1581,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  playerLevel1: {fileID: 2052045716}
+  playerLevel2: {fileID: 0}
 --- !u!1 &181215015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2413,7 +2415,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1333784111
   m_SortingLayer: -2
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -1186527015, guid: 640cc82473d51484cb0cf85e98fb1a62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3606,10 +3608,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 991073838}
+  - {fileID: 1884727890}
   - {fileID: 749800023}
-  - {fileID: 1414925338}
   - {fileID: 373171902}
+  - {fileID: 1414925338}
+  - {fileID: 991073838}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
@@ -4238,7 +4241,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1333784111
   m_SortingLayer: -2
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 5297928289630991741, guid: 640cc82473d51484cb0cf85e98fb1a62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4642,9 +4645,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -213107889
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayerID: -1333784111
+  m_SortingLayer: -2
+  m_SortingOrder: 5
   m_Sprite: {fileID: -2204649772553307656, guid: 640cc82473d51484cb0cf85e98fb1a62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4665,11 +4668,10 @@ Transform:
   m_GameObject: {fileID: 991073836}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.2799997, z: -0.51}
-  m_LocalScale: {x: 1, y: 1, z: 0.1}
+  m_LocalPosition: {x: 1.5126, y: -5.2799997, z: -0.51}
+  m_LocalScale: {x: 1.0504, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1884727890}
+  m_Children: []
   m_Father: {fileID: 580531919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &991073839
@@ -4685,7 +4687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 519420032}
-  parallaxFactor: 0.1
+  parallaxFactor: 0.15
   phase2Sprite: {fileID: 0}
 --- !u!1 &1028567012
 GameObject:
@@ -5770,8 +5772,10 @@ MonoBehaviour:
   settingsPanel: {fileID: 1517751635}
   dialogueBanner: {fileID: 137075508}
   dialogueText: {fileID: 131750775}
-  level1DialogueMessage: You're back...
   textSpeed: 0.05
+  level1DialogueMessage: You...again?...
+  level1PostBossDialogue: "I once was harsh, too proud to speak              Your
+    silent pain\u2014my heart grew weak."
   continueButton: {fileID: 674325749}
   saveGameButton: {fileID: 826871259}
   victorySettingsButton: {fileID: 1096071481}
@@ -5788,7 +5792,9 @@ MonoBehaviour:
   audioToggleImage: {fileID: 0}
   audioOnSprite: {fileID: 0}
   audioOffSprite: {fileID: 0}
-  delayBeforeShowingUI: 1
+  delayBeforeShowingUI: 0.5
+  delayAfterBossDeath: 0.5
+  postBossDialogueDisplayTime: 3
   mainMenuSceneName: MainMenu
   nextLevelSceneName: Level2
 --- !u!4 &1260085152
@@ -6047,7 +6053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1353857053
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6162,6 +6168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1414925338}
   - component: {fileID: 1414925339}
+  - component: {fileID: 1414925340}
   m_Layer: 0
   m_Name: map1_139
   m_TagString: Map
@@ -6178,8 +6185,8 @@ Transform:
   m_GameObject: {fileID: 1414925337}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -10.88, z: -1.33}
-  m_LocalScale: {x: 1, y: 1, z: 0.1}
+  m_LocalPosition: {x: 1.5049, y: -10.88, z: -1.33}
+  m_LocalScale: {x: 1.0502, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 580531919}
@@ -6227,7 +6234,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1333784111
   m_SortingLayer: -2
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -1334680279, guid: 640cc82473d51484cb0cf85e98fb1a62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6239,6 +6246,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1414925340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414925337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225dc05fefaa2ec42a8424f4e0e10c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 519420032}
+  parallaxFactor: 0.1
+  phase2Sprite: {fileID: 0}
 --- !u!1 &1419500419
 GameObject:
   m_ObjectHideFlags: 0
@@ -7003,7 +7025,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1689426985
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1383146778085789185, guid: ff2d8ad965556314e83717d74685ab18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7065,7 +7087,7 @@ MonoBehaviour:
   phase2HealthThreshold: 0.1
   phase2HealthMultiplier: 2
   phase2DamageMultiplier: 1.5
-  phase2SpeedMultiplier: 1.3
+  phase2SpeedMultiplier: 1.5
   phase1Background: {fileID: 580531917}
   phase2Background: {fileID: 1353857052}
   backgroundLayers: []
@@ -7083,6 +7105,8 @@ MonoBehaviour:
   flashInterval: 0.2
   invulnerabilityColor1: {r: 1, g: 0, b: 0, a: 1}
   invulnerabilityColor2: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  phaseTransitionAnimationTime: 3
+  additionalInvulnerabilityTime: 0
   maxBossRage: 50
   currentBossRage: 0
   rageGainPerHit: 5
@@ -7091,11 +7115,11 @@ MonoBehaviour:
   bossEffectChemChuong: {fileID: 1258447824842068359, guid: 460d78869b3869b46a31b976bfb15b6e, type: 3}
   bossEffectUltimate: {fileID: 1479730110600328054, guid: 47140a8fbdd723f458e0f51fdd574dd9, type: 3}
   ultimateDistance: 30
-  attack3Distance: 30
+  attack3Distance: 20
   ultimateKiCost: 20
   attack3KiCost: 10
   hitKiGain: 2
-  noDamageTimeout: 7
+  noDamageTimeout: 10
   idleDuration: 3
   freeTimeDuration: 2.2
   chaseTime: 5
@@ -7653,11 +7677,11 @@ Transform:
   m_GameObject: {fileID: 1884727889}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5799999, z: -12.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -5.8599997, z: -1.7700001}
+  m_LocalScale: {x: 1, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 991073838}
+  m_Father: {fileID: 580531919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1884727891
 SpriteRenderer:
@@ -8131,7 +8155,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.95202607, y: 0.88932526}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8141,7 +8165,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7479769, y: 1.7823079}
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!114 &1971452307
 MonoBehaviour:
@@ -8155,7 +8179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d7ca3856059ec4fbd982ca9a24291c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthController: {fileID: 486123245}
+  playerLevel1: {fileID: 2052045716}
+  playerLevel2: {fileID: 0}
 --- !u!1 &2013677254
 GameObject:
   m_ObjectHideFlags: 0
@@ -8476,7 +8501,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -151313153
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -7529396097228365451, guid: cca6c0a312daa8244ae2fc10ba26d445, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8557,7 +8582,7 @@ MonoBehaviour:
   maxRagePoints: 50
   minRageToActivate: 40
   currentRagePoints: 0
-  maxHealth: 1000
+  maxHealth: 200
   currentHealth: 100
   rageGainPerHit: 5
   rageGainPerSuccessfulHit: 5
@@ -8570,6 +8595,7 @@ MonoBehaviour:
   attackPointUlti: {fileID: 1179630332}
   UltiEffect: {fileID: 4623110476439872642, guid: 77222dab30dc5b2408199d044b7cc81c, type: 3}
   Effect_Chuong: {fileID: 3409924196050977907, guid: c66ed9135a15b2145b337fc6a41f4c99, type: 3}
+  jumpBufferTime: 0.2
 --- !u!50 &2052045717
 Rigidbody2D:
   serializedVersion: 5

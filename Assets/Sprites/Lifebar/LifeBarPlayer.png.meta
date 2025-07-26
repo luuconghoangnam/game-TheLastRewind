@@ -84,7 +84,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -220,6 +220,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: LifeBarPlayer_0
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 1208
+        width: 1068
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0792e6a5dae2ab3459dd01076ae574e6
+      internalID: -796244262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -246,6 +268,7 @@ TextureImporter:
       87517471_7: -5246926234528629760
       87517471_8: 525404628129966567
       87517471_9: 3086488780276362133
+      LifeBarPlayer_0: -796244262
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

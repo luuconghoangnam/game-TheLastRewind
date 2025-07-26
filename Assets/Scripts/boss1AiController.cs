@@ -58,6 +58,8 @@ public class bossAiController : MonoBehaviour
     public float flashInterval = 0.2f; // How fast the colors flash
     public Color invulnerabilityColor1 = Color.red; // First flash color
     public Color invulnerabilityColor2 = Color.yellow; // Second flash color
+    public float phaseTransitionAnimationTime = 3f; // Thời gian animation chuyển phase
+    public float additionalInvulnerabilityTime = 0f; // Thời gian bất tử thêm sau khi animation kết thúc (mặc định 0)
 
     [Header("Boss Rage System")]
     [SerializeField] private int maxBossRage = 50; // Boss rage points maximum
@@ -690,7 +692,7 @@ public class bossAiController : MonoBehaviour
     private void TransitionToPhase2()
     {
         currentPhase = 2;
-        isInvulnerable = false;
+        // KHÔNG đặt isInvulnerable = false ở đây
         StartCoroutine(Phase2TransitionEffect());
     }
 
@@ -704,7 +706,7 @@ public class bossAiController : MonoBehaviour
         }
 
         animator.SetTrigger("phaseTransition");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(phaseTransitionAnimationTime);
 
         if (phase1Background != null && phase2Background != null)
         {
@@ -720,7 +722,12 @@ public class bossAiController : MonoBehaviour
             }
         }
 
-        currentHealth = maxHealth * phase2HealthMultiplier;
+        // Cập nhật maxHealth cho phase 2
+        maxHealth = maxHealth * phase2HealthMultiplier;
+        currentHealth = maxHealth;
+        
+        Debug.Log($"Phase 2: Boss max health increased to {maxHealth}");
+        
         spriteRenderer.color = new Color(1f, 0.5f, 0.5f);
 
         animator.SetBool("isStunned", false);
@@ -731,12 +738,15 @@ public class bossAiController : MonoBehaviour
         isStunned = false;
         isBlocking = false;
 
+        // Bật lại colliders trước khi tắt bất tử
         EnableAllColliders();
         EnableHurtbox();
+        
+        // CHỈ tắt bất tử sau khi đã bật colliders
+        isInvulnerable = false;
+        Debug.Log("Phase 2 transition complete - boss is now vulnerable again");
 
         SetAIActive(true);
-
-        Debug.Log("Phase 2 transition complete - boss is now vulnerable again");
     }
 
     private void EnableAllColliders()

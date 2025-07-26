@@ -3,12 +3,44 @@
   "WorkspaceRootPath": "D:\\Apps\\UnityProject\\theLastRewind\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\boss1AiController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\boss1AiController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Boss\\Boss2Controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\Boss\\Boss2Controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHitboxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\BossHitboxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\CloneController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\CloneController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\PlayerHurtBoxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PlayerHurtBoxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\ObjectPoolingClone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\ObjectPoolingClone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\MainMenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\MainMenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Clone\\CloneHitBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\Clone\\CloneHitBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Boss\\Boss2HitBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\Boss\\Boss2HitBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\PlayerControllerLevel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\PlayerControllerLevel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Boss\\Boss2HurtBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\Boss\\Boss2HurtBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\PlayerController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,12 +51,36 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PlayerHitBoxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Boss_EffectUlti.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Boss_EffectUlti.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHurtboxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\BossHurtboxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Effect_ChemChuong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\Effect_ChemChuong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHitboxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\BossHitboxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Clone\\CloneHurtBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\Clone\\CloneHurtBox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\boss1AiController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\boss1AiController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Clone\\CloneHealthBarController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\Clone\\CloneHealthBarController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHealthBarController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\BossHealthBarController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\BossHealthBarControllerLevel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\BossHealthBarControllerLevel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\UltiEffectLevel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\UltiEffectLevel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\HealthBarControllerLevel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,40 +91,28 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\paralaxBack1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Boss_EffectChemChuong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Boss_EffectChemChuong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\PlayerControllerLevel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\PlayerControllerLevel2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Effect_Chuong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Effect_Chuong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Effect_ChemChuong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Level2\\Effect_ChemChuong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Boss_EffectUlti.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Boss_EffectUlti.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\HealthBarController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\HealthBarController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\PlayerHurtBoxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\PlayerHurtBoxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\SkillEffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\SkillEffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHealthBarController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\BossHealthBarController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHurtboxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\BossHurtboxHandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Effect_Chuong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Effect_Chuong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\UltiEffect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -82,11 +126,132 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CloneHealthBarController.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Clone\\CloneHealthBarController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\Clone\\CloneHealthBarController.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Clone\\CloneHealthBarController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Level2\\Clone\\CloneHealthBarController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T18:00:14.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CloneHurtBox.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Clone\\CloneHurtBox.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\Clone\\CloneHurtBox.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Clone\\CloneHurtBox.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Level2\\Clone\\CloneHurtBox.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAqwEwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T17:02:34.732Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CloneHitBox.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Clone\\CloneHitBox.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\Clone\\CloneHitBox.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Clone\\CloneHitBox.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Level2\\Clone\\CloneHitBox.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAGQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T17:02:29.831Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Boss2HurtBox.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Boss\\Boss2HurtBox.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\Boss\\Boss2HurtBox.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Boss\\Boss2HurtBox.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Level2\\Boss\\Boss2HurtBox.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAYwFsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T15:51:42.745Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Boss2HitBox.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Boss\\Boss2HitBox.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\Boss\\Boss2HitBox.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Boss\\Boss2HitBox.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Level2\\Boss\\Boss2HitBox.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAC4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T15:51:34.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "BossHealthBarControllerLevel2.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\BossHealthBarControllerLevel2.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\BossHealthBarControllerLevel2.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\BossHealthBarControllerLevel2.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Level2\\BossHealthBarControllerLevel2.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAA4AAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T15:27:44.707Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Boss2Controller.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Boss\\Boss2Controller.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\Boss\\Boss2Controller.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Boss\\Boss2Controller.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Level2\\Boss\\Boss2Controller.cs",
+              "ViewState": "AgIAAOgAAAAAAAAAAAAgwCYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T15:01:21.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CloneController.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\CloneController.cs",
+              "RelativeDocumentMoniker": "Assets\\CloneController.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\CloneController.cs",
+              "RelativeToolTip": "Assets\\CloneController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T14:59:47.97Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "ObjectPoolingClone.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\ObjectPoolingClone.cs",
+              "RelativeDocumentMoniker": "Assets\\ObjectPoolingClone.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\ObjectPoolingClone.cs",
+              "RelativeToolTip": "Assets\\ObjectPoolingClone.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAgwH8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-22T14:59:04.199Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "UltiEffectLevel2.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\UltiEffectLevel2.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\UltiEffectLevel2.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\UltiEffectLevel2.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Level2\\UltiEffectLevel2.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T12:15:43.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
               "Title": "Boss_EffectUlti.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Boss_EffectUlti.cs",
               "RelativeDocumentMoniker": "Assets\\Boss_EffectUlti.cs",
@@ -94,51 +259,59 @@
               "RelativeToolTip": "Assets\\Boss_EffectUlti.cs",
               "ViewState": "AgIAAGYAAAAAAAAAAAArwHkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T18:15:12.377Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-16T18:15:12.377Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 24,
               "Title": "Effect_ChemChuong.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Effect_ChemChuong.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\Effect_ChemChuong.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\Effect_ChemChuong.cs",
               "RelativeToolTip": "Assets\\Scripts\\Level2\\Effect_ChemChuong.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEMAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T14:32:39.249Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-16T14:32:39.249Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
+              "Title": "MainMenu.cs",
+              "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\MainMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenu.cs",
+              "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\MainMenu.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MainMenu.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T12:24:28.593Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
               "Title": "Boss_EffectChemChuong.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Boss_EffectChemChuong.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Boss_EffectChemChuong.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Boss_EffectChemChuong.cs",
               "RelativeToolTip": "Assets\\Scripts\\Boss_EffectChemChuong.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAuwDMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAkwHsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T14:32:00.728Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-16T14:32:00.728Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 8,
               "Title": "PlayerControllerLevel2.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\PlayerControllerLevel2.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\PlayerControllerLevel2.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\PlayerControllerLevel2.cs",
               "RelativeToolTip": "Assets\\Scripts\\Level2\\PlayerControllerLevel2.cs",
-              "ViewState": "AgIAAEoDAAAAAAAAAAAYwPoCAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwEAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T15:31:13.681Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-15T15:31:13.681Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 20,
               "Title": "HealthBarControllerLevel2.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Level2\\HealthBarControllerLevel2.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Level2\\HealthBarControllerLevel2.cs",
@@ -146,38 +319,35 @@
               "RelativeToolTip": "Assets\\Scripts\\Level2\\HealthBarControllerLevel2.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAewDcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T14:51:02.545Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-15T14:51:02.545Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "GameManager.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\GameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADgEAAAAAAAAAAAqwFcEAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-13T14:01:10.147Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-13T14:01:10.147Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 21,
               "Title": "paralaxBack1.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\paralaxBack1.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\paralaxBack1.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\paralaxBack1.cs",
               "RelativeToolTip": "Assets\\Scripts\\paralaxBack1.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACUAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwBoAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-12T15:32:32.357Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-12T15:32:32.357Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 28,
               "Title": "UltiEffect.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\UltiEffect.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UltiEffect.cs",
@@ -185,25 +355,23 @@
               "RelativeToolTip": "Assets\\Scripts\\UltiEffect.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T08:47:42.681Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-15T08:47:42.681Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 23,
               "Title": "Effect_Chuong.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Effect_Chuong.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Effect_Chuong.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\Effect_Chuong.cs",
               "RelativeToolTip": "Assets\\Scripts\\Effect_Chuong.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAUwAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T11:44:38.386Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T11:44:38.386Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 27,
               "Title": "SkillEffect.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\SkillEffect.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SkillEffect.cs",
@@ -211,38 +379,35 @@
               "RelativeToolTip": "Assets\\Scripts\\SkillEffect.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAASwBIAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-07T11:43:59.516Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-07T11:43:59.516Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "BossHealthBarController.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHealthBarController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BossHealthBarController.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHealthBarController.cs",
               "RelativeToolTip": "Assets\\Scripts\\BossHealthBarController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T08:58:12.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-05T08:58:12.782Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 12,
               "Title": "BossHurtboxHandle.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHurtboxHandle.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BossHurtboxHandle.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHurtboxHandle.cs",
               "RelativeToolTip": "Assets\\Scripts\\BossHurtboxHandle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAABkAAAAAAAAAAAAqwDgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T16:43:29.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-04T16:43:29.976Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 26,
               "Title": "HealthBarController.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\HealthBarController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\HealthBarController.cs",
@@ -250,73 +415,67 @@
               "RelativeToolTip": "Assets\\Scripts\\HealthBarController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-03T15:46:15.25Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-03T15:46:15.25Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 15,
               "Title": "boss1AiController.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\boss1AiController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\boss1AiController.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\boss1AiController.cs",
               "RelativeToolTip": "Assets\\Scripts\\boss1AiController.cs",
-              "ViewState": "AgIAAIQDAAAAAAAAAAAkwKUDAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAIECAAAAAAAAAAAuwGkDAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T12:37:43.726Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-04T12:37:43.726Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 13,
               "Title": "BossHitboxHandle.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHitboxHandle.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BossHitboxHandle.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\BossHitboxHandle.cs",
               "RelativeToolTip": "Assets\\Scripts\\BossHitboxHandle.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAUwD8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAqwG0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T16:43:26.964Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-04T16:43:26.964Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "PlayerHitBoxHandle.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\PlayerHitBoxHandle.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerHitBoxHandle.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\PlayerHitBoxHandle.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerHitBoxHandle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAIAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T16:43:35.692Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-04T16:43:35.692Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 2,
               "Title": "PlayerHurtBoxHandle.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\PlayerHurtBoxHandle.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerHurtBoxHandle.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\PlayerHurtBoxHandle.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerHurtBoxHandle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAuwFMAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-04T16:37:16.552Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-04T16:37:16.552Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
               "ToolTip": "D:\\Apps\\UnityProject\\theLastRewind\\Assets\\Scripts\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AgIAAAgBAAAAAAAAAAArwBkBAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAEEDAAAAAAAAAAAuwEcDAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-30T14:40:17.285Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-30T14:40:17.285Z"
             }
           ]
         }

@@ -14,7 +14,7 @@ public class Effect_ChemChuongLevel2 : MonoBehaviour
 
     private Vector2 moveDirection;
     private Rigidbody2D rb;
-    private bool hasHitBoss = false; // Prevent multiple hits
+    private bool hasHitTarget = false; // Prevent multiple hits với mọi target
 
     private void Start()
     {
@@ -65,11 +65,51 @@ public class Effect_ChemChuongLevel2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Có thể hit cả Boss2HurtBox và BossHurtBox để tương thích
-        if (!hasHitBoss && (collision.CompareTag("Boss2HurtBox") || collision.CompareTag("BossHurtBox")))
+        // Xử lý damage cho cả Boss và Clone
+        if (hasHitTarget) return; // Prevent multiple hits
+
+        bool hitEnemy = false;
+
+        // Xử lý Boss (Level 1 và Level 2)
+        if (collision.CompareTag("Boss2HurtBox") || collision.CompareTag("BossHurtBox"))
         {
-            // Gọi hàm nhận sát thương từ boss
-            collision.GetComponent<BossHurtboxHandle>()?.TakeDamage(damage);
+            // Thử Boss2HurtBox trước (Level 2)
+            Boss2HurtBox boss2HurtBox = collision.GetComponent<Boss2HurtBox>();
+            if (boss2HurtBox != null)
+            {
+                boss2HurtBox.TakeDamage(damage);
+                hitEnemy = true;
+                Debug.Log($"ChemChuong dealt {damage} damage to Boss2!");
+            }
+            else
+            {
+                // Fallback cho BossHurtboxHandle (Level 1)
+                var bossHurtbox = collision.GetComponent<BossHurtboxHandle>();
+                if (bossHurtbox != null)
+                {
+                    bossHurtbox.TakeDamage(damage);
+                    hitEnemy = true;
+                    Debug.Log($"ChemChuong dealt {damage} damage to Boss1!");
+                }
+            }
+        }
+        
+        // Xử lý Clone
+        if (collision.CompareTag("CloneHurtBox"))
+        {
+            CloneHurtBox cloneHurtBox = collision.GetComponent<CloneHurtBox>();
+            if (cloneHurtBox != null)
+            {
+                cloneHurtBox.TakeDamage(damage);
+                hitEnemy = true;
+                Debug.Log($"ChemChuong dealt {damage} damage to Clone!");
+            }
+        }
+
+        // Nếu đã hit enemy, xử lý logic chung
+        if (hitEnemy)
+        {
+            hasHitTarget = true;
 
             // Notify player that they dealt damage for rage gain
             PlayerLevel2 player = FindFirstObjectByType<PlayerLevel2>();
@@ -77,11 +117,6 @@ public class Effect_ChemChuongLevel2 : MonoBehaviour
             {
                 player.OnSuccessfulHit(damage);
             }
-
-            // Mark as hit to prevent multiple hits
-            hasHitBoss = true;
-
-            Debug.Log($"ChemChuong dealt {damage} damage to boss!");
         }
     }
 }
