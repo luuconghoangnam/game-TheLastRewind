@@ -19,20 +19,24 @@ public class GameManager : MonoBehaviour
     public float textSpeed = 0.05f;
 
     [Header("Dialogue Messages")]
-    public string level1DialogueMessage = "It's you! Again...";
-    public string level1PostBossDialogue = "I once was harsh, too proud to speak \nYour silent pain—my heart grew weak.";
+    public string level1DialogueMessage = "It you!...Remember me?...\nI guess NOT!";
+    public string level1PostBossDialogue = "I once was harsh, too proud to speak\nYour silent pain—my heart grew weak.";
+    // ===== THÊM: Level 1 Boss Phase 2 Transition Dialogue =====
+    public string level1BossPhase2Dialogue = "ENOUGH! You will witness my TRUE POWER!\nThis is where your journey ENDS!";
 
     // ===== THÊM: Level 2 dialogue messages =====
     [Header("Level 2 Dialogue Messages")]
-    public string level2BossIntroDialogue = "Remember me?...I guess not...";
-    public string level2BossReappearDialogue = "You think defeating my minions means victory? \nNow face my true wrath!";
-    public string level2PostBossDialogue = "You stood alone beside the door \nI let you drift, ignored once more.";
+    public string level2BossIntroDialogue = "You, the one I loved, once was.\nBut now, you are the one I hate the most.";
+    public string level2BossReappearDialogue = "You think defeating my minions means victory?\nNow face my true wrath!";
+    public string level2PostBossDialogue = "You stood alone beside the door,\nI let you drift, ignored once more.";
 
     [Header("Victory Panel Buttons")]
     public Button continueButton;
     public Button saveGameButton;
+    public Button victoryClearSaveButton; // ===== THÊM: Clear Save button cho Victory Panel =====
     public Button victorySettingsButton;
     public Button victoryQuitButton;
+    public TextMeshProUGUI victorySaveInfoText; // ===== THÊM: Save Info text cho Victory Panel =====
 
     [Header("Game Over Panel Buttons")]
     public Button tryAgainButton;
@@ -45,10 +49,36 @@ public class GameManager : MonoBehaviour
     public Button settingsExitButton;
     public Button saveGameSettingsButton;
     public Button loadGameButton;
+    public Button clearSaveButton; // ===== THÊM: Button để clear save game =====
     public Toggle audioToggle;
     public Image audioToggleImage;
     public Sprite audioOnSprite;
     public Sprite audioOffSprite;
+    public TextMeshProUGUI saveInfoText; // ===== THÊM: Text hiển thị thông tin save game =====
+
+    // ===== SỬA: Enhanced Audio System =====
+    [Header("Audio System")]
+    public AudioSource musicSource; // Audio source cho background music
+    public AudioSource fadeAudioSource; // Audio source thứ hai cho crossfade effect
+    
+    [Header("Level 1 Music")]
+    public AudioClip level1NormalMusic; // Nhạc nền Level 1 bình thường
+    public AudioClip level1BossPhase1Music; // Nhạc boss Level 1 Phase 1
+    public AudioClip level1BossPhase2Music; // Nhạc boss Level 1 Phase 2
+    
+    [Header("Level 2 Music")]
+    public AudioClip level2NormalMusic; // Nhạc nền Level 2 bình thường
+    public AudioClip level2ClonePhaseMusic; // Nhạc khi clone xuất hiện
+    public AudioClip level2BossMusic; // Nhạc boss Level 2
+    
+    [Header("General Music")]
+    public AudioClip victoryMusic; // Nhạc victory
+    public AudioClip gameOverMusic; // Nhạc game over
+    
+    [Header("Audio Settings")]
+    [Range(0f, 1f)]
+    public float musicVolume = 0.7f; // Volume nhạc nền
+    public float crossfadeDuration = 2f; // Thời gian crossfade giữa các bản nhạc
 
     [Header("Settings")]
     public float delayBeforeShowingUI = 1f;
@@ -84,12 +114,26 @@ public class GameManager : MonoBehaviour
     private bool wasInGameplay = true;
     private bool isShowingDialogue = false;
 
+    // ===== THÊM: Enhanced Audio system variables =====
+    private AudioClip currentMusicClip;
+    private bool isMusicEnabled = true;
+    private bool isTransitioning = false;
+    private string currentMusicState = ""; // Track current music state
+
+    // ===== THÊM: Level 1 Boss Phase Tracking =====
+    private bossAiController level1Boss;
+    private bool isLevel1BossPhase1 = false;
+    private bool isLevel1BossPhase2 = false;
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // ===== THÊM: Initialize audio system =====
+            InitializeAudioSystem();
 
             // Đăng ký callback khi scene được tải
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -98,6 +142,56 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    // ===== SỬA: Enhanced Initialize Audio System =====
+    private void InitializeAudioSystem()
+    {
+        // Setup main music source if not assigned
+        if (musicSource == null)
+        {
+            musicSource = gameObject.AddComponent<AudioSource>();
+        }
+        
+        // Setup fade audio source for crossfade
+        if (fadeAudioSource == null)
+        {
+            fadeAudioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Configure both audio sources
+        ConfigureAudioSource(musicSource);
+        ConfigureAudioSource(fadeAudioSource);
+
+        // Load audio settings
+        LoadAudioSettings();
+    }
+
+    private void ConfigureAudioSource(AudioSource source)
+    {
+        source.playOnAwake = false;
+        source.loop = true;
+        source.volume = 0f; // Start with 0 volume
+    }
+
+    // ===== THÊM: Load Audio Settings =====
+    private void LoadAudioSettings()
+    {
+        isMusicEnabled = PlayerPrefs.GetInt("AudioMuted", 0) == 0; // 0 = not muted, 1 = muted
+        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 0.7f);
+
+        // Set global audio listener
+        AudioListener.volume = isMusicEnabled ? 1f : 0f;
+
+        Debug.Log($"Audio settings loaded - Enabled: {isMusicEnabled}, Volume: {musicVolume}");
+    }
+
+    // ===== THÊM: Save Audio Settings =====
+    private void SaveAudioSettings()
+    {
+        PlayerPrefs.SetInt("AudioMuted", isMusicEnabled ? 0 : 1);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        PlayerPrefs.Save();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -111,6 +205,9 @@ public class GameManager : MonoBehaviour
         wasInGameplay = true;
         isShowingDialogue = false;
 
+        // Reset music state
+        currentMusicState = "";
+
         // Find UI elements in new scene
         FindUIReferences();
 
@@ -119,6 +216,9 @@ public class GameManager : MonoBehaviour
 
         // Setup UI listeners
         SetupUIListeners();
+
+        // ===== THÊM: Handle scene music =====
+        HandleSceneMusic(scene.name);
 
         // ===== LEVEL-SPECIFIC INITIALIZATION =====
         if (scene.name == "Level1" || scene.name.Contains("Level1"))
@@ -131,9 +231,231 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // ===== SỬA: Enhanced Handle Scene Music =====
+    private void HandleSceneMusic(string sceneName)
+    {
+        AudioClip musicToPlay = null;
+        string musicState = "";
+
+        if (sceneName.Contains("Level1"))
+        {
+            musicToPlay = level1NormalMusic;
+            musicState = "Level1_Normal";
+        }
+        else if (sceneName.Contains("Level2"))
+        {
+            musicToPlay = level2NormalMusic;
+            musicState = "Level2_Normal";
+        }
+
+        if (musicToPlay != null)
+        {
+            PlayMusic(musicToPlay, musicState);
+            Debug.Log($"Playing music for scene: {sceneName} - State: {musicState}");
+        }
+    }
+
+    // ===== THÊM: Enhanced Music Control Methods =====
+    private void PlayMusic(AudioClip clip, string musicState = "", bool useCrossfade = true)
+    {
+        if (clip == null) return;
+
+        // Don't restart if same music is already playing
+        if (currentMusicClip == clip && musicSource.isPlaying) return;
+
+        currentMusicState = musicState;
+
+        if (useCrossfade && musicSource.isPlaying)
+        {
+            StartCoroutine(CrossfadeMusic(clip));
+        }
+        else
+        {
+            PlayMusicImmediate(clip);
+        }
+    }
+
+    private void PlayMusicImmediate(AudioClip clip)
+    {
+        if (musicSource == null || clip == null) return;
+
+        musicSource.clip = clip;
+        currentMusicClip = clip;
+
+        if (isMusicEnabled)
+        {
+            musicSource.volume = musicVolume;
+            musicSource.Play();
+        }
+        else
+        {
+            musicSource.volume = 0f;
+            musicSource.Play(); // Still play but with 0 volume for consistency
+        }
+    }
+
+    private IEnumerator CrossfadeMusic(AudioClip newClip)
+    {
+        if (isTransitioning) yield break;
+        
+        isTransitioning = true;
+
+        // Setup fade audio source with new clip
+        fadeAudioSource.clip = newClip;
+        fadeAudioSource.volume = 0f;
+        fadeAudioSource.Play();
+
+        float fadeTime = 0f;
+        float originalVolume = isMusicEnabled ? musicVolume : 0f;
+
+        // Crossfade
+        while (fadeTime < crossfadeDuration)
+        {
+            fadeTime += Time.unscaledDeltaTime; // Use unscaled time to work during pause
+            float t = fadeTime / crossfadeDuration;
+
+            if (isMusicEnabled)
+            {
+                musicSource.volume = Mathf.Lerp(originalVolume, 0f, t);
+                fadeAudioSource.volume = Mathf.Lerp(0f, musicVolume, t);
+            }
+
+            yield return null;
+        }
+
+        // Swap audio sources
+        musicSource.Stop();
+        
+        // Swap the sources
+        var tempSource = musicSource;
+        musicSource = fadeAudioSource;
+        fadeAudioSource = tempSource;
+        
+        currentMusicClip = newClip;
+        isTransitioning = false;
+
+        Debug.Log($"Crossfaded to: {newClip.name}");
+    }
+
+    private void StopMusic()
+    {
+        if (musicSource != null)
+        {
+            musicSource.Stop();
+            currentMusicClip = null;
+            currentMusicState = "";
+        }
+        if (fadeAudioSource != null)
+        {
+            fadeAudioSource.Stop();
+        }
+    }
+
+    // ===== THÊM: Specific Music Methods =====
+    
+    // Level 1 Music Methods
+    public void PlayLevel1BossPhase1Music()
+    {
+        if (level1BossPhase1Music != null && currentMusicState != "Level1_BossPhase1")
+        {
+            PlayMusic(level1BossPhase1Music, "Level1_BossPhase1");
+            isLevel1BossPhase1 = true;
+            isLevel1BossPhase2 = false;
+            Debug.Log("Playing Level 1 Boss Phase 1 music");
+        }
+    }
+
+    public void PlayLevel1BossPhase2Music()
+    {
+        if (level1BossPhase2Music != null && currentMusicState != "Level1_BossPhase2")
+        {
+            PlayMusic(level1BossPhase2Music, "Level1_BossPhase2");
+            isLevel1BossPhase1 = false;
+            isLevel1BossPhase2 = true;
+            Debug.Log("Playing Level 1 Boss Phase 2 music");
+        }
+    }
+
+    // Level 2 Music Methods
+    public void PlayLevel2ClonePhaseMusic()
+    {
+        if (level2ClonePhaseMusic != null && currentMusicState != "Level2_ClonePhase")
+        {
+            PlayMusic(level2ClonePhaseMusic, "Level2_ClonePhase");
+            Debug.Log("Playing Level 2 Clone Phase music");
+        }
+    }
+
+    public void PlayLevel2BossMusic()
+    {
+        if (level2BossMusic != null && currentMusicState != "Level2_Boss")
+        {
+            PlayMusic(level2BossMusic, "Level2_Boss");
+            Debug.Log("Playing Level 2 Boss music");
+        }
+    }
+
+    // General Music Methods
+    public void PlayVictoryMusic()
+    {
+        if (victoryMusic != null)
+        {
+            PlayMusic(victoryMusic, "Victory", false); // No crossfade for victory
+            Debug.Log("Playing Victory music");
+        }
+    }
+
+    public void PlayGameOverMusic()
+    {
+        if (gameOverMusic != null)
+        {
+            PlayMusic(gameOverMusic, "GameOver", false); // No crossfade for game over
+            Debug.Log("Playing Game Over music");
+        }
+    }
+
+    // ===== THÊM: Level 1 Boss Phase Detection =====
+    private void SetupLevel1BossPhaseDetection()
+    {
+        level1Boss = FindFirstObjectByType<bossAiController>();
+        if (level1Boss != null)
+        {
+            // Subscribe to boss events if available
+            Debug.Log("Level 1 Boss found for phase detection");
+            
+            // Start checking boss health periodically
+            StartCoroutine(MonitorLevel1BossPhases());
+        }
+    }
+
+    private IEnumerator MonitorLevel1BossPhases()
+    {
+        while (level1Boss != null && !level1Boss.IsDead)
+        {
+            // Check boss health to determine phase
+            float healthPercentage = (float)level1Boss.CurrentHealth / level1Boss.MaxHealth;
+            
+            if (healthPercentage > 0.5f && !isLevel1BossPhase1)
+            {
+                // Phase 1: Health > 50%
+                PlayLevel1BossPhase1Music();
+            }
+            else if (healthPercentage <= 0.5f && healthPercentage > 0f && !isLevel1BossPhase2)
+            {
+                // Phase 2: Health <= 50%
+                PlayLevel1BossPhase2Music();
+            }
+
+            yield return new WaitForSeconds(0.5f); // Check every 0.5 seconds
+        }
+    }
+
     // ===== LEVEL 1 INITIALIZATION =====
     private void InitializeLevel1()
     {
+        // Setup boss phase detection
+        SetupLevel1BossPhaseDetection();
+        
         StartCoroutine(ShowLevel1Dialogue());
     }
 
@@ -314,11 +636,14 @@ public class GameManager : MonoBehaviour
         // Hide boss
         HideLevel2Boss();
 
-        // ===== THÊM: Kích hoạt clone phase SAU KHI boss đã biến mất =====
+        // ===== SỬA: Kích hoạt clone phase và phát nhạc clone =====
         if (clonePooling != null)
         {
             clonePooling.StartClonePhase();
             Debug.Log("Clone phase activated after boss disappeared");
+            
+            // ===== THÊM: Phát nhạc clone phase =====
+            PlayLevel2ClonePhaseMusic();
         }
 
         // Enable player movement để đánh clone
@@ -395,6 +720,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Revealing Level 2 Boss");
         level2BossHasReappeared = true;
+
+        // ===== SỬA: Play boss music khi boss xuất hiện =====
+        PlayLevel2BossMusic();
 
         if (boss2 != null)
         {
@@ -529,8 +857,10 @@ public class GameManager : MonoBehaviour
         {
             continueButton = FindButtonInChildren(victoryPanel, "ContinueButton");
             saveGameButton = FindButtonInChildren(victoryPanel, "SaveGameButton");
+            victoryClearSaveButton = FindButtonInChildren(victoryPanel, "ClearSaveButton"); // ===== THÊM: Clear Save button cho Victory Panel =====
             victorySettingsButton = FindButtonInChildren(victoryPanel, "SettingsButton");
             victoryQuitButton = FindButtonInChildren(victoryPanel, "QuitButton");
+            victorySaveInfoText = FindComponentInChildren<TextMeshProUGUI>(victoryPanel, "SaveInfoText"); // ===== THÊM: Save Info text cho Victory Panel =====
         }
 
         // Find Game Over Panel buttons
@@ -549,13 +879,22 @@ public class GameManager : MonoBehaviour
             settingsExitButton = FindButtonInChildren(settingsPanel, "ExitButton");
             saveGameSettingsButton = FindButtonInChildren(settingsPanel, "SaveGameButton");
             loadGameButton = FindButtonInChildren(settingsPanel, "LoadGameButton");
+            clearSaveButton = FindButtonInChildren(settingsPanel, "ClearSaveButton"); // ===== THÊM: Tìm button clear save =====
             audioToggle = FindComponentInChildren<Toggle>(settingsPanel, "AudioToggle");
             if (audioToggle != null)
             {
-                audioToggleImage = audioToggle.transform.Find("Image")?.GetComponent<Image>();
+                // ===== SỬA: Tìm image theo cấu trúc Background/Checkmark =====
+                audioToggleImage = audioToggle.transform.Find("Background/Checkmark")?.GetComponent<Image>();
                 if (audioToggleImage == null)
+                {
+                    audioToggleImage = audioToggle.transform.Find("Background")?.GetComponent<Image>();
+                }
+                if (audioToggleImage == null)
+                {
                     audioToggleImage = audioToggle.GetComponentInChildren<Image>();
+                }
             }
+            saveInfoText = FindComponentInChildren<TextMeshProUGUI>(settingsPanel, "SaveInfoText"); // ===== THÊM: Tìm text hiển thị save info =====
         }
     }
 
@@ -644,6 +983,75 @@ public class GameManager : MonoBehaviour
         Debug.Log("Level 1 dialogue completed!");
     }
 
+    // ===== THÊM: Level 1 Boss Phase 2 Transition Dialogue =====
+    public void ShowLevel1BossPhase2Dialogue()
+    {
+        if (isShowingDialogue) return; // Tránh hiển thị nhiều dialogue cùng lúc
+        
+        StartCoroutine(ShowLevel1BossPhase2DialogueCoroutine());
+    }
+
+    private IEnumerator ShowLevel1BossPhase2DialogueCoroutine()
+    {
+        // Kiểm tra xem có dialogue banner không
+        if (dialogueBanner == null || dialogueText == null)
+        {
+            Debug.LogWarning("DialogueBanner or DialogueText not found for Boss Phase 2 dialogue!");
+            yield break;
+        }
+
+        isShowingDialogue = true;
+
+        // Vô hiệu hóa player movement
+        DisablePlayerOnly();
+
+        // Hiển thị banner
+        dialogueBanner.SetActive(true);
+
+        // Clear text và bắt đầu hiệu ứng typing
+        dialogueText.text = "";
+        yield return StartCoroutine(TypeText(level1BossPhase2Dialogue));
+
+        // Đợi thêm 2.5 giây để player đọc (hơi lâu hơn vì là dialogue quan trọng)
+        yield return new WaitForSeconds(1.5f);
+
+        // Ẩn banner và kích hoạt lại player movement
+        dialogueBanner.SetActive(false);
+        EnablePlayerOnly();
+
+        isShowingDialogue = false;
+
+        Debug.Log("Level 1 Boss Phase 2 dialogue completed!");
+    }
+
+    // Helper methods để chỉ disable/enable player mà không ảnh hưởng boss
+    private void DisablePlayerOnly()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Player playerComponent = player.GetComponent<Player>();
+            if (playerComponent != null)
+            {
+                playerComponent.enabled = false;
+            }
+        }
+    }
+
+    private void EnablePlayerOnly()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Player playerComponent = player.GetComponent<Player>();
+            if (playerComponent != null)
+            {
+                playerComponent.enabled = true;
+            }
+        }
+    }
+
+    // Level 1 Post-Boss Dialogue (khi boss chết)
     // ===== THÊM MỚI: POST-BOSS DIALOGUE SYSTEM =====
     private IEnumerator ShowPostBossDialogue()
     {
@@ -802,6 +1210,7 @@ public class GameManager : MonoBehaviour
         // Thêm listeners cho Victory Panel buttons
         if (continueButton) continueButton.onClick.AddListener(LoadNextLevel);
         if (saveGameButton) saveGameButton.onClick.AddListener(SaveGame);
+        if (victoryClearSaveButton) victoryClearSaveButton.onClick.AddListener(ClearSaveGame); // ===== THÊM: Listener cho button clear save =====
         if (victorySettingsButton) victorySettingsButton.onClick.AddListener(OpenSettings);
         if (victoryQuitButton) victoryQuitButton.onClick.AddListener(QuitGame);
 
@@ -816,8 +1225,9 @@ public class GameManager : MonoBehaviour
         if (settingsExitButton) settingsExitButton.onClick.AddListener(QuitGame);
         if (saveGameSettingsButton) saveGameSettingsButton.onClick.AddListener(SaveGame);
         if (loadGameButton) loadGameButton.onClick.AddListener(LoadGame);
+        if (clearSaveButton) clearSaveButton.onClick.AddListener(ClearSaveGame); // ===== THÊM: Listener cho button clear save =====
 
-        // Audio toggle
+        // ===== SỬA: Audio toggle với logic tương tự MainMenu =====
         if (audioToggle)
         {
             audioToggle.onValueChanged.AddListener(ToggleAudio);
@@ -826,6 +1236,140 @@ public class GameManager : MonoBehaviour
             audioToggle.isOn = !isMuted;
             UpdateAudioState(!isMuted);
         }
+
+        // ===== THÊM: Update Save/Load UI trong Level scenes =====
+        UpdateSaveLoadUI();
+    }
+
+    // ===== THÊM: Update Save/Load UI trong Level scenes =====
+    private void UpdateSaveLoadUI()
+    {
+        bool hasSave = HasSaveGame();
+        
+        // ===== Settings Panel UI =====
+        // Enable/disable Load Game button
+        if (loadGameButton != null)
+        {
+            loadGameButton.interactable = hasSave;
+        }
+        
+        // Ẩn/hiện Clear Save button
+        if (clearSaveButton != null)
+        {
+            clearSaveButton.gameObject.SetActive(hasSave);
+        }
+        
+        // Update save info text
+        if (saveInfoText != null)
+        {
+            if (hasSave)
+            {
+                saveInfoText.text = "Save Game:\n" + GetSaveInfo();
+                saveInfoText.color = Color.white;
+            }
+            else
+            {
+                saveInfoText.text = "Không có save game";
+                saveInfoText.color = Color.gray;
+            }
+        }
+        
+        // ===== Victory Panel UI =====
+        // Ẩn/hiện Victory Clear Save button
+        if (victoryClearSaveButton != null)
+        {
+            victoryClearSaveButton.gameObject.SetActive(hasSave);
+        }
+        
+        // Update Victory save info text
+        if (victorySaveInfoText != null)
+        {
+            if (hasSave)
+            {
+                victorySaveInfoText.text = "Save Game:\n" + GetSaveInfo();
+                victorySaveInfoText.color = Color.white;
+            }
+            else
+            {
+                victorySaveInfoText.text = "Không có save game";
+                victorySaveInfoText.color = Color.gray;
+            }
+        }
+        
+        Debug.Log($"GameManager Save/Load UI updated - Has save: {hasSave}, Clear buttons visible: {hasSave}");
+    }
+
+    // ===== THÊM: Public method để refresh save info từ bên ngoài =====
+    public void RefreshSaveInfo()
+    {
+        UpdateSaveLoadUI();
+    }
+
+    // ===== THÊM: Method để test ESC functionality =====
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
+    public void TestESCFunctionality()
+    {
+        Debug.Log("=== ESC FUNCTIONALITY TEST ===");
+        Debug.Log($"GameManager enabled: {enabled}");
+        Debug.Log($"GameManager gameObject active: {gameObject.activeInHierarchy}");
+        Debug.Log($"Settings Panel found: {settingsPanel != null}");
+        if (settingsPanel != null)
+        {
+            Debug.Log($"Settings Panel active: {settingsPanel.activeSelf}");
+        }
+        Debug.Log($"Is showing dialogue: {isShowingDialogue}");
+        Debug.Log($"Game Over Panel active: {gameOverPanel != null && gameOverPanel.activeSelf}");
+        Debug.Log($"Victory Panel active: {victoryPanel != null && victoryPanel.activeSelf}");
+        Debug.Log("=== END TEST ===");
+    }
+
+    // ===== THÊM: Method để force mở Settings (cho test) =====
+    [System.Diagnostics.Conditional("UNITY_EDITOR")]
+    public void ForceOpenSettings()
+    {
+        Debug.Log("Force opening Settings Panel...");
+        if (settingsPanel == null)
+        {
+            FindUIReferences();
+        }
+        
+        if (settingsPanel != null)
+        {
+            OpenSettings();
+            Debug.Log("Settings Panel forced open!");
+        }
+        else
+        {
+            Debug.LogError("Cannot force open - Settings Panel not found!");
+        }
+    }
+
+    // ===== THÊM: Method để update UI riêng cho Victory Panel =====
+    public void UpdateVictoryPanelUI()
+    {
+        bool hasSave = HasSaveGame();
+        
+        // Victory Panel UI only
+        if (victoryClearSaveButton != null)
+        {
+            victoryClearSaveButton.gameObject.SetActive(hasSave);
+        }
+        
+        if (victorySaveInfoText != null)
+        {
+            if (hasSave)
+            {
+                victorySaveInfoText.text = "Save Game:\n" + GetSaveInfo();
+                victorySaveInfoText.color = Color.white;
+            }
+            else
+            {
+                victorySaveInfoText.text = "Không có save game";
+                victorySaveInfoText.color = Color.gray;
+            }
+        }
+        
+        Debug.Log($"Victory Panel UI updated - Has save: {hasSave}");
     }
 
     private void Start()
@@ -833,6 +1377,28 @@ public class GameManager : MonoBehaviour
         // Initial setup for the first scene
         HideAllPanels();
         SetupUIListeners();
+        
+        // ===== THÊM: Debug ESC functionality setup =====
+        Debug.Log($"GameManager started in scene: {SceneManager.GetActiveScene().name}");
+        Debug.Log($"Settings Panel found: {settingsPanel != null}");
+        
+        // Test ESC functionality after a short delay
+        Invoke(nameof(TestESCSetup), 1f);
+    }
+    
+    // ===== THÊM: Test ESC setup after Start =====
+    private void TestESCSetup()
+    {
+        Debug.Log("=== ESC SETUP TEST AFTER START ===");
+        Debug.Log($"GameManager active: {gameObject.activeInHierarchy}");
+        Debug.Log($"GameManager enabled: {enabled}");
+        Debug.Log($"Settings Panel: {(settingsPanel != null ? "Found" : "NOT FOUND")}");
+        if (settingsPanel != null)
+        {
+            Debug.Log($"Settings Panel parent: {settingsPanel.transform.parent?.name}");
+            Debug.Log($"Settings Panel active: {settingsPanel.activeSelf}");
+        }
+        Debug.Log("=== Press ESC to test Settings Panel ===");
     }
 
     // ===== SỬA OnDestroy =====
@@ -852,22 +1418,55 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // Không cho phép mở Settings khi đang hiển thị dialogue
-        if (isShowingDialogue) return;
+        if (isShowingDialogue) 
+        {
+            Debug.Log("ESC ignored - dialogue is showing");
+            return;
+        }
 
-        // Xử lý nút Esc để mở/đóng Settings panel
+        // ===== CẢIỆN: Xử lý nút ESC để mở/đóng Settings panel với debug =====
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // Nếu settings panel đang mở, đóng nó lại
-            if (settingsPanel && settingsPanel.activeSelf)
+            Debug.Log("ESC key pressed!");
+            
+            // Kiểm tra settingsPanel có tồn tại không
+            if (settingsPanel == null)
             {
+                Debug.LogWarning("Settings Panel not found! Trying to find it...");
+                FindUIReferences();
+            }
+            
+            if (settingsPanel == null)
+            {
+                Debug.LogError("Settings Panel still not found after FindUIReferences!");
+                return;
+            }
+            
+            // Nếu settings panel đang mở, đóng nó lại
+            if (settingsPanel.activeSelf)
+            {
+                Debug.Log("Closing Settings Panel");
                 CloseSettings();
             }
             // Nếu settings panel đang đóng, mở nó ra (trừ khi đang ở game over/victory)
-            else if (settingsPanel && !settingsPanel.activeSelf &&
-                    !(gameOverPanel && gameOverPanel.activeSelf) &&
-                    !(victoryPanel && victoryPanel.activeSelf))
+            else
             {
-                OpenSettings();
+                bool gameOverActive = gameOverPanel && gameOverPanel.activeSelf;
+                bool victoryActive = victoryPanel && victoryPanel.activeSelf;
+                
+                if (gameOverActive)
+                {
+                    Debug.Log("Cannot open Settings - Game Over Panel is active");
+                }
+                else if (victoryActive)
+                {
+                    Debug.Log("Cannot open Settings - Victory Panel is active");
+                }
+                else
+                {
+                    Debug.Log("Opening Settings Panel");
+                    OpenSettings();
+                }
             }
         }
 
@@ -878,10 +1477,38 @@ public class GameManager : MonoBehaviour
             StopAllCoroutines();
             if (dialogueText != null)
             {
-                // ===== SỬA: Xác định message hiện tại để skip cho Level 2 =====
+                // ===== SỬA: Xác định message hiện tại để skip cho Level 1 bao gồm cả Phase 2 dialogue =====
                 if (SceneManager.GetActiveScene().name.Contains("Level1"))
                 {
-                    dialogueText.text = level1DialogueMessage.Contains("dare") ? level1DialogueMessage : level1PostBossDialogue;
+                    // Xác định dialogue nào đang hiển thị dựa trên context
+                    string currentDialogue = level1DialogueMessage;
+                    
+                    // Kiểm tra xem có phải là boss phase 2 dialogue không
+                    if (level1Boss != null && level1Boss.CurrentPhase == 2 && !level1Boss.IsDead)
+                    {
+                        currentDialogue = level1BossPhase2Dialogue;
+                    }
+                    // Kiểm tra xem có phải là post-boss dialogue không  
+                    else if (level1Boss != null && level1Boss.IsDead)
+                    {
+                        currentDialogue = level1PostBossDialogue;
+                    }
+                    // Nếu không thì là dialogue ban đầu
+                    else if (dialogueText.text.Contains("Remember"))
+                    {
+                        currentDialogue = level1DialogueMessage;
+                    }
+                    // Fallback để phân biệt giữa các dialogue
+                    else if (dialogueText.text.Contains("ENOUGH"))
+                    {
+                        currentDialogue = level1BossPhase2Dialogue;
+                    }
+                    else if (dialogueText.text.Contains("harsh"))
+                    {
+                        currentDialogue = level1PostBossDialogue;
+                    }
+                    
+                    dialogueText.text = currentDialogue;
                 }
                 else if (SceneManager.GetActiveScene().name.Contains("Level2"))
                 {
@@ -941,12 +1568,18 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        // ===== SỬA: Play game over music =====
+        PlayGameOverMusic();
+
         StartCoroutine(ShowGameOverPanel());
     }
 
     // ===== SỬA ĐỔI: Victory() giờ sẽ hiển thị dialogue trước cho cả Level 1 và Level 2 =====
     public void Victory()
     {
+        // ===== SỬA: Play victory music =====
+        PlayVictoryMusic();
+
         string currentSceneName = SceneManager.GetActiveScene().name;
 
         // Nếu là Level 1, hiển thị dialogue post-boss trước
@@ -1002,6 +1635,9 @@ public class GameManager : MonoBehaviour
             wasGameOverPanelActive = false;
             wasVictoryPanelActive = true;
             wasInGameplay = false;
+            
+            // ===== THÊM: Update Save/Load UI khi hiển thị Victory Panel =====
+            UpdateSaveLoadUI();
         }
         Time.timeScale = 0f; // Tạm dừng game
     }
@@ -1026,86 +1662,157 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Level2");
     }
 
+    // ===== HỆ THỐNG SAVE/LOAD ĐỠN GIẢN =====
     public void SaveGame()
     {
-        Debug.Log("Saving game...");
-        // Lưu scene hiện tại
-        PlayerPrefs.SetString("SavedScene", SceneManager.GetActiveScene().name);
-
-        // Lưu vị trí người chơi nếu có thể
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        Debug.Log("Đang lưu game...");
+        
+        try
         {
-            PlayerPrefs.SetFloat("PlayerPosX", player.transform.position.x);
-            PlayerPrefs.SetFloat("PlayerPosY", player.transform.position.y);
-            PlayerPrefs.SetFloat("PlayerPosZ", player.transform.position.z);
-
-            // Lưu máu nếu Player có component máu
-            Player playerComponent = player.GetComponent<Player>();
-            if (playerComponent != null)
+            // Lưu scene hiện tại
+            string currentScene = SceneManager.GetActiveScene().name;
+            PlayerPrefs.SetString("SavedScene", currentScene);
+            
+            // Lưu thời gian save
+            string saveTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            PlayerPrefs.SetString("SaveTime", saveTime);
+            
+            // Lưu level đã hoàn thành (nếu có)
+            if (currentScene.Contains("Level1"))
             {
-                PlayerPrefs.SetInt("PlayerHealth", playerComponent.CurrentHealth);
-                PlayerPrefs.SetInt("PlayerMaxHealth", playerComponent.MaxHealth);
+                PlayerPrefs.SetInt("ReachedLevel1", 1);
             }
+            else if (currentScene.Contains("Level2"))
+            {
+                PlayerPrefs.SetInt("ReachedLevel1", 1);
+                PlayerPrefs.SetInt("ReachedLevel2", 1);
+            }
+            
+            // Lưu audio settings
+            SaveAudioSettings();
+            
+            // Commit save
+            PlayerPrefs.Save();
+            
+            Debug.Log($"✅ Game đã được lưu! Scene: {currentScene}, Thời gian: {saveTime}");
+            
+            // ===== THÊM: Update UI sau khi save =====
+            UpdateSaveLoadUI();
         }
-
-        // Lưu trữ
-        PlayerPrefs.Save();
-
-        Debug.Log("Game saved successfully!");
+        catch (System.Exception e)
+        {
+            Debug.LogError($"❌ Lỗi khi lưu game: {e.Message}");
+        }
     }
 
     public void LoadGame()
     {
-        Debug.Log("Loading game...");
-
-        // Kiểm tra xem có save game không
-        if (PlayerPrefs.HasKey("SavedScene"))
+        Debug.Log("Đang tải game...");
+        
+        try
         {
+            // Kiểm tra có save game không
+            if (!PlayerPrefs.HasKey("SavedScene"))
+            {
+                Debug.Log("⚠️ Không tìm thấy save game! Quay về Main Menu.");
+                SceneManager.LoadScene("MainMenu");
+                return;
+            }
+            
+            // Lấy thông tin save
             string savedScene = PlayerPrefs.GetString("SavedScene");
-
-            // Tải scene đã lưu
-            SceneManager.LoadScene(savedScene);
-
-            // Đặt lại thời gian
-            Time.timeScale = 1f;
-
-            // Các giá trị khác sẽ được thiết lập sau khi scene được tải
-            StartCoroutine(SetupPlayerAfterLoad());
+            string saveTime = PlayerPrefs.GetString("SaveTime", "Không rõ thời gian");
+            
+            Debug.Log($"📁 Tìm thấy save game: {savedScene} (Lưu lúc: {saveTime})");
+            
+            // Kiểm tra scene có tồn tại không
+            if (IsValidScene(savedScene))
+            {
+                // Load scene
+                Time.timeScale = 1f; // Đảm bảo game không bị pause
+                SceneManager.LoadScene(savedScene);
+                
+                Debug.Log($"✅ Đã load thành công scene: {savedScene}");
+            }
+            else
+            {
+                Debug.LogWarning($"⚠️ Scene '{savedScene}' không hợp lệ! Load Main Menu thay thế.");
+                SceneManager.LoadScene("MainMenu");
+            }
         }
-        else
+        catch (System.Exception e)
         {
-            Debug.Log("No saved game found!");
+            Debug.LogError($"❌ Lỗi khi load game: {e.Message}");
+            // Fallback về Main Menu nếu có lỗi
+            SceneManager.LoadScene("MainMenu");
         }
     }
-
-    private IEnumerator SetupPlayerAfterLoad()
+    
+    // Kiểm tra scene có hợp lệ không
+    private bool IsValidScene(string sceneName)
     {
-        // Đợi một frame để đảm bảo scene đã tải xong
-        yield return null;
-
-        // Tìm player
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        // Danh sách scene hợp lệ
+        string[] validScenes = { "MainMenu", "Level1", "Level2" };
+        
+        foreach (string validScene in validScenes)
         {
-            // Đặt lại vị trí
-            if (PlayerPrefs.HasKey("PlayerPosX"))
+            if (sceneName == validScene || sceneName.Contains(validScene))
             {
-                float x = PlayerPrefs.GetFloat("PlayerPosX");
-                float y = PlayerPrefs.GetFloat("PlayerPosY");
-                float z = PlayerPrefs.GetFloat("PlayerPosZ");
-                player.transform.position = new Vector3(x, y, z);
+                return true;
             }
-
-            // Đặt lại máu
-            Player playerComponent = player.GetComponent<Player>();
-            if (playerComponent != null && PlayerPrefs.HasKey("PlayerHealth"))
-            {
-                // Dùng reflection hoặc phương thức public để thiết lập máu
-                // Giả sử Player có phương thức SetHealth
-                int health = PlayerPrefs.GetInt("PlayerHealth");
-                playerComponent.Heal(health);
-            }
+        }
+        
+        return false;
+    }
+    
+    // Kiểm tra có save game không (dùng cho UI)
+    public bool HasSaveGame()
+    {
+        return PlayerPrefs.HasKey("SavedScene");
+    }
+    
+    // Lấy thông tin save game (dùng cho hiển thị UI)
+    public string GetSaveInfo()
+    {
+        if (!HasSaveGame())
+            return "Không có save game";
+            
+        string savedScene = PlayerPrefs.GetString("SavedScene");
+        string saveTime = PlayerPrefs.GetString("SaveTime", "Không rõ thời gian");
+        
+        // Format tên scene cho dễ đọc
+        string sceneName = savedScene;
+        if (savedScene.Contains("Level1")) sceneName = "Level 1";
+        else if (savedScene.Contains("Level2")) sceneName = "Level 2";
+        else if (savedScene.Contains("MainMenu")) sceneName = "Main Menu";
+        
+        return $"{sceneName}\n{saveTime}";
+    }
+    
+    // ===== THÊM: Method để xóa save game =====
+    public void ClearSaveGame()
+    {
+        Debug.Log("Đang xóa save game...");
+        
+        try
+        {
+            // Xóa các key liên quan đến save game
+            PlayerPrefs.DeleteKey("SavedScene");
+            PlayerPrefs.DeleteKey("SaveTime");
+            PlayerPrefs.DeleteKey("ReachedLevel1");
+            PlayerPrefs.DeleteKey("ReachedLevel2");
+            
+            // Commit changes
+            PlayerPrefs.Save();
+            
+            Debug.Log("✅ Đã xóa save game thành công!");
+            
+            // ===== THÊM: Update UI sau khi clear save =====
+            UpdateSaveLoadUI();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"❌ Lỗi khi xóa save game: {e.Message}");
         }
     }
 
@@ -1132,6 +1839,9 @@ public class GameManager : MonoBehaviour
         // Tạm dừng game nếu đang trong gameplay
         if (wasInGameplay)
             Time.timeScale = 0f;
+
+        // Update save/load UI khi mở settings
+        UpdateSaveLoadUI();
     }
 
     public void CloseSettings()
@@ -1148,19 +1858,39 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f; // Tiếp tục game nếu đang trong gameplay
     }
 
+    // ===== SỬA: Audio toggle với logic tương tự MainMenu =====
     public void ToggleAudio(bool isOn)
     {
+        Debug.Log($"GameManager Audio toggle changed to: {isOn}");
+
+        isMusicEnabled = isOn;
+
+        // Update both music sources
+        if (musicSource != null)
+        {
+            musicSource.volume = isMusicEnabled ? musicVolume : 0f;
+        }
+        if (fadeAudioSource != null)
+        {
+            fadeAudioSource.volume = isMusicEnabled ? musicVolume : 0f;
+        }
+
+        // Update global audio listener
+        AudioListener.volume = isMusicEnabled ? 1f : 0f;
+
+        // Update icon
         UpdateAudioState(isOn);
 
-        // Lưu trạng thái âm thanh
-        PlayerPrefs.SetInt("AudioMuted", isOn ? 0 : 1);
-        PlayerPrefs.Save();
+        // Save setting
+        SaveAudioSettings();
+
+        Debug.Log($"GameManager Audio set to: {(isOn ? "ON" : "OFF")}");
     }
 
     private void UpdateAudioState(bool audioEnabled)
     {
         // Thay đổi icon
-        if (audioToggleImage != null)
+        if (audioToggleImage != null && audioOnSprite != null && audioOffSprite != null)
         {
             audioToggleImage.sprite = audioEnabled ? audioOnSprite : audioOffSprite;
         }
@@ -1191,6 +1921,41 @@ public class GameManager : MonoBehaviour
                 clonePooling.StartClonePhase();
                 Debug.Log("Clone phase manually started for testing");
             }
+        }
+    }
+
+    // ===== THÊM: Enhanced Audio Debug Methods =====
+    [ContextMenu("Test Audio System")]
+    public void TestAudioSystem()
+    {
+        Debug.Log($"Music Source: {musicSource != null}");
+        Debug.Log($"Fade Audio Source: {fadeAudioSource != null}");
+        Debug.Log($"Current Music: {currentMusicClip?.name ?? "None"}");
+        Debug.Log($"Current Music State: {currentMusicState}");
+        Debug.Log($"Music Enabled: {isMusicEnabled}");
+        Debug.Log($"Music Volume: {musicVolume}");
+        Debug.Log($"AudioListener Volume: {AudioListener.volume}");
+        Debug.Log($"Is Transitioning: {isTransitioning}");
+    }
+
+    [ContextMenu("Test Level 1 Boss Phase Music")]
+    public void TestLevel1BossPhaseMusic()
+    {
+        if (SceneManager.GetActiveScene().name.Contains("Level1"))
+        {
+            if (!isLevel1BossPhase1)
+                PlayLevel1BossPhase1Music();
+            else
+                PlayLevel1BossPhase2Music();
+        }
+    }
+
+    [ContextMenu("Test Level 2 Clone Music")]
+    public void TestLevel2CloneMusic()
+    {
+        if (SceneManager.GetActiveScene().name.Contains("Level2"))
+        {
+            PlayLevel2ClonePhaseMusic();
         }
     }
 }

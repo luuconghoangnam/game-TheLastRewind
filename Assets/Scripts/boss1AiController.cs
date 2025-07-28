@@ -80,7 +80,7 @@ public class bossAiController : MonoBehaviour
     public float hitKiGain = 2f;         // Ki gained when hitting player
 
     [Header("Special States System")]
-    public float noDamageTimeout = 10f;   // Thời gian không tương tác để kích hoạt trạng thái đặc biệt
+    public float noDamageTimeout = 6f;   // Thời gian không tương tác để kích hoạt trạng thái đặc biệt
     public float idleDuration = 2f;       // Thời gian idle
     public float freeTimeDuration = 2f;   // Thời gian freeTime
 
@@ -125,6 +125,8 @@ public class bossAiController : MonoBehaviour
     public int MaxKi => maxKi;
     public int CurrentBossRage => currentBossRage;
     public int MaxBossRage => maxBossRage;
+    public bool IsDead => isDead; // Add this line
+    public int CurrentPhase => currentPhase; // Add this line
 
     public delegate void BossRageChangeHandler(int currentRage, int maxRage);
     public event BossRageChangeHandler OnBossRageChanged;
@@ -693,6 +695,13 @@ public class bossAiController : MonoBehaviour
     {
         currentPhase = 2;
         // KHÔNG đặt isInvulnerable = false ở đây
+        
+        // ===== THÊM: Hiển thị dialogue trước khi chuyển phase =====
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ShowLevel1BossPhase2Dialogue();
+        }
+        
         StartCoroutine(Phase2TransitionEffect());
     }
 
