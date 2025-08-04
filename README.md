@@ -1,20 +1,49 @@
 # The Last Rewind
 
-A 2D action-adventure Unity game featuring time manipulation mechanics, boss battles, and multiple levels.
+<div align="center">
+  <img src="ImagesReadme/logo.png" alt="The Last Rewind Logo" width="400"/>
+  
+  <p><em>A 2D action-adventure Unity game featuring combat system, boss battles, and multiple levels.</em></p>
+  
+  ![Gameplay Overview](ImagesReadme/gameplay-overview.gif)
+</div>
 
 ## 🎮 Game Overview
 
-The Last Rewind is an action-packed 2D game where players control a character with special abilities including time rewind mechanics, combat skills, and various movement abilities. The game features multiple levels with different bosses and challenging gameplay mechanics.
+The Last Rewind is an action-packed 2D game where players control a character with combat abilities, special skills, and various movement mechanics. The game features multiple levels with different bosses and challenging gameplay.
+
+<div align="center">
+  <img src="ImagesReadme/level-progression1.png" alt="Level Progression" width="600"/>
+</div>
+<div align="center">
+  <img src="ImagesReadme/level-progression2.png" alt="Level Progression" width="600"/>
+</div>
 
 ## ✨ Features
 
-- **Time Rewind Mechanics**: Unique gameplay mechanic allowing players to rewind time
-- **Multiple Levels**: Progress through different challenging levels
-- **Boss Battles**: Epic boss fights with unique AI controllers
-- **Skill System**: Various player abilities including ultimate skills
-- **Combat System**: Hit/hurt box collision detection with visual effects
-- **Health System**: Player and enemy health management
-- **Parallax Backgrounds**: Dynamic background scrolling for immersive gameplay
+### ⚔️ Combat System
+Advanced hit/hurt box collision detection with visual effects
+
+![Player Combat](ImagesReadme/player-combat.gif)
+
+### 👹 Boss Battles
+Epic boss fights with unique AI controllers
+
+![Boss Battle](ImagesReadme/boss-battle.gif)
+
+### 🎯 Skill System
+Various player abilities including ultimate skills
+
+![Skill Effects](ImagesReadme/skill-effects1.gif)
+![Skill Effects](ImagesReadme/skill-effects2.gif)
+
+### 🎮 Core Features
+- **Multiple Levels**: Progress through different challenging levels with unique mechanics
+- **Advanced Combat**: Precise hitbox/hurtbox collision detection system
+- **Boss AI**: Intelligent boss behavior patterns and attack systems
+- **Health System**: Player and enemy health management with visual feedback
+- **Skill Effects**: Special abilities with particle effects and animations
+- **Level Progression**: Different player controllers for different levels
 - **Audio Integration**: Background music and sound effects
 
 ## 🛠️ Technical Features
@@ -25,6 +54,11 @@ The Last Rewind is an action-packed 2D game where players control a character wi
 - State machine for player and enemy behaviors
 - Scene management and game progression
 - UI/UX elements including health bars and menus
+
+<div align="center">
+  <img src="ImagesReadme/ui-interface.png" alt="Game UI Interface" width="500"/>
+  <p><em>Game UI and Health Bar System</em></p>
+</div>
 
 ## 📁 Project Structure
 
@@ -80,7 +114,7 @@ Assets/
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/theLastRewind.git
+   git clone https://github.com/luuconghoangnam/thelastrewind.git
    ```
 
 2. Open the project in Unity:
