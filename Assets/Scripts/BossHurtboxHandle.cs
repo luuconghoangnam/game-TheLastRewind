@@ -53,5 +53,14 @@ public class BossHurtboxHandle : MonoBehaviour
         {
             bossAIController.TakeDamage(damage);
         }
+
+        // Thêm hiệu ứng phản hồi
+        if (CombatFeedbackManager.Instance != null)
+        {
+            bool isHeavyHit = damage > 20; // Điều chỉnh ngưỡng theo game
+            CombatFeedbackManager.Instance.ShakeCamera(isHeavyHit ? 0.15f : 0.08f);
+            CombatFeedbackManager.Instance.DoHitStop(isHeavyHit ? 0.15f : 0.08f);
+            CombatFeedbackManager.Instance.PlayHitSound(isHeavyHit);
+        }
     }
 }

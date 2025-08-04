@@ -1375,6 +1375,7 @@ GameObject:
   - component: {fileID: 156091320}
   - component: {fileID: 156091319}
   - component: {fileID: 156091322}
+  - component: {fileID: 156091323}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -1491,6 +1492,30 @@ MonoBehaviour:
     MaxWindowSize: 0
     Padding: 0
   m_LegacyMaxWindowSize: -2
+--- !u!114 &156091323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156091318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 1
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &173764438
 GameObject:
   m_ObjectHideFlags: 0
@@ -9383,7 +9408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0435c1462f99e88448e44c0cd8b797c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 12
   runFastMultiplier: 1.5
   jumpForce: 30
   doubleJumpForce: 40

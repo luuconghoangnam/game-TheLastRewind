@@ -229,6 +229,12 @@ public class GameManager : MonoBehaviour
         {
             InitializeLevel2();
         }
+
+        // Cập nhật references cho CombatFeedbackManager
+        if (CombatFeedbackManager.Instance != null)
+        {
+            CombatFeedbackManager.Instance.UpdateReferences();
+        }
     }
 
     // ===== SỬA: Enhanced Handle Scene Music =====
