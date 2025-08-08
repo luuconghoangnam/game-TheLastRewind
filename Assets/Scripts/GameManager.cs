@@ -1520,11 +1520,11 @@ public class GameManager : MonoBehaviour
                 {
                     // Xác định dialogue nào đang hiển thị dựa trên context
                     string currentDialogue = level2BossIntroDialogue;
-                    if (level2BossHasReappeared && !boss2.isDie)
+                    if (level2BossHasReappeared && !boss2.IsDead)
                     {
                         currentDialogue = level2BossReappearDialogue;
                     }
-                    else if (boss2 != null && boss2.isDie)
+                    else if (boss2 != null && boss2.IsDead)
                     {
                         currentDialogue = level2PostBossDialogue;
                     }
@@ -1557,12 +1557,12 @@ public class GameManager : MonoBehaviour
                 // Skip intro dialogue
                 StartCoroutine(ContinueLevel2BossIntroduction());
             }
-            else if (level2BossHasReappeared && boss2 != null && !boss2.isDie)
+            else if (level2BossHasReappeared && boss2 != null && !boss2.IsDead)
             {
                 // Skip reappear dialogue - enable player movement
                 EnableLevel2PlayerMovement();
             }
-            else if (boss2 != null && boss2.isDie)
+            else if (boss2 != null && boss2.IsDead)
             {
                 // Skip post-boss dialogue - show victory panel
                 StartCoroutine(ShowVictoryPanel());

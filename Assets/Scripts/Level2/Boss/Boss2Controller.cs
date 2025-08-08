@@ -26,7 +26,8 @@ public class Boss2Controller : MonoBehaviour
     public Boss2HurtBox bossHurtBox;
 
     public int currentHealth;
-    public bool isDie = false;
+    // ===== SỬA: Đổi isDie từ bool thành property để kiểm tra =====
+    public bool IsDead { get; private set; } = false;
     public bool IsOriginal { get; set; }
     public bool IsGetHit { get; private set; }
 
@@ -62,10 +63,13 @@ public class Boss2Controller : MonoBehaviour
         // ===== SỬA: Khởi tạo IsOriginal = false, Boss2Idle là default =====
         IsOriginal = false;
         CanMove = false; // ===== THÊM: Mặc định không thể di chuyển =====
+        IsDead = false; // ===== SỬA: Khởi tạo IsDead =====
+        
         if (animator != null)
         {
             animator.SetBool("IsOriginal", false);
             animator.SetBool("Transition", false);
+            animator.SetBool("IsDie", false); // ===== THÊM: Reset IsDie trong animator =====
         }
 
         // Tự động lấy hitbox/hurtbox nếu chưa gán
@@ -77,7 +81,8 @@ public class Boss2Controller : MonoBehaviour
 
     void Update()
     {
-        if (isDie) return;
+        // ===== SỬA: Sử dụng IsDead thay vì isDie =====
+        if (IsDead) return;
         
         // ===== SỬA: Kiểm tra IsOriginal để điều khiển behavior =====
         if (IsOriginal)
@@ -259,7 +264,8 @@ public class Boss2Controller : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isDie) return;
+        // ===== SỬA: Sử dụng IsDead thay vì isDie =====
+        if (IsDead) return;
 
         currentHealth -= damage;
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
@@ -281,8 +287,13 @@ public class Boss2Controller : MonoBehaviour
 
     void Die()
     {
-        isDie = true;
-        animator.SetBool("IsDie", true);
+        // ===== SỬA: Đổi isDie thành IsDead và set animator trigger =====
+        IsDead = true;
+        
+        // ===== THÊM: Set trigger thay vì bool =====
+        animator.SetTrigger("IsDie");
+        
+        // ===== SỬA: Reset các animator parameters =====
         animator.SetFloat("Speed", 0);
         animator.SetBool("IsGround", false);
         animator.SetBool("IsOriginal", false);
