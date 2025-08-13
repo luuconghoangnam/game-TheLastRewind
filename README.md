@@ -2,184 +2,177 @@
 
 <div align="center">
   <img src="ImagesReadme/logo.png" alt="The Last Rewind Logo" width="400"/>
-  
-  <p><em>A 2D action-adventure Unity game featuring combat system, boss battles, and multiple levels.</em></p>
-  
-  ![Gameplay Overview](ImagesReadme/gameplay-overview.gif)
+  <p><em>A 2D action-adventure Unity game featuring a deep combat system, boss battles, skills, and multi-level progression.</em></p>
+  <img src="ImagesReadme/gameplay-overview.gif" alt="Gameplay Overview" width="600"/>
 </div>
+
+---
 
 ## 🎮 Game Overview
 
-The Last Rewind is an action-packed 2D game where players control a character with combat abilities, special skills, and various movement mechanics. The game features multiple levels with different bosses and challenging gameplay.
+**The Last Rewind** là game hành động 2D, nơi bạn điều khiển nhân vật vượt qua nhiều màn chơi với hệ thống chiến đấu đa dạng, kỹ năng đặc biệt, đối đầu boss, và nhiều thử thách khác nhau.
 
 <div align="center">
-  <img src="ImagesReadme/level-progression1.png" alt="Level Progression" width="600"/>
-</div>
-<div align="center">
-  <img src="ImagesReadme/level-progression2.png" alt="Level Progression" width="600"/>
+  <img src="ImagesReadme/level-selection.png" alt="Level Selection" width="500"/>
 </div>
 
-## ✨ Features
+---
+
+## ✨ Main Features
 
 ### ⚔️ Combat System
-Advanced hit/hurt box collision detection with visual effects
-
-![Player Combat](ImagesReadme/player-combat.gif)
-
-### 👹 Boss Battles
-Epic boss fights with unique AI controllers
-
-![Boss Battle](ImagesReadme/boss-battle.gif)
-
-### 🎯 Skill System
-Various player abilities including ultimate skills
-
-![Skill Effects](ImagesReadme/skill-effects1.gif)
-![Skill Effects](ImagesReadme/skill-effects2.gif)
-
-### 🎮 Core Features
-- **Multiple Levels**: Progress through different challenging levels with unique mechanics
-- **Advanced Combat**: Precise hitbox/hurtbox collision detection system
-- **Boss AI**: Intelligent boss behavior patterns and attack systems
-- **Health System**: Player and enemy health management with visual feedback
-- **Skill Effects**: Special abilities with particle effects and animations
-- **Level Progression**: Different player controllers for different levels
-- **Audio Integration**: Background music and sound effects
-
-## 🛠️ Technical Features
-
-- Built with **Unity Engine** using **C#**
-- 2D sprite-based graphics and animations
-- Collision detection system for combat
-- State machine for player and enemy behaviors
-- Scene management and game progression
-- UI/UX elements including health bars and menus
+- Đánh cận chiến với hệ thống hitbox/hurtbox chính xác.
+- Đòn đánh thường, combo, và hiệu ứng va chạm.
+- Hệ thống sát thương, máu cho cả người chơi và kẻ địch.
+- Hiệu ứng kỹ năng, ultimate, particle effect.
 
 <div align="center">
-  <img src="ImagesReadme/ui-interface.png" alt="Game UI Interface" width="500"/>
-  <p><em>Game UI and Health Bar System</em></p>
+  <img src="ImagesReadme/player-combat.gif" alt="Player Combat" width="400"/>
+  <img src="ImagesReadme/skill-effect.gif" alt="Skill Effect" width="400"/>
 </div>
+
+### 👹 Boss Battles
+- Boss với AI riêng, nhiều giai đoạn tấn công.
+- Đòn đánh đặc biệt, thay đổi hành vi theo lượng máu.
+- Hiệu ứng tấn công và nhận sát thương.
+
+<div align="center">
+  <img src="ImagesReadme/boss-battle.gif" alt="Boss Battle" width="500"/>
+</div>
+
+### 🎯 Skill & Ultimate System
+- Kỹ năng chủ động, ultimate với hiệu ứng riêng.
+- Hệ thống cooldown, kích hoạt bằng phím số.
+- Hiệu ứng đặc biệt khi sử dụng kỹ năng.
+
+<div align="center">
+  <img src="ImagesReadme/ulti-effect.gif" alt="Ultimate Effect" width="400"/>
+</div>
+
+### 🗺️ Multi-level Progression
+- Nhiều màn chơi, mỗi màn có thiết kế, thử thách, boss riêng.
+- Controller riêng cho từng màn (ví dụ: PlayerControllerLevel2).
+- Hệ thống chuyển màn, lưu tiến trình.
+
+<div align="center">
+  <img src="ImagesReadme/level-progression1.png" alt="Level 1" width="400"/>
+  <img src="ImagesReadme/level-progression2.png" alt="Level 2" width="400"/>
+</div>
+
+### 🖼️ UI & UX
+- Thanh máu, giao diện kỹ năng, hiệu ứng khi nhận sát thương.
+- Menu chính, chọn màn, giao diện pause/game over.
+
+<div align="center">
+  <img src="ImagesReadme/ui-interface.png" alt="Game UI" width="500"/>
+  <img src="ImagesReadme/main-menu.png" alt="Main Menu" width="400"/>
+</div>
+
+### 🔊 Audio & Visuals
+- Nhạc nền, hiệu ứng âm thanh cho tấn công, kỹ năng, boss.
+- Parallax background, animation nhân vật, boss, hiệu ứng đặc biệt.
+
+---
+
+## 🛠️ Technical Details
+
+- **Unity Engine** (2021.3 LTS)
+- **C# scripting**
+- Hệ thống quản lý scene, prefab, resource
+- State machine cho player và boss
+- Hệ thống phát hiện va chạm (hitbox/hurtbox)
+- Modular script cho từng chức năng (Player, Boss, UI, Skill...)
+
+---
 
 ## 📁 Project Structure
 
 ```
 Assets/
 ├── Scripts/
-│   ├── PlayerController.cs          # Main player movement and abilities
-│   ├── PlayerControllerLevel2.cs    # Level 2 specific player controller
-│   ├── PlayerHitBoxHandle.cs        # Player attack collision detection
-│   ├── PlayerHurtBoxHandle.cs       # Player damage collision detection
-│   ├── boss1AiController.cs         # Boss AI and behavior
-│   ├── BossHitboxHandle.cs          # Boss attack collision
-│   ├── BossHurtboxHandle.cs         # Boss damage collision
-│   ├── GameManager.cs               # Core game management
-│   ├── HealthBarController.cs       # UI health display
-│   ├── MainMenu.cs                  # Main menu functionality
-│   ├── SkillEffect.cs               # Skill visual effects
-│   ├── UltiEffect.cs                # Ultimate ability effects
-│   └── Level2/                      # Level 2 specific scripts
-├── Scenes/                          # Game scenes
-├── Sprites/                         # 2D artwork and textures
-├── Animation/                       # Animation controllers and clips
-├── Prefabs/                         # Reusable game objects
-├── Music/                           # Audio files
-└── Resources/                       # Runtime loaded assets
+│   ├── PlayerController.cs
+│   ├── PlayerControllerLevel2.cs
+│   ├── PlayerHitBoxHandle.cs
+│   ├── PlayerHurtBoxHandle.cs
+│   ├── boss1AiController.cs
+│   ├── BossHitboxHandle.cs
+│   ├── BossHurtboxHandle.cs
+│   ├── GameManager.cs
+│   ├── HealthBarController.cs
+│   ├── MainMenu.cs
+│   ├── SkillEffect.cs
+│   ├── UltiEffect.cs
+│   └── Level2/
+├── Scenes/
+├── Sprites/
+├── Animation/
+├── Prefabs/
+├── Music/
+├── Resources/
+└── ImagesReadme/
 ```
 
-## 🎯 Key Components
+---
 
-### Player System
-- **Movement**: Smooth character movement with physics
-- **Combat**: Attack system with hitbox/hurtbox detection
-- **Skills**: Special abilities and ultimate moves
-- **Health**: Damage system and health management
+## 🎯 Gameplay Mechanics
 
-### Enemy/Boss System
-- **AI Controller**: Intelligent boss behavior patterns
-- **Multiple Phases**: Different attack patterns and behaviors
-- **Collision System**: Accurate hit detection
+- **Di chuyển**: WASD hoặc phím mũi tên
+- **Tấn công**: Space hoặc phím tấn công
+- **Kỹ năng**: Phím số (1, 2, 3...)
+- **Ultimate**: Phím đặc biệt (tùy chỉnh)
+- **Pause/Menu**: ESC
 
-### Game Management
-- **Scene Transitions**: Level progression system
-- **UI Management**: Health bars, menus, and game interface
-- **Audio Management**: Background music and sound effects
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Unity 2021.3 LTS or later
-- Visual Studio or Visual Studio Code
-- Git for version control
+- Unity 2021.3 LTS hoặc mới hơn
+- Visual Studio/VS Code
+- Git
 
 ### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/luuconghoangnam/thelastrewind.git
-   ```
+```bash
+git clone https://github.com/luuconghoangnam/thelastrewind.git
+```
+- Mở bằng Unity Hub, chọn đúng version.
+- Chạy scene chính trong `Assets/Scenes/`.
 
-2. Open the project in Unity:
-   - Launch Unity Hub
-   - Click "Add" and select the project folder
-   - Open the project with Unity 2021.3 LTS or compatible version
+---
 
-3. Build and run:
-   - Open the main scene from `Assets/Scenes/`
-   - Press Play in Unity Editor or build for your target platform
+## 📝 System Requirements
 
-## 🎮 Controls
+### Minimum
+- OS: Windows 10, macOS 10.14, hoặc Linux Ubuntu 18.04
+- CPU: Intel Core i3 hoặc tương đương
+- RAM: 4 GB
+- GPU: DirectX 11 compatible
+- Storage: 2 GB
 
-- **Movement**: Arrow keys or WASD
-- **Attack**: Space or designated attack button
-- **Special Abilities**: Number keys (1, 2, 3, etc.)
-- **Ultimate**: Special key combination
-- **Pause**: ESC or designated pause button
+### Recommended
+- OS: Windows 11, macOS 12, hoặc Linux Ubuntu 20.04
+- CPU: Intel Core i5 hoặc tương đương
+- RAM: 8 GB
+- GPU: Dedicated graphics card
+- Storage: 4 GB
 
-## 🔧 Development
-
-### Adding New Features
-1. Create scripts in the appropriate `Assets/Scripts/` subdirectory
-2. Follow the existing naming conventions
-3. Ensure proper collision layer setup for hitbox/hurtbox systems
-4. Test thoroughly in Unity Editor before committing
-
-### Contributing
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
-5. Create a Pull Request
-
-## 📋 System Requirements
-
-### Minimum Requirements
-- **OS**: Windows 10, macOS 10.14, or Linux Ubuntu 18.04
-- **Processor**: Intel Core i3 or AMD equivalent
-- **Memory**: 4 GB RAM
-- **Graphics**: DirectX 11 compatible
-- **Storage**: 2 GB available space
-
-### Recommended Requirements
-- **OS**: Windows 11, macOS 12, or Linux Ubuntu 20.04
-- **Processor**: Intel Core i5 or AMD equivalent
-- **Memory**: 8 GB RAM
-- **Graphics**: Dedicated graphics card with DirectX 11 support
-- **Storage**: 4 GB available space
+---
 
 ## 🐛 Known Issues
 
-- Some collision detection edge cases in specific scenarios
-- Performance optimization needed for complex scenes
-- Audio synchronization in certain situations
+- Một số trường hợp va chạm chưa chính xác
+- Cần tối ưu hiệu năng cho màn chơi phức tạp
+- Âm thanh đôi khi chưa đồng bộ
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
 
 ## 👥 Credits
 
 - **Developer**: [Luu Lam Cong]
 - **Unity Version**: 2021.3 LTS
-- **Additional Assets**: [List any third-party assets used]
+- **Additional Assets**: [Liệt kê asset bên ngoài nếu có]
+
+---
 
 ## 📞 Contact
 
