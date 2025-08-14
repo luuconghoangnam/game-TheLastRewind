@@ -12,9 +12,9 @@
 
 **The Last Rewind** là game hành động 2D, nơi bạn điều khiển nhân vật vượt qua nhiều màn chơi với hệ thống chiến đấu đa dạng, kỹ năng đặc biệt, đối đầu boss, và nhiều thử thách khác nhau.
 
-<!-- <div align="center">
+<div align="center">
   <img src="ImagesReadme/level-selection.png" alt="Level Selection" width="500"/>
-</div> -->
+</div>
 
 ---
 
@@ -49,6 +49,17 @@
   <img src="ImagesReadme/ulti-effect.gif" alt="Ultimate Effect" width="400"/>
 </div>
 
+### 🌀 Prefab Skills & Special Effects
+- Các chiêu thức, kỹ năng được xây dựng dạng prefab, dễ dàng mở rộng và tái sử dụng.
+- Hiệu ứng đặc biệt cho từng kỹ năng, ultimate, hoặc trạng thái nhân vật.
+- Có thể thêm các prefab mới chỉ bằng cách kéo thả vào scene.
+
+<div align="center">
+  <img src="ImagesReadme/prefab-skill1.gif" alt="Prefab Skill 1" width="400"/>
+  <img src="ImagesReadme/prefab-skill2.gif" alt="Prefab Skill 2" width="400"/>
+  <!-- Thêm các gif khác nếu có -->
+</div>
+
 ### 🗺️ Multi-level Progression
 - Nhiều màn chơi, mỗi màn có thiết kế, thử thách, boss riêng.
 - Controller riêng cho từng màn (ví dụ: PlayerControllerLevel2).
@@ -66,6 +77,26 @@
 <div align="center">
   <img src="ImagesReadme/ui-interface.png" alt="Game UI" width="500"/>
   <img src="ImagesReadme/main-menu.png" alt="Main Menu" width="400"/>
+</div>
+
+### 🎬 Animation Showcase
+- Animation chuyển động, tấn công, nhận sát thương, chết, sử dụng kỹ năng...
+- Animation cho boss, enemy, và các hiệu ứng đặc biệt.
+
+<div align="center">
+  <img src="ImagesReadme/animation-player.gif" alt="Player Animation" width="400"/>
+  <img src="ImagesReadme/animation-boss.gif" alt="Boss Animation" width="400"/>
+  <!-- Thêm các gif khác nếu có -->
+</div>
+
+### 🧩 Special Mechanisms
+- Các cơ chế đặc biệt như trap, puzzle, vật phẩm hỗ trợ, checkpoint, v.v.
+- Hỗ trợ mở rộng thêm các hệ thống gameplay mới.
+
+<div align="center">
+  <img src="ImagesReadme/special-mechanism1.gif" alt="Special Mechanism 1" width="400"/>
+  <img src="ImagesReadme/special-mechanism2.gif" alt="Special Mechanism 2" width="400"/>
+  <!-- Thêm các gif khác nếu có -->
 </div>
 
 ### 🔊 Audio & Visuals
