@@ -12,9 +12,6 @@
 
 **The Last Rewind** là game hành động 2D, nơi bạn điều khiển nhân vật vượt qua nhiều màn chơi với hệ thống chiến đấu đa dạng, kỹ năng đặc biệt, đối đầu boss, và nhiều thử thách khác nhau.
 
-<div align="center">
-  <img src="ImagesReadme/level-selection.png" alt="Level Selection" width="500"/>
-</div>
 
 ---
 

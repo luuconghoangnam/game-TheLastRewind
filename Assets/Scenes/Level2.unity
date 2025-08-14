@@ -341,7 +341,6 @@ MonoBehaviour:
   bossHitBox: {fileID: 447837425}
   bossHurtBox: {fileID: 1104734052}
   currentHealth: 0
-  isDie: 0
   bossEffect2Prefab: {fileID: 1286515402811109991, guid: dea2584e73979a3439bcff3bb31093a5, type: 3}
   attackPoint2: {fileID: 703309321}
 --- !u!1 &6760141
@@ -7154,7 +7153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1675043998
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7171,7 +7170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 110, y: -185}
   m_SizeDelta: {x: 280, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1675043999
